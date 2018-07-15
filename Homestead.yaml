@@ -33,6 +33,8 @@ variables:
     value: localhost
   - key: SYMFONY__smtp_port
     value: 1025
+  - key: SYMFONY__smtp_user
+    value: no-reply@example.com
 
 name: ellakcy-member-app
 hostname: ellakcy-member-app
