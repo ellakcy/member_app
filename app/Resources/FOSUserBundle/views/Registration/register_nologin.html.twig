@@ -3,26 +3,11 @@
 
 {% block fos_user_content %}
 
-  {% form_theme form '::themes/register-form-theme.html.twig' %}
   {% trans_default_domain 'FOSUserBundle' %}
 
 <div class="container">
-  <div class="register-box" >
-    <div class="register-logo">
-        <h1>{{ app_name }}</h1>
-    </div>
-    <div class="register-box-body">
-      <p class="login-box-msg">Register a new membership</p>
-      {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register')}) }}
-        {{ form_widget(form) }}
-        <div class="row">
-          <div class="col-xs-4">
-            <input type="submit" class="btn btn-primary btn-block btn-flat" value="{{ 'registration.submit'|trans }}" />
-          </div>
-        </div>
-      {{ form_end(form) }}
-      <a href="{{ path('fos_user_security_login') }}"> I already have an account. </a>
-  </div>
+    {% include "@FOSUser/Registration/register_content.html.twig" %}
+    <a href="{{ path('fos_user_security_login') }}"> I already have an account. </a>
 </div>
 
 {% endblock fos_user_content %}
