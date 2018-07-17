@@ -45,5 +45,5 @@ gulp.task('move_fontawesome',function(done){
   done();
 });
 /* ############################################ Installing Dependencies ##################################### */
-gulp.task('move_frontend', gulp.series(['move_bootstrap','move_jquery'],(done)=>{done()}));
+gulp.task('move_frontend', gulp.series(['move_bootstrap','move_jquery','move_fontawesome'],(done)=>{done()}));
 gulp.task('default',gulp.series(['move_frontend'],(done)=>{done()}));
