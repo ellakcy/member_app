@@ -1,0 +1,26 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% set body_css_classes="skin-blue layout-top-nav" %}
+
+{% block fos_user_content %}
+	<div class="content-wrapper">
+		<div class="container">
+    		<section class="content">
+        		<div class="callout callout-success ">
+        			<h4>{{ 'registration.confirmed.header'|trans }}</h4>
+        			<p>{{ 'registration.confirmed'|trans({'%username%': user.username}) }}</p>
+                    {% if targetUrl %}
+                    <p><a href="{{ targetUrl }}" class="btn btn-primary">{{ 'registration.back'|trans }}</a></p>
+                    {% endif %}
+        		</div>
+    		</section>
+		</div>
+	</div>
+    
+{% endblock fos_user_content %}
+
+
+{% block javascriptsFooter %}
+{% endblock %}

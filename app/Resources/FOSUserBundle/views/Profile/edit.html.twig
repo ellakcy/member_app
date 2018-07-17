@@ -1,0 +1,16 @@
+{% extends "@FOSUser/layout_sidebar.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block title %} {{ "layout.profile_edit.pagetitle"|trans }} {% endblock %}
+
+{% block fos_user_content %}
+<div class="box box-default">
+	<div class="box-header">
+		<h4>{{ "layout.profile_edit.basic_settings"|trans }}</h4>
+	</div>
+	<div class="box-body">
+	    {% include "@FOSUser/Profile/edit_content.html.twig" %}
+	</div>
+</div>
+{% endblock fos_user_content %}

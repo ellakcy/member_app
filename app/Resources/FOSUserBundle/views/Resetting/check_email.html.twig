@@ -1,0 +1,21 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{% set body_css_classes="hold-transition login-page" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block title %} {{ 'layout.checkmail.header'|trans }} {% endblock %}
+
+
+{% block fos_user_content %}
+<div class="login-box">
+	<div class="login-box-body">
+		<div class="callout calout-info">
+    		<h4>{{ 'layout.checkmail.header'|trans }}</h4>
+    		<p>
+              {{ 'resetting.check_email'|trans({'%tokenLifetime%': tokenLifetime})|nl2br }}
+    		</p>
+		</div>
+	</div>
+</div>
+{% endblock %}

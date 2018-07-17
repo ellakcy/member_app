@@ -1,0 +1,5 @@
+{% if is_granted('ROLE_ADMIN') %}
+	{% include "@FOSUser/Registration/register_admin.html.twig" %}
+{% else %}
+    {% include "@FOSUser/Registration/register_nologin.html.twig" %}
+{% endif %}

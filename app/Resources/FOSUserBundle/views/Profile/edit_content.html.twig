@@ -1,0 +1,33 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% form_theme form 'bootstrap_3_layout.html.twig' %}
+
+{{ form_start(form, { 'action': path('fos_user_profile_edit') }) }}
+	<div class="col-xs-12 col-sm-6">
+        <div class="form-group">
+    	    {{ form_row(form.name) }}
+        </div>
+    </div>
+    <div class="col-xs-12 col-sm-6">
+        <div class="form-group">
+    	    {{ form_row(form.surname) }}
+        </div>
+    </div>
+
+    <div class="col-xs-12 col-sm-6">
+        <div class="form-group">
+    	    {{ form_row(form.username) }}
+        </div>
+    </div>
+
+   	<div class="col-xs-12 col-sm-6">
+	    <div class="form-group">
+		    {{ form_row(form.email) }}
+    	</div>
+    </div>
+   	<div class="col-xs-12">
+	    <div class="form-group">
+	        <input type="submit" class="btn btn-flat btn-primary" value="{{ 'profile.edit.submit'|trans }}" />
+    	</div>
+    </div>
+{{ form_end(form) }}
