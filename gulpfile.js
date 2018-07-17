@@ -1,7 +1,6 @@
 var gulp = require('gulp');
 var rename = require('gulp-rename');
-var ext_replace = require('gulp-ext-replace');
-var argv = require('yargs').boolean('production').alias('p','production').argv;
+var run=require('gulp-exec');
 
 /**
 * Location where to store the 3rd party libraries
@@ -11,12 +10,10 @@ var vendor_folder=`${frontend_folder}/vendor`
 var frontent_dev_folder_js=`${frontend_folder}/js`
 var frontent_dev_folder_js=`${frontend_folder}/css`
 
-var dev= !argv.p;
-
 /*################################### Installing Dependencies ###############################*/
 
 //Move Bootstrap
-gulp.task('move_bootstrap',function(){
+gulp.task('move_bootstrap',function(done){
 
   var bootstrap_dir='./node_modules/bootstrap/dist';
   var dest=`${vendor_folder}/bootstrap`;
@@ -27,30 +24,26 @@ gulp.task('move_bootstrap',function(){
   gulp.src(css_files).pipe(gulp.dest(`${dest}/css`));
   gulp.src(js_files).pipe(gulp.dest(`${dest}/js`));
 
+  done();
 })
 
 //Jquery & miscellanous Javascript move
-gulp.task('move_jquery',function(){
+gulp.task('move_jquery',function(done){
+  var jqueryFiles=['./node_modules/jquery/dist/jquery.min.js'];
+  gulp.src(jqueryFiles).pipe(gulp.dest(vendor_folder));
 
-  var jqueryFiles=[
-                    './node_modules/jquery/dist/jquery.min.js',
-                  ]
-
-  gulp.src(jqueryFiles).pipe(gulp.dest(vendor_folder))
+  done();
 });
 
-
 //For fontawesome
-gulp.task('move_fontawesome',function(){
+gulp.task('move_fontawesome',function(done){
   var path='./node_modules/font-awesome';
   var dest=vendor_folder+'/font-awesome';
 
   gulp.src(path+'/fonts/*').pipe(gulp.dest(dest+'/fonts'));
   gulp.src(path+'/css/font-awesome.min.css').pipe(gulp.dest(dest+'/css'));
+  done();
 });
-
 /* ############################################ Installing Dependencies ##################################### */
-
-gulp.task('move_frontend',['move_bootstrap','move_jquery']);
-
-gulp.task('default',['move_frontend']);
+gulp.task('move_frontend', gulp.series(['move_bootstrap','move_jquery'],(done)=>{done()}));
+gulp.task('default',gulp.series(['move_frontend'],(done)=>{done()}));
