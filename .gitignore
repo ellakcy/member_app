@@ -19,3 +19,4 @@
 node_modules
 frontend/vendor/*
 !frontend/vendor/.gitkeep
+web/assets

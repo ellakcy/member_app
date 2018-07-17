@@ -1,5 +1,6 @@
 var gulp = require('gulp');
 var rename = require('gulp-rename');
+var vfs = require('vinyl-fs');
 
 /**
 * Location where to store the 3rd party libraries
@@ -43,6 +44,21 @@ gulp.task('move_fontawesome',function(done){
   gulp.src(path+'/css/font-awesome.min.css').pipe(gulp.dest(dest+'/css'));
   done();
 });
+
+
+/******* Build Final Steps ****************************************************/
+
+gulp.task('link_assets',function(done){
+
+  vfs.src(frontend_folder+'/*', {followSymlinks: false})
+        .pipe(vfs.symlink('./web/assets/'));
+
+  return done();
+});
+
 /* ############################################ Installing Dependencies ##################################### */
+
 gulp.task('move_frontend', gulp.series(['move_bootstrap','move_jquery','move_fontawesome'],(done)=>{done()}));
-gulp.task('default',gulp.series(['move_frontend'],(done)=>{done()}));
+gulp.task('dev',gulp.series(['move_frontend','link_assets'],(done)=>{done();}));
+
+gulp.task('default',gulp.series(['dev'],(done)=>{done()}));
