@@ -1,6 +1,5 @@
 var gulp = require('gulp');
 var rename = require('gulp-rename');
-var run=require('gulp-exec');
 
 /**
 * Location where to store the 3rd party libraries
