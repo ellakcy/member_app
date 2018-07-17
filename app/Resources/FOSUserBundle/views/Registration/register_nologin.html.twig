@@ -1,7 +1,4 @@
-{% extends "FOSUserBundle::layout.html.twig" %}
-
-{% set body_css_classes="hold-transition register-page" %}
-
+{% extends "@FOSUserBundle/layout.html.twig" %}
 {% block title %} Register {% endblock title %}
 
 {% block fos_user_content %}
@@ -29,6 +26,3 @@
 </div>
 
 {% endblock fos_user_content %}
-
-{% block javascriptsFooter %}
-{% endblock %}

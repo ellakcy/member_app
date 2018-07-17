@@ -36,6 +36,8 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    paths:
+       '%kernel.project_dir%/app/Resources/FOSUserBundle/views': FOSUserBundle
 
 # Doctrine Configuration
 doctrine:

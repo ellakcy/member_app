@@ -22,4 +22,7 @@ $container->setParameter('mailer_port', getenv('SYMFONY__smtp_port'));
 $container->setParameter('mailer_user', getenv('SYMFONY__smtp_user'));
 $container->setParameter('mailer_password', getenv('SYMFONY__smtp_password'));
 
+$container->setParameter('app_name', "Ellakcy Member and user Management System");
+
+
 $container->setParameter('secret','ncrwoe3398hxujiqwbhdslasTT^ebghuikas');
