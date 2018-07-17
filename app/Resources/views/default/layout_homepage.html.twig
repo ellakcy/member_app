@@ -1,7 +1,31 @@
 {% extends 'base.html.twig' %}
 
-{% block header %}
+{% block stylesheets %}
+    <link rel="stylesheet" type="text/css" href="{{ asset('bootstrap/css/bootstrap.min.css','vendor') }}">
+    <link rel="stylesheet" type="text/css" href="{{ asset('font-awesome/css/font-awesome.min.css','vendor') }}">
 {% endblock %}
 
+
+{% block header %}
+<header class="container-fluid">
+  <nav class="navbar navbar-dark bg-primary clearfix row">
+    <a class="navbar-brand" href="{{path("homepage")}}">
+      <img src="{{asset('favicon-32x32.png')}}">
+    </a>
+  </nav>
+</header>
+{% endblock %}
+
+{% block content %}
+  <div class="container-fluid">
+    {% block main %}
+    {% endblock %}
+  </div>
+{% endblock %}
+
+
 {% block footer %}
+<footer class="container-fluid clearfix row">
+  <span stylesheet="text-align: center;">Footer content</span>
+</footer>
 {% endblock %}
