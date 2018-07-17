@@ -17,5 +17,4 @@
 /web/bundles/
 .vagrant
 node_modules
-frontend/vendor/*.js
-frontend/vendor/*.css
+frontend/vendor/*
