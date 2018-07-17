@@ -5,9 +5,21 @@
 
   {% trans_default_domain 'FOSUserBundle' %}
 
-<div class="container">
-    {% include "@FOSUser/Registration/register_content.html.twig" %}
-    <a href="{{ path('fos_user_security_login') }}"> I already have an account. </a>
-</div>
+  <div class="row clearfix"><div class="col"><h1 style="text-align:center">{{ 'register.title'|trans }}</h1></div></div>
+  <div class="row clearfix">
+    {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register col'}}) }}
+      {% include "@FOSUser/Registration/register_content.html.twig" %}
+      <div class="form-row">
+        <div class="form-group col">
+          <div class="form-check">
+              <input class="form-check-input" name="acceptTerms" type="checkbox" id="gridCheck">
+              <label class="form-check-label" for="gridCheck">{{ 'register.acceptTerms'|trans }}</label>
+          </div>
+      </div>
+      <div class="form-row">
+        <input type="submit" class="btn btn-primary" value="{{ 'registration.submit'|trans }}" />
+      </div>
+    {{ form_end(form) }}
+  </row>
 
 {% endblock fos_user_content %}

@@ -3,16 +3,20 @@ namespace AppBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Misd\PhoneNumberBundle\Form\Type\PhoneNumberType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
+
 
 class RegistrationType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder->add('name')
-                ->add('surname')
-                ->add('phone')
-                ->add('organization')
-                ->add('occupation');
+        $builder->add('name',TextType::class,["label"=>"register.name","required"=>true,'translation_domain' => 'FOSUserBundle'])
+                ->add('surname',TextType::class,["label"=>"register.surname","required"=>true,'translation_domain' => 'FOSUserBundle'])
+                ->add('phone',PhoneNumberType::class,["label"=>"register.phonenum","required"=>false,'translation_domain' => 'FOSUserBundle'])
+                ->add('organization',TextType::class,["label"=>"register.organization","required"=>false,'translation_domain' => 'FOSUserBundle'])
+                ->add('occupation',TextType::class,["label"=>"register.position","required"=>false,'translation_domain' => 'FOSUserBundle']);
     }
 
     public function getParent()
