@@ -2,3 +2,5 @@
 .git
 .vagrant
 README.md
+Vagrantfile
+Homestead.yaml
