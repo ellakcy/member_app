@@ -7,6 +7,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Misd\PhoneNumberBundle\Validator\Constraints\PhoneNumber as AssertPhoneNumber;
 
 /**
+ * @ORM\Entity
  * @ORM\Table(name="users")
  */
 class User extends BaseUser
@@ -75,15 +76,36 @@ class User extends BaseUser
         parent::__construct();
     }
 
+    public function setName(string $name)
+    {
+      $this->name=$name;
+
+      return $this;
+    }
+
     public function getName()
     {
         return $this->name;
     }
 
 
+    public function setSurname(string $surname)
+    {
+      $this->surname=$surname;
+
+      return $this;
+    }
+
     public function getSurname()
     {
         return $this->name;
+    }
+
+    public function setPhone($phoneNum)
+    {
+      $this->phone=$phoneNum;
+
+      return $this;
     }
 
     public function getPhone()
@@ -91,14 +113,25 @@ class User extends BaseUser
       return $this->phone;
     }
 
+    public function setOrganization($organization)
+    {
+      $this->organization=$organization;
+      return $this;
+    }
+
     public function getOrganization()
     {
       return $this->organization;
+    }
+
+    public function setOccupation($occupation)
+    {
+      $this->occupation=$occupation;
+      return $this;
     }
 
     public function getOccupation()
     {
       return $this->occupation;
     }
-
 }

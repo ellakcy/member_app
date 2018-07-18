@@ -19,21 +19,21 @@ databases:
     - homestead
 
 variables:
-  - key: SYMFONY__database_host
+  - key: database_host
     value: 127.0.0.1
-  - key: SYMFONY__database_port
+  - key: database_port
     value: 33060
-  - key: SYMFONY__database_name
+  - key: database_name
     value: homestead
-  - key: SYMFONY__database_user
+  - key: database_user
     value: homestead
-  - key: SYMFONY__database_password
+  - key: database_password
     value: secret
-  - key: SYMFONY__smtp_host
+  - key: smtp_host
     value: localhost
-  - key: SYMFONY__smtp_port
+  - key: smtp_port
     value: 1025
-  - key: SYMFONY__smtp_user
+  - key: smtp_user
     value: no-reply@example.com
 
 name: ellakcy-member-app
