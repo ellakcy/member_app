@@ -46,13 +46,13 @@ class User extends BaseUser
     protected $surname;
 
     /**
-     * @ORM\Column(type="phone_number")
+     * @ORM\Column(type="phone_number", nullable=true)
      * @AssertPhoneNumber
      */
     protected $phone;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(
      *     min=0,
      *     max=255,
@@ -62,7 +62,7 @@ class User extends BaseUser
     protected $organization;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      * @Assert\Length(
      *     min=0,
      *     max=255,

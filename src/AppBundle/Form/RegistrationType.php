@@ -14,7 +14,7 @@ class RegistrationType extends AbstractType
     {
         $builder->add('name',TextType::class,["label"=>"register.name","required"=>true,'translation_domain' => 'FOSUserBundle'])
                 ->add('surname',TextType::class,["label"=>"register.surname","required"=>true,'translation_domain' => 'FOSUserBundle'])
-                ->add('phone',PhoneNumberType::class,["label"=>"register.phonenum","required"=>false,'translation_domain' => 'FOSUserBundle'])
+                ->add('phone',PhoneNumberType::class,["label"=>"register.phonenum",'translation_domain' => 'FOSUserBundle'])
                 ->add('organization',TextType::class,["label"=>"register.organization","required"=>false,'translation_domain' => 'FOSUserBundle'])
                 ->add('occupation',TextType::class,["label"=>"register.position","required"=>false,'translation_domain' => 'FOSUserBundle']);
     }
