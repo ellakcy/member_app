@@ -104,7 +104,6 @@ class User extends BaseUser
     public function setPhone($phoneNum)
     {
       $this->phone=$phoneNum;
-
       return $this;
     }
 
