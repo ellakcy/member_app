@@ -2,7 +2,7 @@
 
 // Database Settings
 $container->setParameter('database_host', getenv("database_host"));
-$container->setParameter('database_port', getenv("database_port"));
+$container->setParameter('database_port', (int) getenv("database_port"));
 $container->setParameter('database_name', getenv("database_name"));
 $container->setParameter('database_user', getenv("database_user"));
 $container->setParameter('database_password', getenv("database_password"));

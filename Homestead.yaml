@@ -22,7 +22,7 @@ variables:
   - key: database_host
     value: 127.0.0.1
   - key: database_port
-    value: 33060
+    value: 3306
   - key: database_name
     value: homestead
   - key: database_user
