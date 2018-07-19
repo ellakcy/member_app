@@ -5,6 +5,7 @@ namespace AppBundle\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 class DefaultController extends Controller
 {
@@ -13,9 +14,21 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-        // replace this example code with whatever you need
-        return $this->render('default/index.html.twig', [
-            'base_dir' => realpath($this->getParameter('kernel.project_dir')).DIRECTORY_SEPARATOR,
-        ]);
+      $auth_checker = $this->get('security.authorization_checker');
+      $token = $this->get('security.token_storage')->getToken();
+      $user = $token->getUser();
+
+      if($auth_checker->isGranted('ROLE_USER')){
+        return $this->render('pages/panel.html.twig');
+      } else {
+        $router = $this->container->get('router');
+        return new RedirectResponse($router->generate('fos_user_security_login'));
+      }
+    }
+
+    public function sideBarProfile(){
+      $auth_checker = $this->get('security.authorization_checker');
+      $token = $this->get('security.token_storage')->getToken();
+      $user = $token->getUser();
     }
 }
