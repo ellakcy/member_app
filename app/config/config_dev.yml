@@ -11,6 +11,8 @@ framework:
        packages:
          vendor:
              base_path: '/assets/vendor'
+         css:
+             base_path: '/assets/css'
 
 web_profiler:
     toolbar: true
