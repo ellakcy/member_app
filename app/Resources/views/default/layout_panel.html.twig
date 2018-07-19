@@ -1,12 +1,22 @@
 {% extends 'default/layout_homepage.html.twig' %}
 
+{% block navContent %}
+<a class="btn btn-danger" href="{{ path('fos_user_security_logout') }}">Logout</a>
+{% endblock navContent %}
+
 {% block content %}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-2 float-left bg-dark text-white">
+      {% block sidebar_content %}
+        Sidebar
+      {% endblock sidebar_content %}
+    </div>
 
-{% block sidebar_content %}
-
-{% endblock sidebar_content %}
-
-{% block pageContent %}
-{% endblock pageContent %}
-
+    <div class="col-xs-12 col-sm-9 float-right">
+      {% block pageContent %}
+      {% endblock pageContent %}
+    </div>
+  </div>
+</div>
 {% endblock %}
