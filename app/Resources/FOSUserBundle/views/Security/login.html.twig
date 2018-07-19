@@ -4,44 +4,53 @@
 
 {% block title %} {{ 'layout.login'|trans }} {% endblock %}
 
+{% block stylesheets %}
+{{ parent() }}
+<style>
+.custom {
+  height: calc(100vh - 60px);
+}
+</style>
+{% endblock %}
+
 {% block content %}
-  <div class="container-fluid d-flex align-items-center justify-content-center">
-    <div class="row">
-      <div class="col col-xs-12 col-md-12 col-lg-12">
-        <h1 style="text-align:center">{{ 'layout.login'|trans }}</h1>
-        <form action="{{ path("fos_user_security_check") }}" method="post">
-              {% if csrf_token %}
-                  <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
-              {% endif %}
+  <div class="custom container d-flex align-items-center justify-content-center">
+      <div class="row bg-light border border-primary">
+        <div class="col mt-5 col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <h1 style="text-align:center">{{ 'layout.login'|trans }}</h1>
+          <form action="{{ path("fos_user_security_check") }}" method="post">
+                {% if csrf_token %}
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                {% endif %}
 
-          	   <div class="form-group">
-                <input type="text" class="form-control"  id="username" name="_username" value="{{ last_username }}" placeholder="{{ 'security.login.username'|trans }}" required="required" />
-                <span class="glyphicon glyphicon-user form-control-feedback"></span>
-          	  </div>
-            	<div class="form-group">
-                	<input type="password" class="form-control" id="password" name="_password" placeholder="{{ 'security.login.password'|trans }}" required="required" />
-                	<span class="glyphicon glyphicon-lock form-control-feedback"></span>
-            	</div>
+            	   <div class="form-group">
+                  <input type="text" class="form-control"  id="username" name="_username" value="{{ last_username }}" placeholder="{{ 'security.login.username'|trans }}" required="required" />
+                  <span class="glyphicon glyphicon-user form-control-feedback"></span>
+            	  </div>
+              	<div class="form-group">
+                  	<input type="password" class="form-control" id="password" name="_password" placeholder="{{ 'security.login.password'|trans }}" required="required" />
+                  	<span class="glyphicon glyphicon-lock form-control-feedback"></span>
+              	</div>
 
-              <div class="form-group">
-                  <div class="form-check">
-                    <input type="checkbox" id="remember_me" name="_remember_me" class="form-check-input" />
-                    <label class="form-check-label" for="remember_me" >{{ 'security.login.remember_me'|trans }}</label>
-                  </div>
+                <div class="form-group">
+                    <div class="form-check">
+                      <input type="checkbox" id="remember_me" name="_remember_me" class="form-check-input" />
+                      <label class="form-check-label" for="remember_me" >{{ 'security.login.remember_me'|trans }}</label>
+                    </div>
+                </div>
+               <div class="form-row">
+                 <div class="col">
+                   <input type="submit" class="btn btn-primary btn-block" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+                 </div>
+                 <div class="col">
+                   <a class="btn btn-warning btn-block" href="{{ path('fos_user_resetting_request') }}">{{ 'security.login.forgotenpassword'|trans }}</a>
+                 </div>
               </div>
-             <div class="form-row">
-               <div class="col">
-                 <input type="submit" class="btn btn-primary btn-block" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
-               </div>
-               <div class="col">
-                 <a class="btn btn-warning btn-block" href="{{ path('fos_user_resetting_request') }}">{{ 'security.login.forgotenpassword'|trans }}</a>
-               </div>
-            </div>
-        </form>
-      </div>
-      <div class="col col-xs-12 col-md-12 col-lg-12 mt-1">
-          <a class="btn btn-primary btn-block" href="{{ path('fos_user_registration_register') }}">{{ 'security.login.gotoregister'|trans }}</a>
+          </form>
+        </div>
+        <div class="col col-xs-12 col-sm-12 col-md-12 col-lg-12 mt-1 mb-5">
+            <a class="btn btn-primary btn-block" href="{{ path('fos_user_registration_register') }}">{{ 'security.login.gotoregister'|trans }}</a>
+        </div>
       </div>
     </div>
-  </div>
 {% endblock content %}
