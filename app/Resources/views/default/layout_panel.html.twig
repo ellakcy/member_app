@@ -2,7 +2,7 @@
 
 {% block stylesheets %}
   {{ parent() }}
-  <link rel="stylesheet" type="text/css" href="{{ asset('panel.css','css') }}"
+  <link rel="stylesheet" type="text/css" href="{{ asset('panel.css','css') }}" >
 {% endblock %}
 
 {% block navContent %}
@@ -11,8 +11,9 @@
 
 {% block content %}
   <div class="sidebar bg-dark text-light">
+      {{ render(controller('AppBundle:Sidebar:displayCurrentUserInfoToTheSideBar')) }}
+      <hr class="border-light"><br>
       {% block sidebar_content %}
-        Sidebar
       {% endblock sidebar_content %}
   </div>
 
