@@ -1,30 +1,15 @@
 {% extends "FOSUserBundle::layout_sidebar.html.twig" %}
 
-{% set body_css_classes="hold-transition register-page" %}
-
 {% block title %} Add a new User {% endblock title %}
 
 {% block fos_user_content %}
 
-{% form_theme form 'bootstrap_3_layout.html.twig' %}
 {% trans_default_domain 'FOSUserBundle' %}
 
-<div class="row">
-	<div class="col-xs-12">
-		<div class="box box-default" >
-            <div class="box-body">
-              {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register')}) }}
-                {{ form_widget(form) }}
-                <div class="row">
-                  <div class="col-xs-12 col-sm-4 col-md-4 col-lg-4">
-                    <input type="submit" class="btn btn-primary btn-block btn-flat" value="{{ 'registration.submit'|trans }}" />
-                  </div>
-                </div>
-              {{ form_end(form) }}
-          	</div>
-          </div>
-	</div>
-</div>
+{{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register col'}}) }}
+		{% include "@FOSUser/Registration/register_content.html.twig" %}
+    <input type="submit" class="btn btn-primary" value="{{ 'registration.submit'|trans }}" />
+{{ form_end(form) }}
 
 {% endblock fos_user_content %}
 

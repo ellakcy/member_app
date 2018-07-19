@@ -7,11 +7,14 @@
 
 
 {% block header %}
-<header class="container-fluid">
-  <nav class="navbar navbar-dark bg-primary clearfix row">
+<header>
+  <nav class="navbar navbar-dark bg-primary">
     <a class="navbar-brand" href="{{path("homepage")}}">
       <img src="{{asset('favicon-32x32.png')}}">
+      Διαχείρηση Μελών ΕΛΛΑΚ Κύπρου
     </a>
+    {% block navContent %}
+    {% endblock navContent %}
   </nav>
 </header>
 {% endblock %}
