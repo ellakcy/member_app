@@ -17,6 +17,7 @@ sites:
 
 databases:
     - homestead
+    - homestead-test
 
 variables:
   - key: database_host

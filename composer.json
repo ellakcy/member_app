@@ -38,8 +38,9 @@
     },
     "require-dev": {
         "laravel/homestead": "^7.12",
+        "phpunit/phpunit": "^6.5",
         "sensio/generator-bundle": "^3.0",
-        "symfony/phpunit-bridge": "^3.0"
+        "symfony/phpunit-bridge": "^4.1"
     },
     "scripts": {
         "symfony-scripts": [
