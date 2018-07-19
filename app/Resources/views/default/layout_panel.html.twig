@@ -5,15 +5,14 @@
 {% endblock navContent %}
 
 {% block content %}
-<div class="container-fluid">
-  <div class="row">
-    <div class="col-sm-2 float-left bg-dark text-white">
+<div class="container-fluid row">
+    <div class="text-light bg-dark col-sm-2">
       {% block sidebar_content %}
         Sidebar
       {% endblock sidebar_content %}
     </div>
 
-    <div class="col-xs-12 col-sm-9 float-right">
+    <div class="float-right col-sm-9 col-xs-12">
       {% block pageContent %}
       {% endblock pageContent %}
     </div>

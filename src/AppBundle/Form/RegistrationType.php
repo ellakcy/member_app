@@ -29,12 +29,8 @@ class RegistrationType extends AbstractType
                 ->add('phone',PhoneNumberType::class,["label"=>"register.phonenum",'translation_domain' => 'FOSUserBundle'])
                 ->add('organization',TextType::class,["label"=>"register.organization","required"=>false,'translation_domain' => 'FOSUserBundle'])
                 ->add('occupation',TextType::class,["label"=>"register.position","required"=>false,'translation_domain' => 'FOSUserBundle']);
-
-        if(!$this->authorizationChecker->isGranted('ROLE_ADMIN'))
-        {
-          $builder->add('accept_terms',CheckboxType::class,["label"=>"register.acceptTerms","required"=>true,'translation_domain' => 'FOSUserBundle',
+        $builder->add('accept_terms',CheckboxType::class,["label"=>"register.acceptTerms","required"=>true,'translation_domain' => 'FOSUserBundle',
                                                             'mapped' => false,'constraints' => new TrueConstraint(array('message' => 'Your Confirmation Message','groups' => 'Registration'))]);
-        }
     }
 
     public function getParent()

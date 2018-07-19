@@ -98,7 +98,7 @@ class User extends BaseUser
 
     public function getSurname()
     {
-        return $this->name;
+        return $this->surname;
     }
 
     public function setPhone($phoneNum)
