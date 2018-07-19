@@ -1,0 +1,31 @@
+.sidebar{
+  width: 20%;
+  float: left;
+}
+
+.content {
+  width: 80%;
+  float: right;
+  padding:1px;
+}
+
+@media only screen and (max-width: 600px) {
+  .sidebar {
+    display: none;
+  }
+
+  .content {
+    width:100%;
+    float:none;
+  }
+}
+
+@media only print {
+  .sidebar {
+    display:none
+  }
+
+  .content {
+    width:100%
+  }
+}
