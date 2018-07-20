@@ -2,9 +2,8 @@
 
 namespace Tests\AppBundle\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class DefaultControllerTest extends WebTestCase
+class DefaultControllerTest extends BasicHttpController
 {
     public function testIndex()
     {
@@ -14,5 +13,9 @@ class DefaultControllerTest extends WebTestCase
         $response=$client->getResponse();
         $this->assertEquals(302, $response->getStatusCode());
         $this->assertEquals('/login',$response->headers->get('Location'));
+
+        $this->checkPanelAfterSucessfullLogin($crawler); //How I can create some user?
     }
+
+
 }
