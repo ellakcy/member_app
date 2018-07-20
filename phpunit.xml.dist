@@ -14,7 +14,8 @@
 
     <testsuites>
         <testsuite name="Project Test Suite">
-            <directory>tests/functional</directory>
+            <directory>tests</directory>
+            <exclude>./tests/Appbundle/Controller/DefaultControllerTest.php</exclude>
         </testsuite>
     </testsuites>
 
