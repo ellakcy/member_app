@@ -42,11 +42,14 @@
       {{ form_widget(form.occupation, {'attr': {'class': 'form-control'}}) }}
     </div>
   </div>
-  <div class="form-row">
-    <div class="form-group row">
-      {{ form_label(form.current_password, null, { 'label_attr': { 'class': 'col-sm-3 col-xs-12 col-form-label' } } ) }}
-      <div class="col-xs-12 col-sm-9">
+  <hr>
+  <h2>{{ 'layout.profile_edit.set_password_to_save'|trans }}</h2>
+  <div class="form-row align-items-center">
+    <div class="col-sm-6 col-xs-12 my-1">
+        {{ form_label(form.current_password) }}
         {{ form_widget(form.current_password, {'attr': {'class': 'form-control'}}) }}
-      </div>
+    </div>
+    <div class="col-sm-6 col-xs-12 my-1">
+      <button type="submit" class="btn btn-lg btn-success btn-block"> <i class="fa fa-save"></i>&nbsp;{{ 'layout.profile_edit.save'|trans }} </button>
     </div>
   </div>
