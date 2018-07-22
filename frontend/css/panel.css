@@ -1,12 +1,14 @@
 .sidebar{
-  width: 13%;
+  width: 15%;
   float: left;
 }
 
 .content {
-  width: 87%;
+  width: 83%;
   float: right;
   padding:1px;
+  margin-right:2px;
+  margin-left:3px;
 }
 
 @media only screen and (max-width: 600px) {
