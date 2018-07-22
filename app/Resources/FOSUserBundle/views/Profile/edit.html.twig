@@ -5,8 +5,11 @@
 {% block title %} {{ "layout.profile_edit.pagetitle"|trans }} {% endblock %}
 
 {% block fos_user_content %}
-		<h3>{{ "layout.profile_edit.basic_settings"|trans }}</h3>
+		{% include 'widgets/profile_tabs.html.twig' %}
+
+		<h1>{{ "layout.profile_edit.basic_settings"|trans }}</h1>
 		{{ form_start(form, { 'action': path('fos_user_profile_edit') }) }}
 			{% include "@FOSUser/Profile/edit_content.html.twig" %}
 		{{ form_end(form) }}
+
 {% endblock fos_user_content %}
