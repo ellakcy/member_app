@@ -1,0 +1,13 @@
+{% trans_default_domain 'FOSUserBundle' %}
+
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link" href="{{ path('fos_user_profile_show')  }}">{{ 'layout.myprofile.pagetitle'|trans }}</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{{ path('fos_user_profile_edit') }}"><i class="fa fa-pencil"></i>&nbsp;{{ 'layout.profile_edit.pagetitle'|trans }}</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="{{ path('fos_user_change_password') }}"><i class="fa fa-lock"></i>&nbsp;{{ 'layout.security.changePassowrdTitle'|trans }}</a>
+  </li>
+</ul>
