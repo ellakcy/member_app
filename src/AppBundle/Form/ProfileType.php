@@ -9,7 +9,7 @@ use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Validator\Constraints\IsTrue as TrueConstraint;
 use Symfony\Component\Security\Core\Authorization\AuthorizationChecker;
 
-class RegistrationType extends AbstractType
+class ProfileType extends AbstractType
 {
 
     public function buildForm(FormBuilderInterface $builder, array $options)
@@ -19,18 +19,16 @@ class RegistrationType extends AbstractType
                 ->add('phone',PhoneNumberType::class,["label"=>"register.phonenum",'translation_domain' => 'FOSUserBundle'])
                 ->add('organization',TextType::class,["label"=>"register.organization","required"=>false,'translation_domain' => 'FOSUserBundle'])
                 ->add('occupation',TextType::class,["label"=>"register.position","required"=>false,'translation_domain' => 'FOSUserBundle']);
-        $builder->add('accept_terms',CheckboxType::class,["label"=>"register.acceptTerms","required"=>true,'translation_domain' => 'FOSUserBundle',
-                                                            'mapped' => false,'constraints' => new TrueConstraint(array('message' => 'Your Confirmation Message','groups' => 'Registration'))]);
     }
 
     public function getParent()
     {
-        return 'FOS\UserBundle\Form\Type\RegistrationFormType';
+        return 'FOS\UserBundle\Form\Type\ProfileFormType';
     }
 
     public function getBlockPrefix()
     {
-        return 'app_user_registration';
+        return 'app_user_profile';
     }
 
     // For Symfony 2.x

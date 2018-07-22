@@ -1,10 +1,12 @@
-{% extends "@FOSUser::layout_sidebar.html.twig" %}
+{% extends "@FOSUserBundle/layout_sidebar.html.twig" %}
 
 {% trans_default_domain 'FOSUserBundle' %}
 
 {% block title %} {{ "layout.profile_edit.pagetitle"|trans }} {% endblock %}
 
 {% block fos_user_content %}
-		<h4>{{ "layout.profile_edit.basic_settings"|trans }}</h4>
-    {% include "@FOSUser/Profile/edit_content.html.twig" %}
+		<h3>{{ "layout.profile_edit.basic_settings"|trans }}</h3>
+		{{ form_start(form, { 'action': path('fos_user_profile_edit') }) }}
+			{% include "@FOSUser/Profile/edit_content.html.twig" %}
+		{{ form_end(form) }}
 {% endblock fos_user_content %}
