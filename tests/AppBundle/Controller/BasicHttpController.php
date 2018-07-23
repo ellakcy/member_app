@@ -2,6 +2,7 @@
 namespace Tests\AppBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 
 class BasicHttpController extends WebTestCase
 {
