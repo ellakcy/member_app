@@ -82,4 +82,4 @@ fos_user:
         type: AppBundle\Form\RegistrationType
     profile:
       form:
-        type: AppBundle\Form\ProfileType    
+        type: AppBundle\Form\ProfileType

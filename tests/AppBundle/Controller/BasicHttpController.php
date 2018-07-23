@@ -50,7 +50,7 @@ class BasicHttpController extends WebTestCase
     protected function checkPanelAfterSucessfullLogin($crawler,string $username,string $password)
     {
         //Submitting the form
-        $form=$crawler->selectButton('_submit')->form();
+        $form=$crawler->selectButton('#_submit')->form();
         $form['_username']=$username;
         $form['_password']=$password;
 

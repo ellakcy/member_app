@@ -32,7 +32,6 @@ class DefaultControllerTest extends BasicHttpController
         $this->assertTrue($client->getResponse()->isRedirect());
         $this->assertEquals($router->getRouteCollection()->get('fos_user_security_login')->getPath(),$response->headers->get('Location'));
 
-        //@todo Create Dummy Users
-        // $this->checkPanelAfterSucessfullLogin($crawler);
+        $this->checkPanelAfterSucessfullLogin($crawler,'jdoe','simplepasswd');
     }
 }

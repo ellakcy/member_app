@@ -10,7 +10,8 @@
 .content {
   width: 80%;
   float: right;
-  margin: 1px;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 @media only screen and (max-width: 600px) {
