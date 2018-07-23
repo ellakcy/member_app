@@ -1,10 +1,17 @@
+# Notes for contributors
+
+Because sharing (knowledge) is caring. So any dev problems should get answered here.
 
 ## Basic commands for accessing ssh vagrant vm and running cli commnds:
+
+**BEFORE** running unit tests or run any command you must run the followind commands first in orger to get ssh access:
 
 ```
 vagrant ssh
 cd ~/code
 ```
+
+One you have gained ssh access then you are able to run any command you want.
 
 ## Testing
 
