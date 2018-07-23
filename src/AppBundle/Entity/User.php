@@ -5,6 +5,7 @@ use Doctrine\ORM\Mapping as ORM;
 use FOS\UserBundle\Model\User as BaseUser;
 use Symfony\Component\Validator\Constraints as Assert;
 use Misd\PhoneNumberBundle\Validator\Constraints\PhoneNumber as AssertPhoneNumber;
+use libphonenumber\PhoneNumberUtil;
 
 /**
  * @ORM\Entity
@@ -103,6 +104,11 @@ class User extends BaseUser
 
     public function setPhone($phoneNum)
     {
+      if(is_string($phoneNum)){
+        $phoneUtil = PhoneNumberUtil::getInstance();
+        $phoneNum=$phoneUtil->parse($phoneNum,\libphonenumber\PhoneNumberFormat::INTERNATIONAL);
+      }
+
       $this->phone=$phoneNum;
       return $this;
     }

@@ -14,74 +14,83 @@ use Symfony\Component\DependencyInjection\ContainerAwareInterface;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Doctrine\Common\Persistence\ObjectManager;
 
-class DummyUserFixtures extends AbstractFixture implements OrderedFixtureInterface, ContainerAwareInterface
+class DummyUserFixtures extends AbstractFixture implements OrderedFixtureInterface,ContainerAwareInterface
 {
 
-  /**
-  * @var ContainerInterface
-  */
-  private $container=null;
+    /**
+    * @var ContainerInterface
+    */
+    private $container=null;
 
-  /**
-  * Generic function that creates a user with provided information.
-  * @param $name {String} The user's name
-  * @param $surname {String} The user's surname
-  * @param $username {String} The user's username
-  * @param $password {String} The user's password
-  * @param $email {String} The user's recovery email
-  * @param $role {String} The user's system role
-  * @param $phone {String | null} The user's phone number
-  * @param $organization {String|null} The user's organization
-  * @param $occupation {String|null} The user's occupation
-  *
-  * @return AppBundle\Entity\User
-  */
-  private function createUser($name,$surname,$username,$password,$email,$role,$phone=null,$organization=null,$occupation=null)
-  {
-    $fosUserManager=$this->container->get('fos_user.user_manager');
-      /**
-      * @var AppBundle\Entity\User
-      */
-      $user=$fosUserManager->createUser();
-      $user->setUsername($username);
-      $user->setEmail($email);
-      $user->setPlainPassword($password);
-      $user->setEnabled(true);
-      $user->setRoles(array($role));
 
-      $user->setName($name);
-      $user->setSurname($surname);
+    /**
+    * {@inheritDoc}
+    */
+    public function setContainer(ContainerInterface $container = null)
+    {
+        $this->container = $container;
+    }
 
-      if($phone){
-        $user->setPhone($phone);
-      }
+    /**
+    * Generic function that creates a user with provided information.
+    * @param $name {String} The user's name
+    * @param $surname {String} The user's surname
+    * @param $username {String} The user's username
+    * @param $password {String} The user's password
+    * @param $email {String} The user's recovery email
+    * @param $role {String} The user's system role
+    * @param $phone {String | null} The user's phone number
+    * @param $organization {String|null} The user's organization
+    * @param $occupation {String|null} The user's occupation
+    *
+    * @return AppBundle\Entity\User
+    */
+    private function createUser($name,$surname,$username,$password,$email,$role,$phone=null,$organization=null,$occupation=null)
+    {
+        $fosUserManager=$this->container->get('fos_user.user_manager');
 
-      if($organization){
-        $user->setOrganization($organization);
-      }
+        /**
+        * @var AppBundle\Entity\User
+        */
+        $user=$fosUserManager->createUser();
+        $user->setUsername($username);
+        $user->setEmail($email);
+        $user->setPlainPassword($password);
+        $user->setEnabled(true);
+        $user->setRoles(array($role));
 
-      if($occupation){
-        $user->serOccupation($occupation);
-      }
+        $user->setName($name);
+        $user->setSurname($surname);
 
-      $fosUserManager->updateUser($user, true);
+        if($phone){
+            $user->setPhone($phone);
+        }
 
-      return $user;
-  }
+        if($organization){
+            $user->setOrganization($organization);
+        }
 
-  public function setContainer(ContainerInterface $container = null)
-  {
-    $this->container = $container;
-  }
+        if($occupation){
+            $user->setOccupation($occupation);
+        }
 
-  /**
-  * {@inheritDoc}
-  */
-  public function load(ObjectManager $manager)
-  {
-    $this->createUser('John','Doe','jdoe','simplepasswd','jdoe@example.com','ROLE_USER','+3021456742324','Acme Products','Soft Engineer');
-    $this->createUser('Jackie','Chan','jchan','thesimplepasswd','jackiechan@example.com','ROLE_ADMIN','+302141232324','Holywood','Actor');
-    $this->createUser('Chuck','Norris','chuck_norris','unhackablepasswd','chucknorris@example.com','ROLE_SUPERADMIN',null,'Universe','Master');
-  }
+        $fosUserManager->updateUser($user, true);
 
+        return $user;
+    }
+
+    /**
+    * {@inheritDoc}
+    */
+    public function load(ObjectManager $manager)
+    {
+        $this->createUser('John','Doe','jdoe','simplepasswd','jdoe@example.com','ROLE_USER','+3021456742324','Acme Products','Soft Engineer');
+        $this->createUser('Jackie','Chan','jchan','thesimplepasswd','jackiechan@example.com','ROLE_ADMIN','+302141232324','Holywood','Actor');
+        $this->createUser('Chuck','Norris','chuck_norris','unhackablepasswd','chucknorris@example.com','ROLE_SUPERADMIN',null,'Universe','Master');
+    }
+
+    public function getOrder()
+    {
+       return 1;
+    }
 }
