@@ -37,6 +37,7 @@
         "twig/twig": "^1.0||^2.0"
     },
     "require-dev": {
+        "doctrine/doctrine-fixtures-bundle": "^3.0",
         "felixfbecker/language-server": "^5.4",
         "jetbrains/phpstorm-stubs": "dev-master",
         "laravel/homestead": "^7.12",
