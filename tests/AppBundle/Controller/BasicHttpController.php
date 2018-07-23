@@ -12,17 +12,17 @@ class BasicHttpController extends WebTestCase
 
     protected $container=null;
 
-    /**
-    * {@inheritdoc}
-    */
-    public function __construct()
-    {
-        parent::__construct();
+    protected $router=null;
 
-        $this->client = static::createClient();
-        $this->container = $this->client->getContainer();
-        $doctrine = $this->container->get('doctrine');
-        $this->entityManager=$doctrine->getManager();
+    public function setUp()
+    {
+      $this->client = static::createClient();
+      $this->container = $this->client->getContainer();
+
+      $doctrine = $this->container->get('doctrine');
+      $this->entityManager=$doctrine->getManager();
+
+      $this->router=$this->client->getContainer()->get('router');
     }
 
     /**
@@ -44,24 +44,32 @@ class BasicHttpController extends WebTestCase
     }
 
     /**
-    * @param username String the user's username
-    * @param passwoρd String the user's password
+    * @param username String the user's username.
+    * @param password String the user's password.
+    * @param roles Array The user's roles.
     */
-    protected function checkPanelAfterSucessfullLogin($crawler,string $username,string $password)
+    protected function login(string $username,string $password, array $roles=[])
     {
-        //Submitting the form
-        $form=$crawler->selectButton('#_submit')->form();
-        $form['_username']=$username;
-        $form['_password']=$password;
+      $client=$this->client;
 
-        $crawler=$crawler->submit($form);
-        $response=$client->getResponse();
-        $this->assertTrue($client->getResponse()->isRedirect());
-        $client->followRedirect();
+      // The page where the Login Page form is getting loaded
+      $loginPageUrl=$this->router->getRouteCollection()->get('fos_user_security_login')->getPath();
+      $crawler=$this->client->request('GET',$loginPageUrl);
 
-        //Checking header
-        $headerDom=$crawler->filter('header')->childen()->filter('nav.navbar')->children();
-        $this->assertCount(1,$headerDom->find('a.navbar-brand')); //homepage link
-        $this->assertCount(1,$headerDom->find('a.btn-danger')); //Logout button
+      $loginFormUrl=$this->router->getRouteCollection()->get('fos_user_security_check')->getPath();
+      $form=$crawler->filter("form[action=\"$loginFormUrl\"]");
+      $form=$crawler->selectButton('#_submit')->form();
+      $form['_username']=$username;
+      $form['_password']=$password;
+
+      $crawler=$crawler->submit($form);
+      $response=$client->getResponse();
+      $this->assertTrue($client->getResponse()->isRedirect());
+      $client->followRedirect();
+
+      //Checking header
+      $headerDom=$crawler->filter('header')->childen()->filter('nav.navbar')->children();
+      $this->assertCount(1,$headerDom->find('a.navbar-brand')); //homepage link
+      $this->assertCount(1,$headerDom->find('a.btn-danger')); //Logout button
     }
 }

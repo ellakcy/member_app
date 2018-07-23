@@ -15,6 +15,7 @@ class DefaultControllerTest extends BasicHttpController
     */
     public function setUp()
     {
+        parent::setUp();
         $fixture = new DummyUserFixtures();
         $fixture->setContainer($this->container);
         $fixture->load($this->entityManager);
@@ -26,12 +27,18 @@ class DefaultControllerTest extends BasicHttpController
     public function testIndex()
     {
         $client = $this->client;
-        $router=$client->getContainer()->get('router');
         $crawler = $client->request('GET', '/');
         $response=$client->getResponse();
         $this->assertTrue($client->getResponse()->isRedirect());
-        $this->assertEquals($router->getRouteCollection()->get('fos_user_security_login')->getPath(),$response->headers->get('Location'));
+        $this->assertEquals($this->router->getRouteCollection()->get('fos_user_security_login')->getPath(),$response->headers->get('Location'));
+        $client->followRedirect();
+    }
 
-        $this->checkPanelAfterSucessfullLogin($crawler,'jdoe','simplepasswd');
+    /**
+    * Test if Login Page works as it should
+    */
+    public function testLogin()
+    {
+        $this->login('jdoe','simplepasswd');
     }
 }
