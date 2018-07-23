@@ -3,38 +3,29 @@
 namespace Tests\AppBundle\Controller;
 
 use Tests\AppBundle\Controller\BasicHttpController;
+use AppBundle\DataFixtures\Test\DummyUserFixtures;
 
 /**
 * @testtype Functional
 */
 class DefaultControllerTest extends BasicHttpController
 {
+    /**
+    * {@inheritdoc}
+    */
+    public function setUp()
+    {
+        $fixture = new DummyUserFixtures();
+        $fixture->setContainer($this->container);
+        $fixture->load($this->entityManager);
+    }
 
-    // /**
-    // * {@inheritdoc}
-    // */
-    // public function setUp()
-    // {
-    //     $client = static::createClient();
-    //     $container = $client->getContainer();
-    //     $doctrine = $container->get('doctrine');
-    //     $entityManager = $doctrine->getManager();
-    //
-    //     $fixture = new YourFixture();
-    //     $fixture->load($entityManager);
-    // }
-    //
-    // /**
-    // * {@inheritdoc}
-    // */
-    // public function tearDown()
-    // {
-    //
-    // }
-
+    /**
+    * Testing the Behavior when visiting the index page
+    */
     public function testIndex()
     {
-        $client = static::createClient();
+        $client = $this->client;
         $router=$client->getContainer()->get('router');
         $crawler = $client->request('GET', '/');
         $response=$client->getResponse();
@@ -42,8 +33,6 @@ class DefaultControllerTest extends BasicHttpController
         $this->assertEquals($router->getRouteCollection()->get('fos_user_security_login')->getPath(),$response->headers->get('Location'));
 
         //@todo Create Dummy Users
-        // $this->checkPanelAfterSucessfullLogin($crawler); //How I can create some user?
+        // $this->checkPanelAfterSucessfullLogin($crawler);
     }
-
-
 }

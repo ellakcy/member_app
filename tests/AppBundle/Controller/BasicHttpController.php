@@ -5,12 +5,48 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class BasicHttpController extends WebTestCase
 {
+    protected $entityManager=null;
+
+    protected $client=null;
+
+    protected $container=null;
+
+    /**
+    * {@inheritdoc}
+    */
+    public function __construct()
+    {
+        parent::__construct();
+
+        $this->client = static::createClient();
+        $this->container = $this->client->getContainer();
+        $doctrine = $this->container->get('doctrine');
+        $this->entityManager=$doctrine->getManager();
+    }
+
+    /**
+    * Remove all entities from the database
+    */
+    protected function truncateEntities()
+    {
+        $purger = new ORMPurger($this->entityManager);
+        $purger->purge();
+    }
+
+
+    /**
+    * {@inheritdoc}
+    */
+    public function tearDown()
+    {
+        $this->truncateEntities();
+    }
 
     /**
     * @param username String the user's username
-    * @param passwod String the user's password
+    * @param passwoρd String the user's password
     */
-    protected function checkPanelAfterSucessfullLogin($crawler,$username,$password)
+    protected function checkPanelAfterSucessfullLogin($crawler,string $username,string $password)
     {
         //Submitting the form
         $form=$crawler->selectButton('_submit')->form();
