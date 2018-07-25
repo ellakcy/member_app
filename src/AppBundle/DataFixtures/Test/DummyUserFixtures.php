@@ -87,6 +87,7 @@ class DummyUserFixtures extends AbstractFixture implements OrderedFixtureInterfa
         $this->createUser('John','Doe','jdoe','simplepasswd','jdoe@example.com','ROLE_USER','+3021456742324','Acme Products','Soft Engineer');
         $this->createUser('Jackie','Chan','jchan','thesimplepasswd','jackiechan@example.com','ROLE_ADMIN','+302141232324','Holywood','Actor');
         $this->createUser('Chuck','Norris','chuck_norris','unhackablepasswd','chucknorris@example.com','ROLE_SUPERADMIN',null,'Universe','Master');
+        $this->createUser('Geiorgios','Papaioannou','geo.papaioannou','simplepasswd','geo.papaioannou@example.com','ROLE_USER','+3021456742324','Acme Products','Soft Engineer');
     }
 
     public function getOrder()
