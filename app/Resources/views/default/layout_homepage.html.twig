@@ -8,13 +8,13 @@
 
 {% block header %}
 <header>
-  <nav class="navbar navbar-dark bg-primary">
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
     <a class="navbar-brand" href="{{path("homepage")}}">
       <img src="{{asset('favicon-32x32.png')}}">
       Διαχείρηση Μελών ΕΛΛΑΚ Κύπρου
     </a>
-    {% block navContent %}
-    {% endblock navContent %}
+   {% block navContent %}
+   {% endblock navContent %}
   </nav>
 </header>
 {% endblock %}
@@ -26,6 +26,11 @@
   </div>
 {% endblock %}
 
+{% block javascripts %}
+<script src="{{ asset('jquery.min.js','vendor') }}"></script>
+<script src="{{ asset('bootstrap/js/bootstrap.bundle.min.js','vendor') }}"></script>
+
+{% endblock %}
 
 {% block footer %}
 {% endblock %}

@@ -6,7 +6,16 @@
 {% endblock %}
 
 {% block navContent %}
-<a class="btn btn-danger" href="{{ path('fos_user_security_logout') }}">Logout</a>
+<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+  <span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="nav navbar-nav ml-auto">
+        <li class="nav-item">
+            <a class="btn btn-danger" href="{{ path('fos_user_security_logout') }}">Logout</a>
+        </li>
+    </ul>
+</div>
 {% endblock navContent %}
 
 {% block content %}
@@ -16,6 +25,8 @@
       {% block sidebar_content %}
       {% endblock sidebar_content %}
   </div>
+
+
 
   <div class="content">
       {% block pageContent %}

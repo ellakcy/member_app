@@ -7,13 +7,6 @@ framework:
         strict_requirements: true
     profiler: { only_exceptions: false }
 
-    assets:
-       packages:
-         vendor:
-             base_path: '/assets/vendor'
-         css:
-             base_path: '/assets/css'
-
 web_profiler:
     toolbar: true
     intercept_redirects: false
