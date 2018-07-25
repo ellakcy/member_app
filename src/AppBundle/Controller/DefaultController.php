@@ -25,10 +25,4 @@ class DefaultController extends Controller
         return new RedirectResponse($router->generate('fos_user_security_login'));
       }
     }
-
-    public function sideBarProfile(){
-      $auth_checker = $this->get('security.authorization_checker');
-      $token = $this->get('security.token_storage')->getToken();
-      $user = $token->getUser();
-    }
 }

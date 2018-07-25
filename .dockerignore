@@ -4,3 +4,5 @@
 README.md
 Vagrantfile
 Homestead.yaml
+after.sh
+package.json

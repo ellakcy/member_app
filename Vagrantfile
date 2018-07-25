@@ -41,4 +41,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     if defined? VagrantPlugins::HostsUpdater
         config.hostsupdater.aliases = settings['sites'].map { |site| site['map'] }
     end
+
+    config.vm.network :forwarded_port, guest: 9001, host: 9001
 end
