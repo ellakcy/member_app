@@ -1,6 +1,8 @@
 .sidebar{
   width: 19%;
   float: left;
+  height: 100%;
+  bottom: 0px;
 }
 
 .sidebar_header {
@@ -27,6 +29,13 @@
   padding:10px;
 }
 
+.sidebar .nav .nav {
+  opacity:0.8;
+  border-top: 1px;
+  margin-left:3px;
+  padding: 1px;
+}
+
 @media only screen and (max-width: 764px) {
   .navbar-nav-xs-inline {
     display: inline-flex;
@@ -45,7 +54,7 @@
   .sidebar {
     display: none;
   }
-  
+
   .content {
     width:100%;
     float:none;

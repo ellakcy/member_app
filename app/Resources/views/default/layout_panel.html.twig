@@ -21,6 +21,9 @@
           <a class="nav-link active" aria-label="Edit your profile" href="{{ path('fos_user_profile_edit') }}"><i class="fa fa-user" aria-hidden="true"></i></a>
       </li>
       <li class="nav-item d-none d-md-inline-flex">
+        <a class="nav-link active" href="#"><i class="fa fa-envelope"></i></a>
+      </li>
+      <li class="nav-item d-none d-md-inline-flex">
         <a class="nav-link active" href="#"><i class="fa fa-bullhorn"></i></a>
       </li>
       <li class="nav-item bg-danger">
@@ -33,7 +36,15 @@
 {% block content %}
   <div class="sidebar bg-dark text-light">
       {{ render(controller('AppBundle:Sidebar:displayCurrentUserInfoToTheSideBar')) }}
-      <hr class="border-light"><br>
+      <hr class="border-light text-light">
+      <nav class="nav flex-column">
+          <a class="nav-link active text-light border-bottom-1 border-light" href="#">Item 1</a>
+          <nav class="nav flex-column">
+              <a class="nav-link text-light" href="#item-1-1"><i class="fa fa-user" aria-hidden="true"></i>&nbsp;Item 1-1</a>
+              <a class="nav-link text-light" href="#item-1-2">Item 1-2</a>
+          </nav>
+          <a class="nav-link active text-light border-bottom-0 border-light" href="#">Item 2</a>
+      </nav>
       {% block sidebar_content %}
       {% endblock sidebar_content %}
   </div>
