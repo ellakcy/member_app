@@ -11,6 +11,15 @@
   font-size:0.8rem !important;
 }
 
+.navbar-nav-xs-inline{
+  font-size:1.2rem;
+  text-align:center !important;
+}
+
+.navbar-nav-xs-inline .nav-item {
+  text-align:center !important;
+}
+
 .content {
   width: 80%;
   float: right;
@@ -18,11 +27,25 @@
   padding:10px;
 }
 
+@media only screen and (max-width: 764px) {
+  .navbar-nav-xs-inline {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    min-width:100%;
+    text-align:center;
+  }
+
+  .navbar-nav-xs-inline .nav-item {
+    width:49%;
+  }
+}
+
 @media only screen and (max-width: 800px) {
   .sidebar {
     display: none;
   }
-
+  
   .content {
     width:100%;
     float:none;
