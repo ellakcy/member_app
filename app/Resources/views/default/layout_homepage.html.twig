@@ -12,7 +12,8 @@
   <nav class="navbar navbar-expand-md navbar-dark bg-primary">
     <a class="navbar-brand" href="{{path("homepage")}}">
       <img src="{{asset('favicon-32x32.png')}}">
-      <span class="d-none d-md-inline">{{ 'panel.title.manage_members' |trans }}</span> {{ "panel.ellakcy"|trans }}
+      <span class="d-none d-md-inline">{{ 'panel.title.large' |trans }}</span>
+      <span class="d-md-none">{{ 'panel.title.small' |trans }}</span>
     </a>
    {% block navContent %}
    {% endblock navContent %}

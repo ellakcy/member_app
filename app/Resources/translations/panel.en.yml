@@ -1,4 +1,4 @@
 panel.logout: "Logout"
 panel.edit.profile: "Edit Profile"
-panel.title.manage_members: "Member Management"
-panel.ellakcy: "Cypriot FOSS Community"
+panel.title.large: "Member Management Cypriot FOSS Community"
+panel.title.small: "Ellakcy"
