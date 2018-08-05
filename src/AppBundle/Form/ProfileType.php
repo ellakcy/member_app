@@ -21,10 +21,10 @@ class ProfileType extends AbstractType
                 ->add('occupation',TextType::class,["label"=>"register.position","required"=>false,'translation_domain' => 'FOSUserBundle']);
     }
 
-    public function getParent()
-    {
-        return 'FOS\UserBundle\Form\Type\ProfileFormType';
-    }
+    // public function getParent()
+    // {
+    //     return 'FOS\UserBundle\Form\Type\ProfileFormType';
+    // }
 
     public function getBlockPrefix()
     {

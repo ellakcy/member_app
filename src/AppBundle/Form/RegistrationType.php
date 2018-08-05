@@ -23,10 +23,10 @@ class RegistrationType extends AbstractType
                                                             'mapped' => false,'constraints' => new TrueConstraint(array('message' => 'Your Confirmation Message','groups' => 'Registration'))]);
     }
 
-    public function getParent()
-    {
-        return 'FOS\UserBundle\Form\Type\RegistrationFormType';
-    }
+    // public function getParent()
+    // {
+    //     return 'FOS\UserBundle\Form\Type\RegistrationFormType';
+    // }
 
     public function getBlockPrefix()
     {
