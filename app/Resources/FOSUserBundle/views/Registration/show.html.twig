@@ -1,9 +1,0 @@
-{% extends "@FOSUser/layout_sidebar.html.twig" %}
-
-{% trans_default_domain 'FOSUserBundle' %}
-{% block title %}{{ "layout.myprofile.pagetitle"|trans }}{% endblock %}
-
-
-{% block fos_user_content %}
-{% include "@FOSUser/Profile/show_content.html.twig" %}
-{% endblock fos_user_content %}
