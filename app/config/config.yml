@@ -18,6 +18,8 @@ framework:
                 base_path: '/assets/vendor'
             css:
                 base_path: '/assets/css'
+            flags:
+                base_path: '/assets/flags'
 
     secret: '%secret%'
     router:

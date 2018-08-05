@@ -1,6 +1,48 @@
 {% extends "default/layout_homepage.html.twig" %}
 
+{% trans_default_domain 'panel' %}
+
+{% block stylesheets %}
+ {{ parent() }}
+ <link rel="stylesheet" type="text/css" href="{{ asset('./flag-icon-css/flag-icon.min.css','vendor') }}">
+{% endblock %}
 
 {% block main %}
-Content Here
+  <h1 class="text-center">{{'register.title'|trans}}</h1>
+  <form id="registrationForm" class="row">
+      <div class="form-group col-6">
+            <label for="inputName">{{ 'register.name'|trans }}<i class="fas fa-database"></i> *</label>
+            <input class="form-control" type="text" name="form_name" placeholder="" required>
+      </div>
+
+      <div class="form-group col-6">
+            <label for="inputName">{{ 'register.surname'|trans }}<i class="fas fa-database"></i> *</label>
+            <input class="form-control" type="text" name="form_surname" required>
+      </div>
+
+      <div class="form-group col-12">
+            <label for="inputName">{{ 'register.email'|trans }}<i class="fas fa-database"></i> *</label>
+            <input class="form-control" type="email" name="form_surname">
+      </div>
+      <div class="col-12">
+        <div class="input-group">
+          <div class="input-group-prepend">
+            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Type</button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item flag" href="#"><span class="flag-icon flag-icon-gr"></span></a>
+              <a class="dropdown-item flag" href="#"><span class="flag-icon flag-icon-cy"></span></a>
+              <a class="dropdown-item flag" href="#"><span class="flag-icon flag-icon-gb"></span></a>
+              <a class="dropdown-item flag" href="#"><span class="flag-icon flag-icon-tr"></span></a>
+            </div>
+          </div>
+          <input type="text" class="form-control" name="id_number" aria-label="Text input with dropdown button">
+       </div>
+     </div>
+   </form>
+   <div class="row">
+     <ul class="col-12" style="list-style:none">
+       <li>* The fields are mandatory to get filled</li>
+       <li><i class="fas fa-database"></i> The field contain information that will stored to the database </li>
+     </ul>
+   </div>
 {% endblock main %}

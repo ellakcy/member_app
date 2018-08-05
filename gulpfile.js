@@ -46,6 +46,14 @@ gulp.task('move_fontawesome',function(done){
   done();
 });
 
+gulp.task('move_flagicon_css',function(done){
+  var path="./node_modules/flag-icon-css";
+  var dest=vendor_folder+'/flag-icon-css';
+  gulp.src(`${path}/css/flag-icon.min.css`).pipe(gulp.dest(dest))
+  gulp.src(`${path}/flags/**`).pipe(gulp.dest(`${dest}/../flags/`))
+  done();
+});
+
 
 /******* Build Final Steps ****************************************************/
 
@@ -59,7 +67,7 @@ gulp.task('link_assets',function(done){
 
 /* ############################################ Installing Dependencies ##################################### */
 
-gulp.task('move_frontend', gulp.series(['move_bootstrap','move_jquery','move_fontawesome'],(done)=>{done()}));
+gulp.task('move_frontend', gulp.series(['move_bootstrap','move_jquery','move_fontawesome','move_flagicon_css'],(done)=>{done()}));
 gulp.task('dev',gulp.series(['move_frontend','link_assets'],(done)=>{done();}));
 
 gulp.task('default',gulp.series(['dev'],(done)=>{done()}));
