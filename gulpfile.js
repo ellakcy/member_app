@@ -29,7 +29,7 @@ gulp.task('move_bootstrap',function(done){
 
 //Jquery & miscellanous Javascript move
 gulp.task('move_jquery',function(done){
-  var jqueryFiles=['./node_modules/jquery/dist/jquery.min.js'];
+  var jqueryFiles=['./node_modules/jquery/dist/jquery.min.js','./node_modules/jquery-ui-dist/jquery-ui.min.css','./node_modules/jquery-ui-dist/jquery-ui.min.js'];
   gulp.src(jqueryFiles).pipe(gulp.dest(vendor_folder));
 
   done();
@@ -37,11 +37,12 @@ gulp.task('move_jquery',function(done){
 
 //For fontawesome
 gulp.task('move_fontawesome',function(done){
-  var path='./node_modules/font-awesome';
+  var path='./node_modules/@fortawesome/fontawesome-free-webfonts';
   var dest=vendor_folder+'/font-awesome';
 
-  gulp.src(path+'/fonts/*').pipe(gulp.dest(dest+'/fonts'));
-  gulp.src(path+'/css/font-awesome.min.css').pipe(gulp.dest(dest+'/css'));
+  gulp.src(path+'/webfonts/*').pipe(gulp.dest(dest+'/webfonts'));
+  gulp.src(path+'/css/fontawesome.css').pipe(gulp.dest(dest+'/css'));
+
   done();
 });
 
