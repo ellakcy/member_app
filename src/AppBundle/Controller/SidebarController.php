@@ -16,10 +16,10 @@ class SidebarController extends Controller
 
   public function displayCurrentUserInfoToTheSideBarAction()
   {
-    $auth_checker = $this->get('security.authorization_checker');
-    $token = $this->get('security.token_storage')->getToken();
-    $user = $token->getUser();
-    return $this->render('widgets/sidebar_profile.html.twig',['user'=>$user]);
+    // $auth_checker = $this->get('security.authorization_checker');
+    // $token = $this->get('security.token_storage')->getToken();
+    // $user = $token->getUser();
+    // return $this->render('widgets/sidebar_profile.html.twig',['user'=>$user]);
   }
 
 }
