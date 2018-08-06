@@ -67,7 +67,7 @@ gulp.task('link_assets',function(done){
 
 /* ############################################ Installing Dependencies ##################################### */
 
-gulp.task('move_frontend', gulp.series(['move_bootstrap','move_jquery','move_fontawesome','move_flagicon_css'],(done)=>{done()}));
+gulp.task('move_frontend', gulp.parallel(['move_bootstrap','move_jquery','move_fontawesome','move_flagicon_css'],(done)=>{done()}));
 gulp.task('dev',gulp.series(['move_frontend','link_assets'],(done)=>{done();}));
 
 gulp.task('default',gulp.series(['dev'],(done)=>{done()}));
