@@ -28,15 +28,32 @@
    display: table-cell;
    vertical-align: middle;
  }
+
+ .shade {
+   box-shadow: 5px 10px #bbb;
+ }
+
+ .text-center{
+   text-align: center;
+ }
  </style>
 {% endblock %}
 
 {% block main %}
   <h1 class="text-center">{{'register.title'|trans}}</h1>
   <div class="row">
-  <form id="registrationForm" class="col float-left">
+    <div class="col ml-3 mr-3 p-2 shade border float-left">
+    <div class="row">
+      <div class="col-12">
+        <h2 class="text-center">{{ 'register.fill'|trans }}</h2>
+      </div>
+    </div>
+
+    <div class="row">
+
+     <form id="registrationForm" class="col m-1">
       <div class="row">
-        <div class="form-groupc col-12 col-md-12 col-lg-6">
+        <div class="form-group col-12 col-md-12 col-lg-6">
               <label for="inputName">{{ 'register.name'|trans }} <i class="fas fa-database"></i> *</label>
               <input class="form-control" type="text" name="form_name" placeholder="" required>
         </div>
@@ -50,7 +67,7 @@
       <div class="row">
         <div class="form-group col">
               <label for="inputName">{{ 'register.email'|trans }} <i class="fas fa-database"></i> *</label>
-              <input class="form-control" type="email" name="form_email">
+              <input class="form-control" type="email" name="form_email" required>
         </div>
       </div>
       <div class="row">
@@ -67,7 +84,7 @@
                 <a class="dropdown-item flag" href="#"><span class="flag-icon flag-icon-ru"></span> {{ 'register.russian'| trans }}</a>
               </div>
             </div>
-            <input type="text" class="form-control" name="id_number" aria-label="{{ 'register.nationalid'|trans }}">
+            <input type="text" class="form-control" name="id_number" aria-label="{{ 'register.nationalid'|trans }}" required>
          </div>
        </div>
      </div>
@@ -83,10 +100,12 @@
       </div>
      </div>
    </form>
+   </div>
+ </div>
 
-   <div class="col float-right">
+   <div class="col mr-3 ml-3 border shade float-right">
      <hr class="d-md-none d-lg-none d-block">
-     <h1 class="col-12 text-sm">Excerpt:</h1>
+     <h2 class="col-12 text-sm">{{ 'register.notice'|trans }}:</h2>
      <ul class="col-12" style="list-style:none">
        <li class="mb-1">* The fields are mandatory to get filled</li>
        <li class="mb-1"><i class="fas fa-database"></i> The field contain information that will stored to the database when the application has beem approved by the council </li>
