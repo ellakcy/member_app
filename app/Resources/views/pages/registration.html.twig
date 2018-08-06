@@ -5,44 +5,93 @@
 {% block stylesheets %}
  {{ parent() }}
  <link rel="stylesheet" type="text/css" href="{{ asset('./flag-icon-css/flag-icon.min.css','vendor') }}">
+ <style>
+
+ #signatureContainer {
+   height: 10rem;
+ }
+
+ .droparea {
+   display: table;
+   width: 60%;
+   height:100%;
+   margin-left:20%;
+   margin-right:20%;
+   padding: 1rem;
+   text-align:center;
+   border-style: dashed;
+   border-color: #ccc;
+   color #ccc;
+ }
+
+ .droparea label {
+   display: table-cell;
+   vertical-align: middle;
+ }
+ </style>
 {% endblock %}
 
 {% block main %}
   <h1 class="text-center">{{'register.title'|trans}}</h1>
-  <form id="registrationForm" class="row">
-      <div class="form-group col-6">
-            <label for="inputName">{{ 'register.name'|trans }}<i class="fas fa-database"></i> *</label>
-            <input class="form-control" type="text" name="form_name" placeholder="" required>
+  <div class="row">
+  <form id="registrationForm" class="col float-left">
+      <div class="row">
+        <div class="form-groupc col-12 col-md-12 col-lg-6">
+              <label for="inputName">{{ 'register.name'|trans }} <i class="fas fa-database"></i> *</label>
+              <input class="form-control" type="text" name="form_name" placeholder="" required>
+        </div>
+
+        <div class="form-group col-12 col-md-12 col-lg-6">
+              <label for="inputName">{{ 'register.surname'|trans }} <i class="fas fa-database"></i> *</label>
+              <input class="form-control" type="text" name="form_surname" required>
+        </div>
       </div>
 
-      <div class="form-group col-6">
-            <label for="inputName">{{ 'register.surname'|trans }}<i class="fas fa-database"></i> *</label>
-            <input class="form-control" type="text" name="form_surname" required>
+      <div class="row">
+        <div class="form-group col">
+              <label for="inputName">{{ 'register.email'|trans }} <i class="fas fa-database"></i> *</label>
+              <input class="form-control" type="email" name="form_email">
+        </div>
       </div>
-
-      <div class="form-group col-12">
-            <label for="inputName">{{ 'register.email'|trans }}<i class="fas fa-database"></i> *</label>
-            <input class="form-control" type="email" name="form_surname">
-      </div>
-      <div class="col-12">
-        <div class="input-group">
-          <div class="input-group-prepend">
-            <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Type</button>
-            <div class="dropdown-menu">
-              <a class="dropdown-item flag" href="#"><span class="flag-icon flag-icon-gr"></span></a>
-              <a class="dropdown-item flag" href="#"><span class="flag-icon flag-icon-cy"></span></a>
-              <a class="dropdown-item flag" href="#"><span class="flag-icon flag-icon-gb"></span></a>
-              <a class="dropdown-item flag" href="#"><span class="flag-icon flag-icon-tr"></span></a>
+      <div class="row">
+        <div class="col">
+          <label>{{ 'register.nationalid'|trans }} **</label>
+          <div class="input-group mb-2">
+            <div class="input-group-prepend">
+              <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="flag-icon flag-icon-cy"></span></button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item flag" href="#"><span class="flag-icon flag-icon-cy"></span> {{ 'register.cypriot'| trans }}</a>
+                <a class="dropdown-item flag" href="#"><span class="flag-icon flag-icon-gr"></span> {{ 'register.greek'| trans }}</a>
+                <a class="dropdown-item flag" href="#"><span class="flag-icon flag-icon-gb"></span> {{ 'register.british'| trans }}</a>
+                <a class="dropdown-item flag" href="#"><span class="flag-icon flag-icon-tr"></span> {{ 'register.turkish'| trans }}</a>
+                <a class="dropdown-item flag" href="#"><span class="flag-icon flag-icon-ru"></span> {{ 'register.russian'| trans }}</a>
+              </div>
             </div>
-          </div>
-          <input type="text" class="form-control" name="id_number" aria-label="Text input with dropdown button">
+            <input type="text" class="form-control" name="id_number" aria-label="{{ 'register.nationalid'|trans }}">
+         </div>
        </div>
      </div>
+
+     <div id="signatureContainer" class="row">
+       <input id="selectSignature" type="file" style="display:none" name="signature" />
+       <div class="droparea"><label for="selectSignature"><span>{{ 'register.selectSignature'|trans|raw }}</span></label></div>
+     </div>
+
+     <div class="row mt-3">
+       <div class="col">
+        <button type="submit" class="btn btn-block btn-primary"><i class="fas fa-file-pdf"></i> {{ 'register.generate_form'|trans }} </button>
+      </div>
+     </div>
    </form>
-   <div class="row">
+
+   <div class="col float-right">
+     <hr class="d-md-none d-lg-none d-block">
+     <h1 class="col-12 text-sm">Excerpt:</h1>
      <ul class="col-12" style="list-style:none">
-       <li>* The fields are mandatory to get filled</li>
-       <li><i class="fas fa-database"></i> The field contain information that will stored to the database </li>
+       <li class="mb-1">* The fields are mandatory to get filled</li>
+       <li class="mb-1"><i class="fas fa-database"></i> The field contain information that will stored to the database when the application has beem approved by the council </li>
+       <li>** {{ 'register.reasonwhyneedidnum'|trans|raw }}
      </ul>
    </div>
+ </div>
 {% endblock main %}
