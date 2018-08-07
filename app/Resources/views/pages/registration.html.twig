@@ -75,13 +75,13 @@
           <label>{{ 'register.nationalid'|trans }} **</label>
           <div class="input-group mb-2">
             <div class="input-group-prepend">
-              <button class="btn btn-outline-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span class="flag-icon flag-icon-cy"></span></button>
+              <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><span id="flagIndicator" class="flag-icon flag-icon-cy"></span></button>
               <div class="dropdown-menu">
-                <a class="dropdown-item flag" href="#"><span class="flag-icon flag-icon-cy"></span> {{ 'register.cypriot'| trans }}</a>
-                <a class="dropdown-item flag" href="#"><span class="flag-icon flag-icon-gr"></span> {{ 'register.greek'| trans }}</a>
-                <a class="dropdown-item flag" href="#"><span class="flag-icon flag-icon-gb"></span> {{ 'register.british'| trans }}</a>
-                <a class="dropdown-item flag" href="#"><span class="flag-icon flag-icon-tr"></span> {{ 'register.turkish'| trans }}</a>
-                <a class="dropdown-item flag" href="#"><span class="flag-icon flag-icon-ru"></span> {{ 'register.russian'| trans }}</a>
+                <a class="dropdown-item flag" onclick="selectCountry(this,'{{ 'register.cypriot'| trans }}')" href="#"><span class="flag-icon flag-icon-cy"></span> {{ 'register.cypriot'| trans }}</a>
+                <a class="dropdown-item flag" onclick="selectCountry(this,'{{ 'register.greek'| trans }}')" href="#"><span class="flag-icon flag-icon-gr"></span> {{ 'register.greek'| trans }}</a>
+                <a class="dropdown-item flag" onclick="selectCountry(this,'{{ 'register.british'| trans }}')" href="#"><span class="flag-icon flag-icon-gb"></span> {{ 'register.british'| trans }}</a>
+                <a class="dropdown-item flag" onclick="selectCountry(this,'{{ 'register.turkish'| trans }}')" href="#"><span class="flag-icon flag-icon-tr"></span> {{ 'register.turkish'| trans }}</a>
+                <a class="dropdown-item flag" onclick="selectCountry(this,'{{ 'register.russian'| trans }}')" href="#"><span class="flag-icon flag-icon-ru"></span> {{ 'register.russian'| trans }}</a>
               </div>
             </div>
             <input type="text" class="form-control" name="id_number" aria-label="{{ 'register.nationalid'|trans }}" required>
@@ -114,3 +114,8 @@
    </div>
  </div>
 {% endblock main %}
+
+{% block javascripts %}
+  {{parent()}}
+  <script src="{{ asset('register.js','js') }}"></script>
+{% endblock %}
