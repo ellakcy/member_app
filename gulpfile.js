@@ -5,10 +5,28 @@ var vfs = require('vinyl-fs');
 /**
 * Location where to store the 3rd party libraries
 */
-var frontend_folder="./frontend"
-var vendor_folder=`${frontend_folder}/vendor`
-var frontent_dev_folder_js=`${frontend_folder}/js`
-var frontent_dev_folder_js=`${frontend_folder}/css`
+const frontend_folder="./frontend"
+const vendor_folder=`${frontend_folder}/vendor`
+const frontent_dev_folder_js=`${frontend_folder}/js`
+const frontent_dev_folder_css=`${frontend_folder}/css`
+
+/**
+* Indication whether the build is done for
+* procuction release of for for development release
+*/
+var status="dev";
+
+/*############################ Bootastraping #################################*/
+
+gulp.task('set_dev',function(done){
+  status="dev";
+  done()
+});
+
+gulp.task('set_prod',function(done){
+  status="prod";
+  done()
+});
 
 /*################################### Installing Dependencies ###############################*/
 
@@ -54,6 +72,18 @@ gulp.task('move_flagicon_css',function(done){
   done();
 });
 
+gulp.task('move_jspdf',function(done){
+  var file="jspdf.debug.js";
+
+  if(status=='prod'){
+    file="jspdf.min.js"
+  }
+
+  file=`./node_modules/jspdf/dist/${file}`
+  gulp.src(file).pipe(rename('jspdf.js')).pipe(gulp.dest(vendor_folder));
+
+  done();
+});
 
 /******* Build Final Steps ****************************************************/
 
@@ -65,9 +95,11 @@ gulp.task('link_assets',function(done){
   return done();
 });
 
+
+
 /* ############################################ Installing Dependencies ##################################### */
 
-gulp.task('move_frontend', gulp.parallel(['move_bootstrap','move_jquery','move_fontawesome','move_flagicon_css'],(done)=>{done()}));
-gulp.task('dev',gulp.series(['move_frontend','link_assets'],(done)=>{done();}));
+gulp.task('move_frontend', gulp.parallel(['move_bootstrap','move_jquery','move_fontawesome','move_flagicon_css','move_jspdf'],(done)=>{done()}));
+gulp.task('dev',gulp.series(['set_dev','move_frontend','link_assets'],(done)=>{done();}));
 
 gulp.task('default',gulp.series(['dev'],(done)=>{done()}));
