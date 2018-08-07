@@ -72,19 +72,6 @@ gulp.task('move_flagicon_css',function(done){
   done();
 });
 
-gulp.task('move_jspdf',function(done){
-  var file="jspdf.debug.js";
-
-  if(status=='prod'){
-    file="jspdf.min.js"
-  }
-
-  file=`./node_modules/jspdf/dist/${file}`
-  gulp.src(file).pipe(rename('jspdf.js')).pipe(gulp.dest(vendor_folder));
-
-  done();
-});
-
 /******* Build Final Steps ****************************************************/
 
 gulp.task('link_assets',function(done){
@@ -99,7 +86,7 @@ gulp.task('link_assets',function(done){
 
 /* ############################################ Installing Dependencies ##################################### */
 
-gulp.task('move_frontend', gulp.parallel(['move_bootstrap','move_jquery','move_fontawesome','move_flagicon_css','move_jspdf'],(done)=>{done()}));
+gulp.task('move_frontend', gulp.parallel(['move_bootstrap','move_jquery','move_fontawesome','move_flagicon_css'],(done)=>{done()}));
 gulp.task('dev',gulp.series(['set_dev','move_frontend','link_assets'],(done)=>{done();}));
 
 gulp.task('default',gulp.series(['dev'],(done)=>{done()}));

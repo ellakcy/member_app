@@ -5,41 +5,11 @@
 {% block stylesheets %}
  {{ parent() }}
  <link rel="stylesheet" type="text/css" href="{{ asset('./flag-icon-css/flag-icon.min.css','vendor') }}">
- <style>
-
- #signatureContainer {
-   height: 10rem;
- }
-
- .droparea {
-   display: table;
-   width: 60%;
-   height:100%;
-   margin-left:20%;
-   margin-right:20%;
-   padding: 1rem;
-   text-align:center;
-   border-style: dashed;
-   border-color: #ccc;
-   color #ccc;
- }
-
- .droparea label {
-   display: table-cell;
-   vertical-align: middle;
- }
-
- .shade {
-   box-shadow: 5px 10px #bbb;
- }
-
- .text-center{
-   text-align: center;
- }
- </style>
+ <link rel="stylesheet" type="text/css" href="{{ asset('registration.css','css') }}">
 {% endblock %}
 
 {% block main %}
+  <div class="d-print-none">
   <h1 class="text-center">{{'register.title'|trans}}</h1>
   <div class="row">
     <div class="col ml-3 mr-3 p-2 shade border float-left">
@@ -55,19 +25,19 @@
       <div class="row">
         <div class="form-group col-12 col-md-12 col-lg-6">
               <label for="inputName">{{ 'register.name'|trans }} <i class="fas fa-database"></i> *</label>
-              <input class="form-control" type="text" name="form_name" placeholder="" required>
+              <input class="form-control" type="text" name="name" placeholder="" required>
         </div>
 
         <div class="form-group col-12 col-md-12 col-lg-6">
               <label for="inputName">{{ 'register.surname'|trans }} <i class="fas fa-database"></i> *</label>
-              <input class="form-control" type="text" name="form_surname" required>
+              <input class="form-control" type="text" name="surname" required>
         </div>
       </div>
 
       <div class="row">
         <div class="form-group col">
               <label for="inputName">{{ 'register.email'|trans }} <i class="fas fa-database"></i> *</label>
-              <input class="form-control" type="email" name="form_email" required>
+              <input class="form-control" type="email" name="email" required>
         </div>
       </div>
       <div class="row">
@@ -113,6 +83,33 @@
      </ul>
    </div>
  </div>
+</div>
+
+<div id="printArea" class="d-none d-print-block">
+  <div class="row mt-5">
+    <div class="col-12 banner-wrap">
+      <img class="banner" src="{{ asset('ellakcy-full.png') }}" />
+    </div>
+      <div class="col-12 mt-2 mb-3">
+      <h1>{{ "register.title.memberapplication"|trans }}</h1>
+    </div>
+  </div>
+  <div class="row mt-3">
+      <div id="#memberInfo" class="col-12">
+        <div class="row">
+            <span style="width:15%">{{ 'register.fullname'|trans }}:</span>
+            <span style="width: calc(100% - 15%)" class="applicationData border-bottom">
+              <span data-fill="name">DIMITRIOS</span>&nbsp;<span data-fill="surname">DESYLLAS</span>
+            </span>
+        </div>
+      <div class="row mt-3">
+          <span style="width:30%">{{ 'register.nationalid'|trans }}:</span><span style="width: calc( 100% - 30% )" class="applicationData border-bottom" data-fill="id_number">AE 1234</span>
+      </div>
+      <div class="row">
+        <span style="width:10%">Id Origin:</span><span style="width: calc( 100% - 10% )" class="applicationData border-bottom"  data-fill="idType">GREEK</span>
+      </div>
+  </div><!-- row -->
+</div>
 {% endblock main %}
 
 {% block javascripts %}

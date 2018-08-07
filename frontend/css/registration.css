@@ -1,0 +1,60 @@
+#signatureContainer {
+  height: 10rem;
+}
+
+.droparea {
+  display: table;
+  width: 60%;
+  height:100%;
+  margin-left:20%;
+  margin-right:20%;
+  padding: 1rem;
+  text-align:center;
+  border-style: dashed;
+  border-color: #ccc;
+  color: #ccc;
+}
+
+.droparea label {
+  display: table-cell;
+  vertical-align: middle;
+}
+
+.shade {
+  box-shadow: 5px 10px #bbb;
+}
+
+.text-center{
+  text-align: center;
+}
+
+@media print{
+  #printArea h1 {
+    font-size:25pt;
+    text-align:center;
+  }
+
+  #printArea .banner-wrap{
+    padding:auto;
+    text-align:center;
+  }
+
+  #printArea .banner {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  #printArea {
+    font-size:18pt;
+  }
+
+  #memberInfo {
+    min-width:100%
+  }
+
+  .applicationData {
+    margin-bottom: 1pt;
+    text-align: center;
+    font-weight: bold;
+  }
+}
