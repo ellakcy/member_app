@@ -14,7 +14,7 @@ register.reasonwhyneedidnum: "This information is required because: <ul><li>We u
 register.fill: "Fill with the required details"
 register.notice: "Note"
 register.mandatory: "The fields are mandatory to get filled"
-register.storedindb: "The field contain information that will stored to the database when the application has beem approved by the council"
+register.storedindb: "The field contain information that will stored to the database when the application has been approved by the council."
 register.title.memberapplication: "Member Registration Form"
 register.fullname: "Full Name"
 
