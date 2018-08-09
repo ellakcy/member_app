@@ -18,15 +18,17 @@ var selectCountry=function(element,country){
   $("#flagIndicator").attr('class',classes)
 }
 
-var encodeImageFileAsURL = function(cb) {
-    return function(){
-        var file = this.files[0];
-        var reader  = new FileReader();
-        reader.onloadend = function () {
-            cb(reader.result);
-        }
-        reader.readAsDataURL(file);
+var encodeImageFileAsURL = function(element,cb) {
+    var file = element.files[0];
+    var reader  = new FileReader();
+    reader.onloadend = function () {
+      if(reader.error){
+        console.error(reader.error.message);
+      } else {
+        cb(reader.result);
+      }
     }
+    reader.readAsDataURL(file);
 }
 
 /**
@@ -34,16 +36,18 @@ var encodeImageFileAsURL = function(cb) {
 * @param {String} base64Img The image contents as base64
 */
 var setImageValues=function(base64Img){
-
+  $('*[data-fill="signature"]').html("<img src=\""+base64Img+"\"/>");
+  $('#replaceWithImage span').css("display","none");
+  $('#replaceWithImage').append("<img src=\""+base64Img+"\"/>");
 }
 
-$('#inputFileToLoad').change(encodeImageFileAsURL(function(base64Img){
-  // Set the values here
-}));
+$('#selectSignature').on("change",function(e){
+  e.preventDefault()
+  console.log("Fired");
+  encodeImageFileAsURL(e.target,setImageValues);
+});
 
 $('#registrationForm').on("submit",function(e){
   e.preventDefault();
-  var form=$(this);
-  var formData=form.serialize();
-  console.log(formData);
+  //Prompt to print
 });
