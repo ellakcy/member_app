@@ -29,19 +29,19 @@
       <div class="row">
         <div class="form-group col-12 col-md-12 col-lg-6">
               <label for="inputName">{{ 'register.name'|trans }} <i class="fas fa-database"></i> *</label>
-              <input class="form-control valuechange" type="text" name="name" placeholder="" required>
+              <input class="form-control valuechange" data-qr="true" type="text" name="name" placeholder="" required>
         </div>
 
         <div class="form-group col-12 col-md-12 col-lg-6">
               <label for="inputName">{{ 'register.surname'|trans }} <i class="fas fa-database"></i> *</label>
-              <input class="form-control valuechange" type="text" name="surname" required>
+              <input class="form-control valuechange"  data-qr="true" type="text" name="surname" required>
         </div>
       </div>
 
       <div class="row">
         <div class="form-group col">
               <label for="inputName">{{ 'register.email'|trans }} <i class="fas fa-database"></i> *</label>
-              <input class="form-control valuechange" type="email" name="email" required>
+              <input class="form-control valuechange" data-qr="true" type="email" name="email" required>
         </div>
       </div>
       <div class="row">
@@ -123,7 +123,7 @@
 
   <div id="signatureArea" class="row printRow">
     <div class="col signature"><h4>{{ 'register.boardSignature'|trans }}:</h4><div></div></div>
-    <div id="scanQr" class="col-6"></div>
+    <div class="col-6"><div id="scanQr"></div></div>
     <div class="col signature"><h4>{{ 'register.memberSignature'|trans }}:</h4><div data-fill="signature"></div></div>
   </div>
 </div>
@@ -131,5 +131,6 @@
 
 {% block javascripts %}
   {{parent()}}
+  <script src="{{ asset('kjua.min.js','vendor') }}"></script>
   <script src="{{ asset('register.js','js') }}"></script>
 {% endblock %}

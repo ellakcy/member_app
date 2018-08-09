@@ -96,6 +96,8 @@
 
   #scanQr {
     text-align:center;
+    padding-left: 25mm;
+    padding-right: 25mm;
   }
 
   .printRow {

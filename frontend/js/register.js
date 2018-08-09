@@ -1,7 +1,7 @@
 /**
  * A node in the DOM tree.
  *
- * @external HTMLElement
+ * @external Node
  * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/Node Node}
  */
 
@@ -27,7 +27,7 @@ var selectCountry=function(element,country){
 
 /**
 * Function that reads an image as base64 content.
-* @param {external:HTMLElement} element Html input element
+* @param {external:Node} element Html input element
 * @param {Function} cb Callback function where the base64 content will get processed
 */
 var encodeImageFileAsURL = function(element,cb) {
@@ -50,15 +50,31 @@ var encodeImageFileAsURL = function(element,cb) {
 var setImageValues=function(base64Img){
   $('*[data-fill="signature"]').html("<img src=\""+base64Img+"\"/>");
   $('#replaceWithImage span').css("display","none");
+  $('#replaceWithImage img').remove();
   $('#replaceWithImage').append("<img src=\""+base64Img+"\"/>");
 }
 
 
+/**
+* Convert a value into a boolean
+* @param {Mixed} value The value to check convert into boolean
+* @return {Boolean}
+*/
+var boolVal=function(value){
+  var falseValues=['false',0,undefined,'0','no','null',null];
+
+  if (typeof value === 'string' || value instanceof String){
+      value=value.toLowerCase();
+  }
+
+  return $.inArray(value, falseValues) == -1
+}
+
+var jsonForQR={};
 
 $(document).ready(function(){
   $('#selectSignature').on("change",function(e){
     e.preventDefault()
-    console.log("Fired");
     encodeImageFileAsURL(e.target,setImageValues);
   });
 
@@ -67,12 +83,23 @@ $(document).ready(function(){
     var target=e.target;
     var name=$(target).attr('name');
     var value=$(target).val();
-    console.log(name,value,$('*[data-fill="'+name+'"]'));
+
     $('*[data-fill="'+name+'"]').text(value);
+
+    if( boolVal( $(target).attr('data-qr') ) ) {
+      jsonForQR[name]=value;
+    }
   });
 
   $('#registrationForm').on("submit",function(e){
     e.preventDefault();
-    window.print();
+
+    var qrCode=kjua({ render: 'image', width: 200, height: 200, text: JSON.stringify(jsonForQR)})
+    $('#scanQr').html(qrCode);
+
+    setTimeout(function(){
+      window.print();
+    },100)
+
   });
 });
