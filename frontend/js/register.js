@@ -59,6 +59,6 @@ $(document).ready(function(){
 
   $('#registrationForm').on("submit",function(e){
     e.preventDefault();
-    //Prompt to print
+    window.print();
   });
 });
