@@ -41,13 +41,24 @@ var setImageValues=function(base64Img){
   $('#replaceWithImage').append("<img src=\""+base64Img+"\"/>");
 }
 
-$('#selectSignature').on("change",function(e){
-  e.preventDefault()
-  console.log("Fired");
-  encodeImageFileAsURL(e.target,setImageValues);
-});
+$(document).ready(function(){
+  $('#selectSignature').on("change",function(e){
+    e.preventDefault()
+    console.log("Fired");
+    encodeImageFileAsURL(e.target,setImageValues);
+  });
 
-$('#registrationForm').on("submit",function(e){
-  e.preventDefault();
-  //Prompt to print
+  $('.valuechange').on('change',function(e){
+    e.preventDefault();
+    var target=e.target;
+    var name=$(target).attr('name');
+    var value=$(target).val();
+    console.log(name,value,$('*[data-fill="'+name+'"]'));
+    $('*[data-fill="'+name+'"]').text(value);
+  });
+
+  $('#registrationForm').on("submit",function(e){
+    e.preventDefault();
+    //Prompt to print
+  });
 });
