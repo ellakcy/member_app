@@ -1,3 +1,10 @@
+/**
+ * A node in the DOM tree.
+ *
+ * @external HTMLElement
+ * @see {@link https://developer.mozilla.org/en-US/docs/Web/API/Node Node}
+ */
+
 
 var selectCountry=function(element,country){
 
@@ -18,6 +25,11 @@ var selectCountry=function(element,country){
   $("#flagIndicator").attr('class',classes)
 }
 
+/**
+* Function that reads an image as base64 content.
+* @param {external:HTMLElement} element Html input element
+* @param {Function} cb Callback function where the base64 content will get processed
+*/
 var encodeImageFileAsURL = function(element,cb) {
     var file = element.files[0];
     var reader  = new FileReader();
@@ -40,6 +52,8 @@ var setImageValues=function(base64Img){
   $('#replaceWithImage span').css("display","none");
   $('#replaceWithImage').append("<img src=\""+base64Img+"\"/>");
 }
+
+
 
 $(document).ready(function(){
   $('#selectSignature').on("change",function(e){
