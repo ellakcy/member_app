@@ -17,6 +17,9 @@ register.mandatory: "The fields are mandatory to get filled"
 register.storedindb: "The field contain information that will stored to the database when the application has been approved by the council."
 register.title.memberapplication: "Member Registration Form"
 register.fullname: "Full Name"
+register.boardSignature: "Signature of President"
+register.memberSignature: "Member Signature"
+register.issuingCountry: "Issuing Country"
 
 register.generate_form: "Create the application form"
 

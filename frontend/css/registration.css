@@ -28,7 +28,24 @@
   text-align: center;
 }
 
+@page {
+  size: A4;
+  margin: 0mm;
+  orientation: portrait;
+}
+
 @media print{
+
+  html, body {
+    width: 210mm;
+    height: 297mm;
+  }
+
+  #printArea {
+    margin: 2cm;
+    font-size: 20pt;
+  }
+
   #printArea h1 {
     font-size:25pt;
     text-align:center;
@@ -49,12 +66,31 @@
   }
 
   #memberInfo {
-    min-width:100%
+    min-width:100%;
+    font-size: 3em;
+  }
+
+  #memberInfo tbody {
+    border: 1mm solid;
   }
 
   .applicationData {
     margin-bottom: 1pt;
     text-align: center;
-    font-weight: bold;
+  }
+
+  .signature h4{
+    font-size: 12pt;
+    text-align:center;
+    font-style:oblique;
+    border-bottom: 1mm solid;
+  }
+
+  #scanQr {
+    text-align:center;
+  }
+
+  .printRow {
+    margin-top: 5cm;
   }
 }

@@ -8,6 +8,10 @@
  <link rel="stylesheet" type="text/css" href="{{ asset('registration.css','css') }}">
 {% endblock %}
 
+{% block title %}
+{{'register.title'|trans}}
+{% endblock %}
+
 {% block main %}
   <div class="d-print-none">
   <h1 class="text-center">{{'register.title'|trans}}</h1>
@@ -94,21 +98,33 @@
       <h1>{{ "register.title.memberapplication"|trans }}</h1>
     </div>
   </div>
-  <div class="row mt-3">
-      <div id="#memberInfo" class="col-12">
-        <div class="row">
-            <span style="width:15%">{{ 'register.fullname'|trans }}:</span>
-            <span style="width: calc(100% - 15%)" class="applicationData border-bottom">
-              <span data-fill="name">DIMITRIOS</span>&nbsp;<span data-fill="surname">DESYLLAS</span>
-            </span>
-        </div>
-      <div class="row mt-3">
-          <span style="width:30%">{{ 'register.nationalid'|trans }}:</span><span style="width: calc( 100% - 30% )" class="applicationData border-bottom" data-fill="id_number">AE 1234</span>
-      </div>
-      <div class="row">
-        <span style="width:10%">Id Origin:</span><span style="width: calc( 100% - 10% )" class="applicationData border-bottom"  data-fill="idType">GREEK</span>
-      </div>
-  </div><!-- row -->
+  <div class="row printRow">
+      <table id="#memberInfo" class="col-12" border="1">
+        <thead>
+          <th colspan="4"><h2 class="text-center">Member Personal Information</h2></th>
+        </thead>
+        <tbody>
+          <tr>
+            <th>{{ 'register.name'|trans }}:</th>
+            <td class="applicationData"><span data-fill="name"></span></td>
+            <th>{{ 'register.surname'|trans }}:</th>
+            <td class="applicationData"><span data-fill="surname"></span></span></td>
+          </tr>
+          <tr>
+            <th>{{ 'register.nationalid'|trans }}:</th>
+            <td class="applicationData"><span data-fill="id_number"></span></td>
+            <th>{{ 'register.issuingCountry'|trans }}:</th>
+            <td class="applicationData"><span  data-fill="idType"></span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div><!-- row -->
+
+  <div id="signatureArea" class="row printRow">
+    <div class="col signature"><h4>{{ 'register.boardSignature'|trans }}:</h4><div></div></div>
+    <div id="scanQr" class="col-6"></div>
+    <div class="col signature"><h4>{{ 'register.memberSignature'|trans }}:</h4><div data-fill="signature"></div></div>
+  </div>
 </div>
 {% endblock main %}
 

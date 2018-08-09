@@ -29,23 +29,17 @@ var encodeImageFileAsURL = function(cb) {
     }
 }
 
+/**
+* Retrieve image as Base64 and set it into the approriate elements
+* @param {String} base64Img The image contents as base64
+*/
 var setImageValues=function(base64Img){
 
 }
 
 $('#inputFileToLoad').change(encodeImageFileAsURL(function(base64Img){
-    $('.output')
-      .find('textarea')
-        .val(base64Img)
-        .end()
-      .find('a')
-        .attr('href', base64Img)
-        .text(base64Img)
-        .end()
-      .find('img')
-        .attr('src', base64Img);
+  // Set the values here
 }));
-
 
 $('#registrationForm').on("submit",function(e){
   e.preventDefault();
