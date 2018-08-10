@@ -4,6 +4,16 @@
   orientation: portrait;
 }
 
+#printArea .banner-wrap{
+  padding:auto;
+  text-align:center;
+}
+
+#printArea .banner {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 @media print{
 
   html, body {
@@ -21,15 +31,6 @@
     text-align:center;
   }
 
-  #printArea .banner-wrap{
-    padding:auto;
-    text-align:center;
-  }
-
-  #printArea .banner {
-    margin-left: auto;
-    margin-right: auto;
-  }
 
   #printArea {
     font-size:18pt;
@@ -49,6 +50,11 @@
     text-align: center;
   }
 
+  .signature {
+      max-width:30% !important;
+      text-align:center;
+  }
+
   .signature h4{
     font-size: 12pt;
     text-align:center;
@@ -58,12 +64,23 @@
 
   .signature * img {
     max-width:5cm;
+    width: auto;
+    height: auto;
+  }
+
+  #scanQrContainer {
+    max-width: 40% !important;
   }
 
   #scanQr {
     text-align:center;
-    padding-left: 25mm;
-    padding-right: 25mm;
+    max-width:100%;
+  }
+
+  #scanQr * {
+    max-width:100%;
+    width: auto;
+    height: auto;
   }
 
   .printRow {
