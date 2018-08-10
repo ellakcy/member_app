@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8"/>
+    <title>Registration Application</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesteet" href="./registerApplication.css">
+  </head>
+  <body>
+    <div id="printArea">
+      <div class="row mt-5">
+        <div class="col-12 banner-wrap">
+          <img class="banner" src="https://dummyimage.com/600x400/000/fff.png" />
+        </div>
+          <div class="col-12 mt-2 mb-3">
+          <h1>{{ "register.title.memberapplication"|trans }}</h1>
+        </div>
+      </div>
+      <div class="row printRow">
+          <table id="#memberInfo" class="col-12" border="1">
+            <thead>
+              <th colspan="4"><h2 class="text-center">Member Personal Information</h2></th>
+            </thead>
+            <tbody>
+              <tr>
+                <th>{{ 'register.name'|trans }}:</th>
+                <td class="applicationData"><span data-fill="name"></span></td>
+                <th>{{ 'register.surname'|trans }}:</th>
+                <td class="applicationData"><span data-fill="surname"></span></span></td>
+              </tr>
+              <tr>
+                <th>{{ 'register.nationalid'|trans }}:</th>
+                <td class="applicationData"><span data-fill="id_number"></span></td>
+                <th>{{ 'register.issuingCountry'|trans }}:</th>
+                <td class="applicationData"><span  data-fill="idType">{{ 'register.cypriot'| trans }}</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div><!-- row -->
+
+      <div id="signatureArea" class="row printRow">
+        <div class="col signature"><h4>{{ 'register.boardSignature'|trans }}:</h4><div></div></div>
+        <div class="col-6"><div id="scanQr"></div></div>
+        <div class="col signature"><h4>{{ 'register.memberSignature'|trans }}:</h4><div data-fill="signature"></div></div>
+      </div>
+    </div>
+  </body>
+</html>

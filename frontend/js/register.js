@@ -73,6 +73,7 @@ var boolVal=function(value){
 var jsonForQR={};
 
 $(document).ready(function(){
+  
   $('#selectSignature').on("change",function(e){
     e.preventDefault()
     encodeImageFileAsURL(e.target,setImageValues);
@@ -102,4 +103,5 @@ $(document).ready(function(){
     },100)
 
   });
+
 });
