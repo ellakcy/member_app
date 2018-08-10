@@ -43,8 +43,27 @@
   border-bottom: 1px solid;
 }
 
+
+.signature * {
+  max-width:100%;
+  text-align: center;
+}
+
+.signature * img {
+  max-width:100%;
+  width: auto;
+  height: auto;
+}
+
 #scanQr {
   text-align:center;
+  max-width:100%;
+}
+
+#scanQr * {
+  max-width:100%;
+  width: auto;
+  height: auto;
 }
 
 @media print{
@@ -78,30 +97,15 @@
 
   .signature h4{
     font-size: 12pt;
-    text-align:center;
-    font-style:oblique;
     border-bottom: 1mm solid;
   }
 
-  .signature * img {
+  /* .signature * img {
     max-width:5cm;
-    width: auto;
-    height: auto;
-  }
+  } */
 
   #scanQrContainer {
     max-width: 40% !important;
-  }
-
-  #scanQr {
-    text-align:center;
-    max-width:100%;
-  }
-
-  #scanQr * {
-    max-width:100%;
-    width: auto;
-    height: auto;
   }
 
   .printRow {
