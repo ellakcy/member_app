@@ -14,6 +14,39 @@
   margin-right: auto;
 }
 
+#printArea {
+  font-size: 1rem;
+}
+
+#printArea h1 {
+  font-size: 1.5rem;
+  text-align:center;
+}
+
+#memberInfo {
+  min-width:100%;
+  font-size: 3em;
+}
+
+.printRow {
+  margin-top: 5%;
+}
+
+.signature {
+  text-align: center;
+}
+
+.signature h4{
+  font-size: 0.8rem;
+  text-align:center;
+  font-style:oblique;
+  border-bottom: 1px solid;
+}
+
+#scanQr {
+  text-align:center;
+}
+
 @media print{
 
   html, body {
@@ -23,22 +56,11 @@
 
   #printArea {
     margin: 2cm;
-    font-size: 20pt;
+    font-size: 18pt;
   }
 
   #printArea h1 {
     font-size:25pt;
-    text-align:center;
-  }
-
-
-  #printArea {
-    font-size:18pt;
-  }
-
-  #memberInfo {
-    min-width:100%;
-    font-size: 3em;
   }
 
   #memberInfo tbody {
@@ -47,7 +69,6 @@
 
   .applicationData {
     margin-bottom: 1pt;
-    text-align: center;
   }
 
   .signature {
