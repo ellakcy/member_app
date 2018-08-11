@@ -5,6 +5,7 @@
 {% set email='' %}
 {% set idNum='' %}
 {% set signatureImage='' %}
+{% set qrcodeHtml='' %}
 {% set idCountry='register.cypriot'| trans %}
 <html>
   <head>
@@ -13,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <link rel="stylesheet" href="" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="./registerApplication.css">
+    <link rel="stylesheet" type="text/css" href="{{ asset('registerApplication.css','css') }}">
   </head>
   <body>
     <div id="printArea" class="container-fluid">
@@ -59,7 +60,7 @@
         </div>
 
         <div id="scanQrContainer" class="col-12 col-sm-6 col-md-6 col-lg-6 mt-3 mt-md-0 mt-lg-0 order-sm-2 order-12 order-md-2 order-lg-2">
-          <div id="scanQr"></div>
+          <div id="scanQr">{{qrcodeHtml}}</div>
         </div>
         <div class="col-6 col-sm-3 col-md-3 col-lg-3 float-right order-sm-3 order-md-3 order-lg-3 order-2 signature">
           <h4>{{ 'register.memberSignature'|trans }}:</h4>

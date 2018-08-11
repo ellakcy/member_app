@@ -20,6 +20,7 @@ register.fullname: "Full Name"
 register.boardSignature: "Signature of President"
 register.memberSignature: "Member Signature"
 register.issuingCountry: "Issuing Country"
+register.preview.title: "Print the following form"
 
 register.generate_form: "Create the application form"
 
