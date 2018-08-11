@@ -82,7 +82,7 @@ gulp.task('move_jsrender',function(done){
     './node_modules/jsrender/jsrender.min.js.map'
   ];
 
-  var dest=`${vendor_folder}/jsrender/*`
+  var dest=`${vendor_folder}/jsrender`
 
   gulp.src(jsrenderFiles).pipe(gulp.dest(dest));
   done();
