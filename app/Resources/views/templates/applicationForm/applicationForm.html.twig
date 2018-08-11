@@ -1,9 +1,10 @@
 <!DOCTYPE html>
 {% trans_default_domain 'register' %}
-{% set first_name = '' %}
+{% set first_name='' %}
 {% set surname='' %}
 {% set email='' %}
 {% set idNum='' %}
+{% set signatureImage='' %}
 {% set idCountry='register.cypriot'| trans %}
 <html>
   <head>
@@ -62,7 +63,7 @@
         </div>
         <div class="col-6 col-sm-3 col-md-3 col-lg-3 float-right order-sm-3 order-md-3 order-lg-3 order-2 signature">
           <h4>{{ 'register.memberSignature'|trans }}:</h4>
-          <div data-fill="signature"></div>
+          <div data-fill="signature">{{signatureImage}}</div>
         </div>
       </div>
     </div>
