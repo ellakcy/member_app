@@ -76,6 +76,18 @@ gulp.task('move_flagicon_css',function(done){
   done();
 });
 
+gulp.task('move_jsrender',function(done){
+  var jsrenderFiles=[
+    './node_modules/jsrender/jsrender.min.js',
+    './node_modules/jsrender/jsrender.min.js.map'
+  ];
+
+  var dest=`${vendor_folder}/jsrender/*`
+
+  gulp.src(jsrenderFiles).pipe(gulp.dest(dest));
+  done();
+})
+
 /******* Build Final Steps ****************************************************/
 
 gulp.task('link_assets',function(done){
@@ -90,7 +102,7 @@ gulp.task('link_assets',function(done){
 
 /* ############################################ Installing Dependencies ##################################### */
 
-gulp.task('move_frontend', gulp.parallel(['move_bootstrap','move_jquery','move_fontawesome','move_flagicon_css'],(done)=>{done()}));
+gulp.task('move_frontend', gulp.parallel(['move_bootstrap','move_jquery','move_fontawesome','move_flagicon_css','move_jsrender'],(done)=>{done()}));
 gulp.task('dev',gulp.series(['set_dev','move_frontend','link_assets'],(done)=>{done();}));
 
 gulp.task('default',gulp.series(['dev'],(done)=>{done()}));
