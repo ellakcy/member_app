@@ -155,16 +155,17 @@ $(document).ready(function(){
     var values=$(this).serializeArray();
 
     var qrCodeValues={};
-    var values={};
+    var valuesToRender={};
     var signatureImage=null;
 
     //Setting the values
     $.each(values,function(index,item){
+      console.log(item);
 
       if(item.name==='imgBase64'){
-          values['signature']=item.value;
+          valuesToRender['signature']=item.value;
       } else {
-        values[item.name]=item.value;
+        valuesToRender[item.name]=item.value;
       }
 
       if($.inArray(item.name, qrValueInputNames) !== -1){
@@ -172,11 +173,12 @@ $(document).ready(function(){
       }
     });
 
+    console.log(valuesToRender);
     //Add QR Stuff here
 
     // var qrCode=kjua({ render: 'image', width: 200, height: 200, text: JSON.stringify(qrCodeValues)})
     var tmpl = $.templates('#registationPaperApplication');
-    var html= tmpl.render(values);
+    var html= tmpl.render(valuesToRender);
 
     var iframeElementContainer = document.getElementById('displayRegistationPaperApplication').contentDocument;
     iframeElementContainer.open();

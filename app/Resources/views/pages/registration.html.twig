@@ -109,12 +109,22 @@
   {% set surname='\{\{:surname\}\}' %}
   {% set email='\{\{:email\}\}' %}
   {% set idNum='\{\{:id_number\}\}' %}
-  {%
-    set signatureImage='\{\{if :signature \}\} <img src=\"\" \{\{:signature\}\} \"\"/>  \{\{ \/if \}\}'
-  %}
-  {% set qrcodeHtml='\{\{ if :qrCodeImg \}\} <img src=\"\" \{\{:qrCodeImg\}\} \"\"/>  \{\{ \/if \}\}' %}
-  {% set idCountry='\{\{idType\}\}' %}
+  {% set idCountry='\{\{:idType\}\}' %}
+
   {% include('./templates/applicationForm/applicationForm.html.twig') %}
+
+  {% block signatureImage %}
+    {{ '\{\{if signature \}\}' }}
+        <img src="{{ '\{\{:signature \}\}' }}" />
+    {{ '\{\{/if\}\}' }}
+  {% endblock %}
+
+  {% block qrcodeHtml %}
+  {{ '{{if qrCodeImg}}' }}
+    <img src="{{ '{{:qrCodeImg}}' }} "/>
+  {{'{{/if}}'}}
+  {% endblock %}
+
 </script>
 
 {% endblock main %}
