@@ -93,7 +93,7 @@
  </div>
 
  <!-- last step -->
- <iframe id="#displayDocument" class="row">
+ <iframe id="#displayRegistationPaperApplication" class="row d-none">
  </iframe>
 </div>
 
@@ -101,7 +101,7 @@
 
 <!-- template for the printable application for member registration -->
 <script id="registationPaperApplication" type="text/x-jsrender">
-  {% set first_name='\{\{name\}\}' %}
+  {% set name='\{\{name\}\}' %}
   {% set surname='\{\{surname\}\}' %}
   {% set email='\{\{email\}\}' %}
   {% set idNum='\{\{id_number\}\}' %}
@@ -115,6 +115,6 @@
 {% block javascripts %}
   {{parent()}}
   <script src="{{ asset('kjua.min.js','vendor') }}"></script>
-  <script src="{{ asset('/jsrender/jsrender.min.js','vendor') }}"></script>
+  <script src="{{ asset('./jsrender/jsrender.min.js','vendor') }}"></script>
   <script src="{{ asset('register.js','js') }}"></script>
 {% endblock %}
