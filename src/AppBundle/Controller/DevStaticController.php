@@ -20,7 +20,7 @@ class DevStaticController extends Controller
   */
   public function paperApplicationFormAction(Request $request)
   {
-    return $this->render('templates/applicationForm/applicationForm.html.twig',[
+    return $this->render('templates/applicationForm/applicationFormDebug.html.twig',[
       'name'=> "John",
       'surname'=>'Doe',
       'email'=>'jdoe@example.com',
