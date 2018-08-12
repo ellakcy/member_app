@@ -51,7 +51,6 @@ gulp.task('move_jquery',function(done){
                    './node_modules/jquery/dist/jquery.min.js',
                    './node_modules/jquery-ui-dist/jquery-ui.min.css',
                    './node_modules/jquery-ui-dist/jquery-ui.min.js',
-                   './node_modules/kjua/dist/kjua.min.js'
                   ];
   gulp.src(jqueryFiles).pipe(gulp.dest(vendor_folder));
   done();
@@ -88,6 +87,14 @@ gulp.task('move_jsrender',function(done){
   done();
 })
 
+gulp.task('move_qrious',function(done){
+
+  var dest=`${vendor_folder}/qrious`
+
+  gulp.src('./node_modules/qrious/dist/qrious.min.*').pipe(gulp.dest(dest));
+  done();
+})
+
 /******* Build Final Steps ****************************************************/
 
 gulp.task('link_assets',function(done){
@@ -102,7 +109,11 @@ gulp.task('link_assets',function(done){
 
 /* ############################################ Installing Dependencies ##################################### */
 
-gulp.task('move_frontend', gulp.parallel(['move_bootstrap','move_jquery','move_fontawesome','move_flagicon_css','move_jsrender'],(done)=>{done()}));
+gulp.task('move_frontend',
+          gulp.parallel(['move_bootstrap','move_jquery','move_fontawesome','move_flagicon_css','move_jsrender','move_qrious'],
+          (done)=>{done()}
+        ));
+
 gulp.task('dev',gulp.series(['set_dev','move_frontend','link_assets'],(done)=>{done();}));
 
 gulp.task('default',gulp.series(['dev'],(done)=>{done()}));
