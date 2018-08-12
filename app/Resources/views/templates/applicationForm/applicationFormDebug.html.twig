@@ -1,0 +1,14 @@
+{% extends "rtemplates/applicationForm/applicationForm.html.twig" %}
+
+
+{% block signatureImage %}
+  {% if signatureBase64img %}
+      <img src="{{signatureBase64img}}" />
+  {% endif %}
+{% endblock %}
+
+{% block qrcodeHtml %}
+  {% if qrCodeBase64Img %}
+    <img src="{{qrCodeBase64Img}}"/>
+  {% endif %}
+{% endblock %}
