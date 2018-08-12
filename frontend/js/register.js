@@ -149,7 +149,7 @@ var printPaperApplciationForm=function(){
 var nextStep = function(currentElement) {
   var idToScrollTo=$(currentElement).attr('data-scroll-to');
   $("#"+idToScrollTo).removeClass('d-none');
-  // $("#"+idToScrollTo).animatescroll({scrollSpeed:2000,easing:'easeInQuad'});
+  $("#"+idToScrollTo).animatescroll({scrollSpeed:2000,easing:'easeInQuad'});
 }
 
 
@@ -209,11 +209,6 @@ $(document).ready(function(){
 
     var tmpl = $.templates('#registationPaperApplication');
     var html= tmpl.render(valuesToRender);
-
-    // var iframeElementContainer = document.getElementById('displayRegistationPaperApplication').contentDocument;
-    // iframeElementContainer.open();
-    // iframeElementContainer.writeln(html);
-    // iframeElementContainer.close();
 
     writeContentToIframe("displayRegistationPaperApplication",html)
     nextStep(this);
