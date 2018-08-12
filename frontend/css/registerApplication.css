@@ -19,13 +19,17 @@
 }
 
 #printArea h1 {
-  font-size: 1.5rem;
+  font-size: 2rem;
   text-align:center;
 }
 
 #memberInfo {
   min-width:100%;
-  font-size: 3em;
+  font-size: 1.5rem;
+}
+
+#memberInfo thead th h4 {
+  font-size: 0.8rem;
 }
 
 .printRow {
@@ -64,6 +68,15 @@
   max-width:100%;
   width: auto;
   height: auto;
+}
+
+.applicationData{
+  text-align: center;
+}
+
+#printArea tbody * th {
+  text-align: left;
+  font-size: 1.1rem;
 }
 
 @media print{

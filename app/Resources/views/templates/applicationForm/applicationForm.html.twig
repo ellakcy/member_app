@@ -21,26 +21,39 @@
         </div>
       </div>
       <div class="row printRow">
-          <table id="#memberInfo" class="col-12" border="1">
+          <table id="memberInfo" class="col-12" border="1">
+            <colgroup>
+                <col width="5%"><col width="5%">
+                <col width="5%"><col width="5%">
+                <col width="5%"><col width="5%">
+                <col width="5%"><col width="5%">
+                <col width="5%"><col width="5%">
+                <col width="5%"><col width="5%">
+                <col width="5%"><col width="5%">
+                <col width="5%"><col width="5%">
+                <col width="5%"><col width="5%">
+                <col width="5%"><col width="5%">
+            </colgroup>
+
             <thead>
-              <th colspan="4"><h2 class="text-center">Member Personal Information</h2></th>
+              <th colspan="20"><h2 class="text-center">Member Personal Information</h2></th>
             </thead>
             <tbody>
               <tr>
-                <th>{{ 'register.name'|trans }}:</th>
-                <td class="applicationData"><span data-fill="name">{{name|default('')}}</span></td>
-                <th>{{ 'register.surname'|trans }}:</th>
-                <td class="applicationData"><span data-fill="surname">{{surname|default('')}}</span></span></td>
+                <th colspan="2" >{{ 'register.name'|trans }}:</th>
+                <td colspan="8" class="applicationData"><span class="registrationInfo" data-fill="name">{{name|default('')}}</span></td>
+                <th colspan="2">{{ 'register.surname'|trans }}:</th>
+                <td colspan="8" class="applicationData" ><span class="registrationInfo" data-fill="surname">{{surname|default('')}}</span></span></td>
               </tr>
               <tr>
-                <th>{{ 'register.email'|trans }}</th>
-                <td class="applicationData"><span data-fill="email">{{email|default('')}}</span></td>
+                <th colspan="3">{{ 'register.email'|trans }}:</th>
+                <td colspan="17" class="applicationData" colspan="3"><span class="registrationInfo" data-fill="email">{{email|default('')}}</span></td>
               </tr>
               <tr>
-                <th>{{ 'register.nationalid'|trans }}:</th>
-                <td class="applicationData"><span data-fill="id_number">{{idNum|default('')}}</span></td>
-                <th>{{ 'register.issuingCountry'|trans }}:</th>
-                <td class="applicationData"><span data-fill="idType">{{ idCountry|default('register.cypriot')|trans }}</span></td>
+                <th colspan="5">{{ 'register.nationalid'|trans }}:</th>
+                <td colspan="7" class="applicationData"><span class="registrationInfo" data-fill="id_number">{{idNum|default('')}}</span></td>
+                <th colspan="4">{{ 'register.issuingCountry'|trans }}:</th>
+                <td colspan="4" class="applicationData"><span class="registrationInfo" data-fill="idType">{{ idCountry|default('register.cypriot')|trans }}</span></td>
               </tr>
             </tbody>
           </table>
