@@ -134,7 +134,10 @@ var stripHtml=function(string){
   return div.innerText;
 }
 
-
+var printPaperApplciationForm=function(){
+  window.frames["displayRegistationPaperApplication"].focus();
+  window.frames["displayRegistationPaperApplication"].print();
+}
 
 
 $(document).ready(function(){
