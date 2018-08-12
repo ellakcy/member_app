@@ -1,0 +1,20 @@
+{% extends "templates/applicationForm/applicationForm.html.twig" %}
+
+{% set name='\{\{:name\}\}' %}
+{% set surname='\{\{:surname\}\}' %}
+{% set email='\{\{:email\}\}' %}
+{% set idNum='\{\{:id_number\}\}' %}
+{% set idCountry='\{\{:idType\}\}' %}
+
+
+{% block signatureImage %}
+  {{ '\{\{if signature \}\}' }}
+      <img src="{{ '\{\{:signature \}\}' }}" />
+  {{ '\{\{/if\}\}' }}
+{% endblock %}
+
+{% block qrcodeHtml %}
+{{ '{{if qrCodeImg}}' }}
+  <img src="{{ '{{:qrCodeImg}}' }} "/>
+{{'{{/if}}'}}
+{% endblock %}

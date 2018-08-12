@@ -105,26 +105,7 @@
 
 <!-- template for the printable application for member registration -->
 <script id="registationPaperApplication" type="text/x-jsrender">
-  {% set name='\{\{:name\}\}' %}
-  {% set surname='\{\{:surname\}\}' %}
-  {% set email='\{\{:email\}\}' %}
-  {% set idNum='\{\{:id_number\}\}' %}
-  {% set idCountry='\{\{:idType\}\}' %}
-
-  {% include('./templates/applicationForm/applicationForm.html.twig') %}
-
-  {% block signatureImage %}
-    {{ '\{\{if signature \}\}' }}
-        <img src="{{ '\{\{:signature \}\}' }}" />
-    {{ '\{\{/if\}\}' }}
-  {% endblock %}
-
-  {% block qrcodeHtml %}
-  {{ '{{if qrCodeImg}}' }}
-    <img src="{{ '{{:qrCodeImg}}' }} "/>
-  {{'{{/if}}'}}
-  {% endblock %}
-
+  {% include('./templates/applicationForm/applicationFormJsRenderTemplate.html.twig') %}
 </script>
 
 {% endblock main %}
