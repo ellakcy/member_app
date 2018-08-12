@@ -134,11 +134,36 @@ var stripHtml=function(string){
   return div.innerText;
 }
 
+/**
+* Trigger the printing of the iframe
+*/
 var printPaperApplciationForm=function(){
   window.frames["displayRegistationPaperApplication"].focus();
   window.frames["displayRegistationPaperApplication"].print();
 }
 
+/**
+* Change the dom to the next step
+* @param {Node} currentElement The element shown to the current step
+*/
+var nextStep = function(currentElement) {
+  var idToScrollTo=$(currentElement).attr('data-scroll-to');
+  $("#"+idToScrollTo).removeClass('d-none');
+  // $("#"+idToScrollTo).animatescroll({scrollSpeed:2000,easing:'easeInQuad'});
+}
+
+
+/**
+* Write content to an Iframe
+* @param {String} id The id of the iframe
+* @param {String} content The content to write into the iframe
+*/
+var writeContentToIframe=function(id,content){
+  var iframeElementContainer = document.getElementById(id).contentDocument;
+  iframeElementContainer.open();
+  iframeElementContainer.writeln(content);
+  iframeElementContainer.close();
+}
 
 $(document).ready(function(){
 
@@ -165,6 +190,9 @@ $(document).ready(function(){
     $.each(values,function(index,item){
       console.log(item);
 
+      // In order to prevent XSS we convert the values into their plaintext form
+      item.value=stripHtml(item.value);
+
       if(item.name==='imgBase64'){
           valuesToRender['signature']=item.value;
       } else {
@@ -176,22 +204,19 @@ $(document).ready(function(){
       }
     });
 
-    console.log(valuesToRender);
-    //Add QR Stuff here
-
     var qrious=new QRious({ size: 200, value: JSON.stringify(qrCodeValues)})
     valuesToRender.qrCodeImg=qrious.toDataURL();
 
     var tmpl = $.templates('#registationPaperApplication');
     var html= tmpl.render(valuesToRender);
 
-    var iframeElementContainer = document.getElementById('displayRegistationPaperApplication').contentDocument;
-    iframeElementContainer.open();
-    iframeElementContainer.writeln(html);
-    iframeElementContainer.close();
+    // var iframeElementContainer = document.getElementById('displayRegistationPaperApplication').contentDocument;
+    // iframeElementContainer.open();
+    // iframeElementContainer.writeln(html);
+    // iframeElementContainer.close();
 
-    $("#displayRegistationPaperApplicationWrapper").removeClass('d-none');
-
+    writeContentToIframe("displayRegistationPaperApplication",html)
+    nextStep(this);
   });
 
 });
