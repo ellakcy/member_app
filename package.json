@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "^5.2.0",
+    "animatescroll.js": "^1.0.7",
     "bootstrap": "^4.1.2",
     "flag-icon-css": "^3.0.0",
     "gulp": "^4.0.0",

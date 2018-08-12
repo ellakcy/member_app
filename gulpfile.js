@@ -45,12 +45,13 @@ gulp.task('move_bootstrap',function(done){
   done();
 })
 
-//Jquery & miscellanous Javascript move
+//Jquery & plugins move
 gulp.task('move_jquery',function(done){
   var jqueryFiles=[
                    './node_modules/jquery/dist/jquery.min.js',
                    './node_modules/jquery-ui-dist/jquery-ui.min.css',
                    './node_modules/jquery-ui-dist/jquery-ui.min.js',
+                   './node_modules/animatescroll.js/animatescroll.min.js'
                   ];
   gulp.src(jqueryFiles).pipe(gulp.dest(vendor_folder));
   done();
