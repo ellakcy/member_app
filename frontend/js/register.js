@@ -80,11 +80,11 @@ var selectCountry=function(element,country){
 
 /**
 * Function that reads an image as base64 content.
-* @param {external:Node} element Html input element
+* @param {Array} files The list of the files
 * @param {Function} cb Callback function where the base64 content will get processed
 */
-var encodeImageFileAsURL = function(element,cb) {
-    var file = element.files[0];
+var encodeImageFileAsURL = function(files,cb) {
+    var file = files[0];
     var reader  = new FileReader();
     reader.onloadend = function () {
       if(reader.error){
@@ -170,21 +170,40 @@ var writeContentToIframe=function(id,content){
 
 $(document).ready(function(){
 
-  var qrValueInputNames=$('input[data-qr="true"]').map(function(){
-    return this.name;
-  }).get();
-
-
   $('#selectSignature').on("change",function(e){
     e.preventDefault()
-    encodeImageFileAsURL(e.target,setImageValues);
+    encodeImageFileAsURL(e.target.files,setImageValues);
+  });
+
+  $('#signatureContainer').on('drop',function(e){
+    if(e.originalEvent.dataTransfer && e.originalEvent.dataTransfer.files.length){
+        e.preventDefault();
+        e.stopPropagation();
+        encodeImageFileAsURL(e.originalEvent.dataTransfer.files,setImageValues);
+    }
+    
+    $(this).removeClass('dragging');
+  })
+
+  $("#signatureContainer").on("dragover", function(event) {
+    event.preventDefault();
+    event.stopPropagation();
+    $(this).addClass('dragging');
+  });
+
+  $("#signatureContainer").on("dragleave", function(event) {
+      event.preventDefault();
+      event.stopPropagation();
+      $(this).removeClass('dragging');
   });
 
   $('#registrationForm').on("submit",function(e){
     e.preventDefault();
     var self=this
     var values=$(this).serializeArray();
-    console.log(values);
+    var qrValueInputNames=$('input[data-qr="true"]').map(function(){
+      return this.name;
+    }).get();
 
     var qrCodeValues={};
     var valuesToRender={};
@@ -213,7 +232,7 @@ $(document).ready(function(){
     var html= tmpl.render(valuesToRender);
 
     writeContentToIframe("displayRegistationPaperApplication",html)
-    nextStep(this);
+    nextStep(self);
   });
 
 });
