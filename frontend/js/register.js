@@ -179,7 +179,9 @@ $(document).ready(function(){
     console.log(valuesToRender);
     //Add QR Stuff here
 
-    // var qrCode=kjua({ render: 'image', width: 200, height: 200, text: JSON.stringify(qrCodeValues)})
+    var qrious=new QRious({ size: 200, value: JSON.stringify(qrCodeValues)})
+    valuesToRender.qrCodeImg=qrious.toDataURL();
+
     var tmpl = $.templates('#registationPaperApplication');
     var html= tmpl.render(valuesToRender);
 
