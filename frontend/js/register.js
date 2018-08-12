@@ -160,10 +160,13 @@ var nextStep = function(currentElement) {
 */
 var writeContentToIframe=function(id,content){
   var iframeElementContainer = document.getElementById(id).contentDocument;
+
   iframeElementContainer.open();
   iframeElementContainer.writeln(content);
   iframeElementContainer.close();
+
 }
+
 
 $(document).ready(function(){
 
@@ -181,15 +184,13 @@ $(document).ready(function(){
     e.preventDefault();
     var self=this
     var values=$(this).serializeArray();
+    console.log(values);
 
     var qrCodeValues={};
     var valuesToRender={};
-    var signatureImage=null;
 
     //Setting the values
     $.each(values,function(index,item){
-      console.log(item);
-
       // In order to prevent XSS we convert the values into their plaintext form
       item.value=stripHtml(item.value);
 
@@ -204,6 +205,7 @@ $(document).ready(function(){
       }
     });
 
+    //Setting the QRcode to get scanned during registration
     var qrious=new QRious({ size: 200, value: JSON.stringify(qrCodeValues)})
     valuesToRender.qrCodeImg=qrious.toDataURL();
 
