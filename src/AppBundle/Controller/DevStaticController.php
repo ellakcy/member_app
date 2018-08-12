@@ -26,8 +26,8 @@ class DevStaticController extends Controller
       'email'=>'jdoe@example.com',
       'idNum'=>'AE12353',
       'idCountry'=>'Cypriot',
-      'signatureBase64img'=>'https://dummyimage.com/100x100/000/fff.png',
-      'qrCodeBase64Img'=>'https://dummyimage.com/100x100/000/fbf.png'
+      'signatureBase64img'=>'https://dummyimage.com/900x900/000/fff.png',
+      'qrCodeBase64Img'=>'https://dummyimage.com/900x900/000/fbf.png'
     ]);
   }
 

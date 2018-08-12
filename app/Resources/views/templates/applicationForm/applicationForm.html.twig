@@ -7,7 +7,7 @@
     <title>{{ "register.title.memberapplication"|trans }}</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link rel="stylesheet" href="" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" type="text/css" href="{{ asset('bootstrap/css/bootstrap.min.css','vendor') }}">
     <link rel="stylesheet" type="text/css" href="{{ asset('registerApplication.css','css') }}">
   </head>
   <body>
@@ -22,6 +22,7 @@
       </div>
       <div class="row printRow">
           <table id="memberInfo" class="col-12" border="1">
+            <!-- I use table with multiple columns in order to have the data sorted for the print media as well -->
             <colgroup>
                 <col width="5%"><col width="5%">
                 <col width="5%"><col width="5%">
