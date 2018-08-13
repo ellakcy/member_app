@@ -3,9 +3,10 @@
 namespace AppBundle\Controller;
 
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
-use Symfony\Component\HttpFoundation\RedirectResponse;
+use Gregwar\Captcha\CaptchaBuilder;
 
 class DefaultController extends Controller
 {
@@ -14,16 +15,25 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-      // $auth_checker = $this->get('security.authorization_checker');
-      // $token = $this->get('security.token_storage')->getToken();
-      // $user = $token->getUser();
-      //
-      // if($auth_checker->isGranted('ROLE_USER')){
-      //   return $this->render('pages/panel.html.twig');
-      // } else {
-      //   $router = $this->container->get('router');
-      // Append redirection here
-      // }
-        return $this->render('pages/registration.html.twig');
+
+        $session=$this->get('session');
+
+        //@todo Make it as a service
+        $builder = $this->get('app.captcha');
+
+        $builder->build();
+        $session->set('csrf',$builder->getPhrase());
+
+        return $this->render('pages/registration.html.twig',[
+          'image'=>$builder->inline()
+        ]);
+    }
+
+    /**
+    * @Route("registration/email", name="registration_email_contact")
+    * @Method("POST")
+    */
+    public function addEmailAction(Request $request){
+
     }
 }
