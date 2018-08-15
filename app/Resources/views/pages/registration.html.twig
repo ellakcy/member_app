@@ -18,7 +18,7 @@
   <!-- 1rst step -->
   <div class="row" data-comment="step-1">
 
-    <div class="col ml-3 mr-3 p-2 shade border float-left">
+    <div class="col ml-3 mr-2 p-2 shade border float-left">
     <div class="row">
       <div class="col-12">
         <h2 class="text-center">{{ 'register.step1.title'|trans }}</h2>
@@ -43,7 +43,7 @@
       <div class="row">
         <div class="form-group col">
               <label for="inputName">{{ 'register.email'|trans }} <i class="fas fa-database"></i> *</label>
-              <input class="form-control" data-qr="true" data-on-reset="no-val" type="email" name="email" required>
+              <input id="registrationEmail" class="form-control" data-qr="true" data-on-reset="no-val" type="email" name="email" required>
         </div>
       </div>
       <div class="row">
@@ -94,7 +94,7 @@
  </div>
 
  <!-- 2nd Step -->
- <div id="contactEmailSubmit" data-step="2" style="display:none" class="row border shade ml-1 mr-1 mt-4">
+ <div id="contactEmailSubmit" data-step="2" style="display:none" class="row border shade ml-1 mr-1 mt-4 mb-4">
      <div class="col-12">
        <div class="col-12">
          <h2 class="text-center">{{ 'register.step2.title'|trans }}</h2>
@@ -112,9 +112,9 @@
            <div class="col-12">
              <div class="input-group">
                 <div class="input-group-prepend">
-                  <button class="btn btn-secondary" id="emailAutofill">{{ 'register.step2.email.autofill'|trans }}</button>
+                  <button class="btn btn-secondary" data-autofill-to="autofill_email" data-autofill-from="registrationEmail" id="emailAutofill">{{ 'register.step2.email.autofill'|trans }}</button>
                 </div>
-                <input type="email" name="email" class="form-control" placeholder="{{ 'register.step2.email'|trans }}" />
+                <input id="autofill_email" type="email"  name="autofill_email" class="form-control" placeholder="{{ 'register.step2.email'|trans }}" />
               </div>
            </div>
          </div>

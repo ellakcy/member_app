@@ -144,7 +144,7 @@ var printPaperApplciationForm=function(){
 
 /**
 * Change the dom to the next step
-* @param {Node} currentElement The element shown to the current step
+* @param {external:Node | String} currentElement The element shown to the current step
 */
 var nextStep = function(currentElement) {
   var idToScrollTo=$(currentElement).attr('data-scroll-to');
@@ -165,7 +165,21 @@ var writeContentToIframe=function(id,content){
   iframeElementContainer.open();
   iframeElementContainer.writeln(content);
   iframeElementContainer.close();
+}
 
+/**
+* Autofills an input from another input
+* @param {external:Node | String} element The button element where the
+*/
+var autofill=function(element){
+  var to='#'+$(element).attr('data-autofill-to');
+  var from="#"+$(element).attr('data-autofill-from');
+
+
+  var valueToCopy=$(from).val();
+  console.log(valueToCopy)
+
+  $(to).val(valueToCopy);
 }
 
 $(document).ready(function(){
@@ -198,6 +212,13 @@ $(document).ready(function(){
       $(this).removeClass('dragging');
   });
 
+
+  $("#emailAutofill").on('click',function(e){
+    e.preventDefault();
+    autofill(this);
+  })
+
+  //On Registration Form Submit
   $('#registrationForm').on("submit",function(e){
     e.preventDefault();
     var self=this
