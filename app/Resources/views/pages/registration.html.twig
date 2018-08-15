@@ -21,7 +21,7 @@
     <div class="col ml-3 mr-3 p-2 shade border float-left">
     <div class="row">
       <div class="col-12">
-        <h2 class="text-center">{{ 'register.fill'|trans }}</h2>
+        <h2 class="text-center">{{ 'register.step1.title'|trans }}</h2>
       </div>
     </div>
 
@@ -91,6 +91,55 @@
        <li>** {{ 'register.reasonwhyneedidnum'|trans|raw }}
      </ul>
    </div>
+ </div>
+
+ <!-- 2nd Step -->
+ <div id="contactEmailSubmit" data-comment="step2" class="row border shade ml-1 mr-1 mt-4">
+     <div class="col-12">
+       <div class="col-12">
+         <h2 class="text-center">{{ 'register.step2.title'|trans }}</h2>
+       </div>
+       <p class="col-12 mp-3">
+         {{ 'register.step2.explanation'|trans }}
+       </p>
+       <hr>
+     </div>
+
+     <form id="contactForm" class="col-12" action="{{ path('registration_email_contact') }}" method="post">
+       <input type="hidden" name="csrf" value="{{ csrf_token('insert-email') }}"/>
+
+         <div class="col-12 mb-3">
+           <div class="col-12">
+             <div class="input-group">
+                <div class="input-group-prepend">
+                  <button class="btn btn-secondary" id="emailAutofill">{{ 'register.step2.email.autofill'|trans }}</button>
+                </div>
+                <input type="email" name="email" class="form-control" placeholder="{{ 'register.step2.email'|trans }}" />
+              </div>
+           </div>
+         </div>
+        <div class="col-12">
+           <div class="col-2 float-left border">
+             <img id="capthaImage" class="img-fluid" data-captha-renew="registration_step2" src="{{ image }}">
+           </div>
+           <div class="col-10 float-right">
+             <div class="input-group">
+                <div class="input-group-prepend">
+                  <button class="btn btn-secondary" id="reset-captcha">{{ 'register.captha.new-image'|trans }}</button>
+                </div>
+                <input type="text" name="captcha" class="form-control" placeholder="{{ 'register.captcha'|trans }}" />
+              </div>
+           </div>
+         </div>
+         <div class="col-12 mt-5 mb-2">
+           <div class="col-12 col-sm-12 col-md-5 col-lg-5 ml-auto">
+             <div class="btn-group" role="group" aria-label="Basic example">
+              <button class="btn btn-link text-danger">{{ 'register.step2.no'|trans }}</button>
+              <button type="submit" class="btn btn-success">{{ 'register.step2.yes'|trans }}</button>
+              </div>
+          </div>
+         </div>
+    </form>
  </div>
 
  <!-- last step -->

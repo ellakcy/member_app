@@ -15,7 +15,7 @@ register.sri_lanka: "Sri Lanka"
 register.selectSignature: "(Optionally)<br>Click or Drop<br>To select your signature image"
 register.mandatory: "The fields are mandatory to get filled"
 register.reasonwhyneedidnum: "This information is <b>NOT</b> stored to our database and is required because: <ul><li>We use it to determine the validity of the information you submited.</li><li>For age verification according to our <a href=\"https://ellak.org.cy/wp-content/uploads/2017/06/%CE%9A%CE%91%CE%A4%CE%91%CE%A3%CE%A4%CE%91%CE%A4%CE%99%CE%9A%CE%9F-V3.pdf\">conscript</a>.</li></ul>"
-register.fill: "Fill with the required details"
+register.step1.title: "Step 1: Fill with the required details"
 register.notice: "Note"
 register.mandatory: "The fields are mandatory to get filled"
 register.storedindb: "The field contain information that will stored to the database when the application has been approved by the council."
@@ -26,6 +26,15 @@ register.memberSignature: "Member Signature"
 register.issuingCountry: "Issuing Country"
 register.preview.title: "Print the following form"
 registration.notify: "YES, I want to get notified regarding the process of my application using the email address above."
+register.captcha: "Place the text shown in the image"
+register.captha.new-image: "Renew captha image"
+register.step2.email.autofill: "Click to autofill with the email address from the previous step"
+register.step2.email: "The email adress that will used to get notified"
+
+register.step2.title: "Step 2: Notification via email"
+register.step2.explanation: "We can inform you via email regarding the next steps required for your application. If you do not agree then you can get informed via our website."
+register.step2.no: NO, don't inform me.
+register.step2.yes: YES, I want to get informed via email.
 
 register.generate_form: "Create the application form"
 

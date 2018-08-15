@@ -17,12 +17,9 @@ class DefaultController extends Controller
     {
 
         $session=$this->get('session');
-
-        //@todo Make it as a service
         $builder = $this->get('app.captcha');
-
         $builder->build();
-        $session->set('csrf',$builder->getPhrase());
+        $session->set('registration_step2',$builder->getPhrase());
 
         return $this->render('pages/registration.html.twig',[
           'image'=>$builder->inline()
