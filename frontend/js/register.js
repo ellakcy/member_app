@@ -148,6 +148,7 @@ var printPaperApplciationForm=function(){
 */
 var nextStep = function(currentElement) {
   var idToScrollTo=$(currentElement).attr('data-scroll-to');
+  console.log(idToScrollTo);
   $("#"+idToScrollTo).removeClass('d-none');
   $("#"+idToScrollTo).show();
   $("#"+idToScrollTo).animatescroll({scrollSpeed:2000,easing:'easeInQuad'});
@@ -169,7 +170,7 @@ var writeContentToIframe=function(id,content){
 
 /**
 * Autofills an input from another input
-* @param {external:Node | String} element The button element where the
+* @param {external:Node | String} element The button element where the info and the
 */
 var autofill=function(element){
   var to='#'+$(element).attr('data-autofill-to');
@@ -215,6 +216,11 @@ $(document).ready(function(){
     autofill(this);
   })
 
+  $("#rejectEmail").on("click",function(e){
+    $("#registrationForm").submit();
+    nextStep(this);
+  })
+
   //On Registration Form Submit
   $('#registrationForm').on("submit",function(e){
     e.preventDefault();
@@ -251,7 +257,6 @@ $(document).ready(function(){
     var html= tmpl.render(valuesToRender);
 
     writeContentToIframe("displayRegistationPaperApplication",html)
-    nextStep(self);
   });
 
 });
