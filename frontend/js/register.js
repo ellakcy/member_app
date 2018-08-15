@@ -149,6 +149,7 @@ var printPaperApplciationForm=function(){
 var nextStep = function(currentElement) {
   var idToScrollTo=$(currentElement).attr('data-scroll-to');
   $("#"+idToScrollTo).removeClass('d-none');
+  $("#"+idToScrollTo).show();
   $("#"+idToScrollTo).animatescroll({scrollSpeed:2000,easing:'easeInQuad'});
 }
 
@@ -167,7 +168,6 @@ var writeContentToIframe=function(id,content){
 
 }
 
-
 $(document).ready(function(){
 
   $('#selectSignature').on("change",function(e){
@@ -175,13 +175,14 @@ $(document).ready(function(){
     encodeImageFileAsURL(e.target.files,setImageValues);
   });
 
+  // Handle Signature img read
   $('#signatureContainer').on('drop',function(e){
     if(e.originalEvent.dataTransfer && e.originalEvent.dataTransfer.files.length){
         e.preventDefault();
         e.stopPropagation();
         encodeImageFileAsURL(e.originalEvent.dataTransfer.files,setImageValues);
     }
-    
+
     $(this).removeClass('dragging');
   })
 

@@ -27,7 +27,7 @@
 
     <div class="row">
 
-     <form id="registrationForm" data-scroll-to="displayRegistationPaperApplicationWrapper" class="col m-1">
+     <form id="registrationForm"  class="col m-1">
       <div class="row">
         <div class="form-group col-12 col-md-12 col-lg-6">
               <label for="inputName">{{ 'register.name'|trans }} <i class="fas fa-database"></i> *</label>
@@ -74,7 +74,7 @@
 
      <div class="row mt-3">
        <div class="col">
-        <button type="submit" class="btn btn-block btn-primary"><i class="fas fa-file-pdf"></i> {{ 'register.generate_form'|trans }} </button>
+        <button type="button" onClick="nextStep(this)" data-scroll-to="contactEmailSubmit" class="btn btn-block btn-primary"> {{ 'register.next_step'|trans }} </button>
       </div>
      </div>
      <input name="idType" value="{{ 'register.cypriot'| trans }}" data-on-reset="set-val" data-on-reset-value="{{ 'register.cypriot'| trans }}" type="hidden">
@@ -94,7 +94,7 @@
  </div>
 
  <!-- 2nd Step -->
- <div id="contactEmailSubmit" data-comment="step2" class="row border shade ml-1 mr-1 mt-4">
+ <div id="contactEmailSubmit" data-step="2" style="display:none" class="row border shade ml-1 mr-1 mt-4">
      <div class="col-12">
        <div class="col-12">
          <h2 class="text-center">{{ 'register.step2.title'|trans }}</h2>
@@ -105,7 +105,7 @@
        <hr>
      </div>
 
-     <form id="contactForm" class="col-12" action="{{ path('registration_email_contact') }}" method="post">
+     <form id="contactForm" class="col-12" data-scroll-to="displayRegistationPaperApplicationWrapper" action="{{ path('registration_email_contact') }}" method="post">
        <input type="hidden" name="csrf" value="{{ csrf_token('insert-email') }}"/>
 
          <div class="col-12 mb-3">
@@ -143,7 +143,7 @@
  </div>
 
  <!-- last step -->
- <div id="displayRegistationPaperApplicationWrapper" class="row border shade mt-5 d-none">
+ <div id="displayRegistationPaperApplicationWrapper" data-step="3" style="display:none" class="row border shade mt-5">
    <div class="col-12">
      <h2 class="text-center">{{ 'register.preview.title'|trans }}</h2>
      <button class="btn btn-primary mb-2 mt-1" onclick="printPaperApplciationForm()"> <i class="fas fa-print"></i></button>
