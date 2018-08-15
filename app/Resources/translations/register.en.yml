@@ -14,7 +14,6 @@ register.sri_lanka: "Sri Lanka"
 
 register.selectSignature: "(Optionally)<br>Click or Drop<br>To select your signature image"
 register.mandatory: "The fields are mandatory to get filled"
-register.reasonwhyneedidnum: "This information is <b>NOT</b> stored to our database and is required because: <ul><li>We use it to determine the validity of the information you submited.</li><li>For age verification according to our <a href=\"https://ellak.org.cy/wp-content/uploads/2017/06/%CE%9A%CE%91%CE%A4%CE%91%CE%A3%CE%A4%CE%91%CE%A4%CE%99%CE%9A%CE%9F-V3.pdf\">conscript</a>.</li></ul>"
 register.step1.title: "Step 1: Fill with the required details"
 register.notice: "Note"
 register.mandatory: "The fields are mandatory to get filled"
