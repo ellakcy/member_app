@@ -175,10 +175,7 @@ var autofill=function(element){
   var to='#'+$(element).attr('data-autofill-to');
   var from="#"+$(element).attr('data-autofill-from');
 
-
   var valueToCopy=$(from).val();
-  console.log(valueToCopy)
-
   $(to).val(valueToCopy);
 }
 

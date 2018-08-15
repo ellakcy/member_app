@@ -4,7 +4,6 @@
 
 {% block stylesheets %}
  {{ parent() }}
- <link rel="stylesheet" type="text/css" href="{{ asset('./flag-icon-css/flag-icon.min.css','vendor') }}">
  <link rel="stylesheet" type="text/css" href="{{ asset('registration.css','css') }}">
 {% endblock %}
 
@@ -46,26 +45,6 @@
               <input id="registrationEmail" class="form-control" data-qr="true" data-on-reset="no-val" type="email" name="email" required>
         </div>
       </div>
-      <div class="row">
-        <div class="col">
-          <label>{{ 'register.nationalid'|trans }} **</label>
-          <div class="input-group mb-2">
-            <div class="input-group-prepend">
-              <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" ><span id="flagIndicator" data-on-reset="set-class" data-on-reset-value="flag-icon flag-icon-cy" class="flag-icon flag-icon-cy"></span></button>
-              <div class="dropdown-menu">
-                <a class="dropdown-item flag" onclick="selectCountry(this,'{{ 'register.cypriot'| trans }}')" href="#"><span class="flag-icon flag-icon-cy"></span> {{ 'register.cypriot'| trans }}</a>
-                <a class="dropdown-item flag" onclick="selectCountry(this,'{{ 'register.greek'| trans }}')" href="#"><span class="flag-icon flag-icon-gr"></span> {{ 'register.greek'| trans }}</a>
-                <a class="dropdown-item flag" onclick="selectCountry(this,'{{ 'register.british'| trans }}')" href="#"><span class="flag-icon flag-icon-gb"></span> {{ 'register.british'| trans }}</a>
-                <a class="dropdown-item flag" onclick="selectCountry(this,'{{ 'register.turkish'| trans }}')" href="#"><span class="flag-icon flag-icon-tr"></span> {{ 'register.turkish'| trans }}</a>
-                <a class="dropdown-item flag" onclick="selectCountry(this,'{{ 'register.russian'| trans }}')" href="#"><span class="flag-icon flag-icon-ru"></span> {{ 'register.russian'| trans }}</a>
-                <a class="dropdown-item flag" onclick="selectCountry(this,'{{ 'register.vietnameese'| trans }}')" href="#"><span class="flag-icon flag-icon-vn"></span> {{ 'register.vietnameese'| trans }}</a>
-                <a class="dropdown-item flag" onclick="selectCountry(this,'{{ 'register.sri_lanka'| trans }}')" href="#"><span class="flag-icon flag-icon-lk"></span> {{ 'register.sri_lanka'| trans }}</a>
-              </div>
-            </div>
-            <input type="text" class="form-control valuechange" name="id_number" data-on-reset="no-val" aria-label="{{ 'register.nationalid'|trans }}" required>
-         </div>
-       </div>
-     </div>
 
      <div id="signatureContainer" class="row">
        <input id="selectSignature" type="file" data-on-reset="no-val" style="display:none" name="signature" />
@@ -77,7 +56,6 @@
         <button type="button" onClick="nextStep(this)" data-scroll-to="contactEmailSubmit" class="btn btn-block btn-primary"> {{ 'register.next_step'|trans }} </button>
       </div>
      </div>
-     <input name="idType" value="{{ 'register.cypriot'| trans }}" data-on-reset="set-val" data-on-reset-value="{{ 'register.cypriot'| trans }}" type="hidden">
    </form>
    </div>
  </div>
@@ -114,7 +92,7 @@
                 <div class="input-group-prepend">
                   <button class="btn btn-secondary" data-autofill-to="autofill_email" data-autofill-from="registrationEmail" id="emailAutofill">{{ 'register.step2.email.autofill'|trans }}</button>
                 </div>
-                <input id="autofill_email" type="email"  name="autofill_email" class="form-control" placeholder="{{ 'register.step2.email'|trans }}" />
+                <input id="autofill_email" type="email"  name="autofill_email" class="form-control" placeholder="{{ 'register.step2.email'|trans }}" required/>
               </div>
            </div>
          </div>
@@ -127,16 +105,16 @@
                 <div class="input-group-prepend">
                   <button class="btn btn-secondary" id="reset-captcha">{{ 'register.captha.new-image'|trans }}</button>
                 </div>
-                <input type="text" name="captcha" class="form-control" placeholder="{{ 'register.captcha'|trans }}" />
+                <input type="text" name="captcha" class="form-control" placeholder="{{ 'register.captcha'|trans }}" required/>
               </div>
            </div>
          </div>
          <div class="col-12 mt-5 mb-2">
            <div class="col-12 col-sm-12 col-md-5 col-lg-5 ml-auto">
-             <div class="btn-group" role="group" aria-label="Basic example">
+            <div class="btn-group" role="group" aria-label="Basic example">
               <button class="btn btn-link text-danger">{{ 'register.step2.no'|trans }}</button>
               <button type="submit" class="btn btn-success">{{ 'register.step2.yes'|trans }}</button>
-              </div>
+            </div>
           </div>
          </div>
     </form>
