@@ -37,21 +37,24 @@ class ContactEmailTest extends KernelTestCase
      $repository=$this->entityManager->getRepository(ContactEmail::class);
 
      $contactEmailEntity=$repository->addEmail($email);
+
+     //Check if returned email in the one we inserted
      $this->assertEquals($contactEmailEntity->getEmail(),$email);
 
      $emailSearched=$repository->findByEmail($email);
 
+     //Check if email has been inserted to the db
      if(empty($emailSearched)){
         $this->fail('No email has been found');
      }
-     
+
+     // And check if email also exists in the database as well
      $this->assertEquals($email,$emailSearched[0]->getEmail());
    }
 
    public function testInsertDucplicate()
    {
      $email="jdoe@example.com";
-
 
      /**
      * @var Appbundle\Repository\ContactEmailRepository
