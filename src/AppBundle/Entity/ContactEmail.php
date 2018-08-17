@@ -32,9 +32,14 @@ class ContactEmail
     private $email;
 
     /**
-    * @ORM\Column(name="date", type="datetime", options={"default"="CURRENT_TIMESTAMP"})
+    * @ORM\Column(name="date", type="datetime")
     */
     private $createdAt;
+
+    public function __construct()
+    {
+      $this->createdAt=new \DateTime("now", new \DateTimeZone("UTC"));
+    }
 
     /**
      * Get id
@@ -61,5 +66,10 @@ class ContactEmail
     */
     public function getEmail(){
       return $this->email;
+    }
+
+    public function getCreatedAt()
+    {
+      return $this->createdAt;
     }
 }

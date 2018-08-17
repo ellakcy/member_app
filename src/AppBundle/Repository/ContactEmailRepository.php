@@ -2,6 +2,8 @@
 
 namespace AppBundle\Repository;
 
+use AppBundle\Entity\ContactEmail;
+
 /**
  * ContactEmailRepository
  *
@@ -10,4 +12,68 @@ namespace AppBundle\Repository;
  */
 class ContactEmailRepository extends \Doctrine\ORM\EntityRepository
 {
+  /**
+  * Adding an Email to the database
+  * @param String $email
+  *
+  * @throws Doctrine\DBAL\Exception\UniqueConstraintViolationException
+  *
+  * @return AppBundle\Entity\ContactEmail
+  */
+  public function addEmail($email)
+  {
+      $emailToAdd=new ContactEmail();
+      $emailToAdd->setEmail($email);
+
+      /**
+      * @var Doctrine\ORM\EntityManager
+      */
+      $em=$this->getEntityManager();
+      
+      $em->persist($emailToAdd);
+      $em->flush();
+
+      return $emailToAdd;
+  }
+
+  /**
+  * Remove an email from the database
+  * @param String $email
+  *
+  * @throws EntryDoesNotExistException
+  * @throws DatabaseCommunicationFailedException
+  *
+  */
+  public function deleteEmail($email)
+  {
+
+  }
+
+  /**
+  * List and Seatch for existing emails
+  * @param String $email
+  *
+  * @throws DatabaseCommunicationFailedException
+  * @throws EntryDoesNotExistException
+  *
+  * @return String[]
+  */
+  public function getEmails($email=null)
+  {
+
+  }
+
+  /**
+  * List and Seatch for existing emails
+  * @param String $email
+  *
+  * @throws DatabaseCommunicationFailedException
+  *
+  * @return Boolean
+  */
+  public function emailExists($email)
+  {
+
+  }
+
 }
