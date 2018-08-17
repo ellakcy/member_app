@@ -20,8 +20,6 @@ framework:
                 base_path: '/assets/css'
             js:
               base_path: '/assets/js'
-            flags:
-                base_path: '/assets/flags'
 
     secret: '%secret%'
     router:
@@ -39,7 +37,7 @@ framework:
         save_path: '%kernel.project_dir%/var/sessions/%kernel.environment%'
     fragments: ~
     http_method_override: true
-    assets: ~
+
     php_errors:
         log: true
 
