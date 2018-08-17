@@ -66,19 +66,6 @@ var setRetetAttributes=function(element,onResetAction,onResetValue){
 }
 
 /**
-* Function that updates the hidden input for the identiry origin
-* @param {Node} element The element that has been selected
-* @param {String} country The country that has been selected
-*/
-var selectCountry=function(element,country){
-
-  appendHiddenInput('idType',country);
-  var classes=$(element).children(".flag-icon").attr('class');
-
-  $("#flagIndicator").attr('class',classes)
-}
-
-/**
 * Function that reads an image as base64 content.
 * @param {Array} files The list of the files
 * @param {Function} cb Callback function where the base64 content will get processed
@@ -198,6 +185,7 @@ $(document).ready(function(){
     $(this).removeClass('dragging');
   })
 
+  // Signature Image Drag'n'Drop
   $("#signatureContainer").on("dragover", function(event) {
     event.preventDefault();
     event.stopPropagation();
