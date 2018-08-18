@@ -29,7 +29,7 @@ class ContactEmailRepository extends \Doctrine\ORM\EntityRepository
       * @var Doctrine\ORM\EntityManager
       */
       $em=$this->getEntityManager();
-      
+
       $em->persist($emailToAdd);
       $em->flush();
 
@@ -39,14 +39,10 @@ class ContactEmailRepository extends \Doctrine\ORM\EntityRepository
   /**
   * Remove an email from the database
   * @param String $email
-  *
-  * @throws EntryDoesNotExistException
-  * @throws DatabaseCommunicationFailedException
-  *
   */
   public function deleteEmail($email)
   {
-
+    
   }
 
   /**

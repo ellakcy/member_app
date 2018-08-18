@@ -4,6 +4,7 @@ namespace Tests\AppBundle\Repository;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use AppBundle\Entity\ContactEmail;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
+use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 
 class ContactEmailTest extends KernelTestCase
 {
@@ -24,7 +25,6 @@ class ContactEmailTest extends KernelTestCase
            ->getManager();
 
        //In case leftover entries exist
-       $this->entityManager->createQuery('DELETE AppBundle:ContactEmail c')->execute();
    }
 
 
@@ -75,7 +75,10 @@ class ContactEmailTest extends KernelTestCase
     protected function tearDown()
     {
         parent::tearDown();
-        $this->entityManager->createQuery('DELETE AppBundle:ContactEmail c')->execute();
+
+        $purger = new ORMPurger($this->em);
+        $purger->purge();
+
         $this->entityManager->close();
         $this->entityManager = null; // avoid memory leaks
     }
