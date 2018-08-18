@@ -62,7 +62,7 @@ class ContactEmailRepository extends \Doctrine\ORM\EntityRepository
   */
   public function getEmailListInOrderToSendEmail($email=null)
   {
-
+    
   }
 
   /**
