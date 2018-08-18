@@ -25,9 +25,7 @@ class ContactEmailRepository extends \Doctrine\ORM\EntityRepository
       $emailToAdd=new ContactEmail();
       $emailToAdd->setEmail($email);
 
-      /**
-      * @var Doctrine\ORM\EntityManager
-      */
+
       $em=$this->getEntityManager();
 
       $em->persist($emailToAdd);
@@ -42,19 +40,27 @@ class ContactEmailRepository extends \Doctrine\ORM\EntityRepository
   */
   public function deleteEmail($email)
   {
-    
+    $em=$this->getEntityManager();
+
+    $queryBuilder = $em->createQueryBuilder();
+    $queryBuilder->delete(ContactEmail::class,'c')
+      ->where('c.email=:email')
+      ->setParameter('email',$email);
+
+    $query=$queryBuilder->getQuery();
+
+    $p = $query->execute();
+
+    return $p;
   }
 
   /**
   * List and Seatch for existing emails
   * @param String $email
   *
-  * @throws DatabaseCommunicationFailedException
-  * @throws EntryDoesNotExistException
-  *
   * @return String[]
   */
-  public function getEmails($email=null)
+  public function getEmailListInOrderToSendEmail($email=null)
   {
 
   }
