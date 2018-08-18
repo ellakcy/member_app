@@ -4,7 +4,11 @@ namespace Tests\AppBundle\Repository;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
 use AppBundle\Entity\ContactEmail;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
-use Doctrine\Common\DataFixtures\Purger\ORMPurger;
+use Doctrine\ORM\Tools\SchemaTool;
+Use Doctrine\Common\DataFixtures\Purger\ORMPurger;
+
+
+use AppBundle\DataFixtures\ContactEmailDataFixture;
 
 class ContactEmailTest extends KernelTestCase
 {
@@ -25,6 +29,12 @@ class ContactEmailTest extends KernelTestCase
            ->getManager();
 
        //In case leftover entries exist
+       $schemaTool = new SchemaTool($this->entityManager);
+       $metadata = $this->entityManager->getMetadataFactory()->getAllMetadata();
+
+       // Drop and recreate tables for all entities
+       $schemaTool->dropSchema($metadata);
+       $schemaTool->createSchema($metadata);
    }
 
    /**
@@ -75,6 +85,26 @@ class ContactEmailTest extends KernelTestCase
 
    }
 
+   /**
+   * Testing whether a preloaded email will get deleted
+   */
+   public function testDeletion()
+   {
+     $fixture = new ContactEmailDataFixture();
+     $fixture->load($this->entityManager);
+
+     /**
+     * @var Appbundle\Repository\ContactEmailRepository
+     */
+     $repository=$this->entityManager->getRepository(ContactEmail::class);
+
+     $emailToDelete='jdoe@example.com';
+     $repository->deleteEmail($emailToDelete);
+
+     $emailSearched=$repository->findOneBy(['email'=>$emailToDelete]);
+     $this->assertEmpty($emailSearched);
+   }
+
     /**
      * {@inheritDoc}
      */
@@ -82,7 +112,7 @@ class ContactEmailTest extends KernelTestCase
     {
         parent::tearDown();
 
-        $purger = new ORMPurger($this->em);
+        $purger = new ORMPurger($this->entityManager);
         $purger->purge();
 
         $this->entityManager->close();
