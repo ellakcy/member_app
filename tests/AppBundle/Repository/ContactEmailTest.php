@@ -27,7 +27,9 @@ class ContactEmailTest extends KernelTestCase
        //In case leftover entries exist
    }
 
-
+   /**
+   * Checking whether a contact email will get Inserted
+   */
    public function testInsert()
    {
      $email="jdoe@example.com";
@@ -52,6 +54,10 @@ class ContactEmailTest extends KernelTestCase
      $this->assertEquals($email,$emailSearched[0]->getEmail());
    }
 
+   /**
+   * Checking whether an exception will get thrown
+   * When we try to insert the same entry rtwice
+   */
    public function testInsertDucplicate()
    {
      $email="jdoe@example.com";
