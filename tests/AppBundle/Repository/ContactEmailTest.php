@@ -1,41 +1,15 @@
 <?php
 namespace Tests\AppBundle\Repository;
 
-use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
-use AppBundle\Entity\ContactEmail;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
-use Doctrine\ORM\Tools\SchemaTool;
-Use Doctrine\Common\DataFixtures\Purger\ORMPurger;
 
 
+use AppBundle\Entity\ContactEmail;
 use AppBundle\DataFixtures\ContactEmailDataFixture;
+use Tests\AppBundle\BaseTestsToInherit\BaseDbTestSuite;
 
-class ContactEmailTest extends KernelTestCase
+class ContactEmailTest extends BaseDbTestSuite
 {
-  /**
-    * @var \Doctrine\ORM\EntityManager
-    */
-   private $entityManager;
-
-   /**
-    * {@inheritDoc}
-    */
-   protected function setUp()
-   {
-       $kernel = self::bootKernel();
-
-       $this->entityManager = $kernel->getContainer()
-           ->get('doctrine')
-           ->getManager();
-
-       //In case leftover entries exist
-       $schemaTool = new SchemaTool($this->entityManager);
-       $metadata = $this->entityManager->getMetadataFactory()->getAllMetadata();
-
-       // Drop and recreate tables for all entities
-       $schemaTool->dropSchema($metadata);
-       $schemaTool->createSchema($metadata);
-   }
 
    /**
    * Checking whether a contact email will get Inserted
@@ -136,17 +110,5 @@ class ContactEmailTest extends KernelTestCase
    }
 
 
-    /**
-     * {@inheritDoc}
-     */
-    protected function tearDown()
-    {
-        parent::tearDown();
 
-        $purger = new ORMPurger($this->entityManager);
-        $purger->purge();
-
-        $this->entityManager->close();
-        $this->entityManager = null; // avoid memory leaks
-    }
 }
