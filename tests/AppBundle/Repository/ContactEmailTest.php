@@ -105,6 +105,38 @@ class ContactEmailTest extends KernelTestCase
      $this->assertEmpty($emailSearched);
    }
 
+   /**
+   * Getting the list of the Emails as a String Array
+   * and performing Common Checks
+   */
+   private function getEmailListAndPerformCommonChecks()
+   {
+     $repository=$this->entityManager->getRepository(ContactEmail::class);
+
+     $listEmails=$repository->getEmailListInOrderToSendEmail();
+     $this->assertInternalType('array',$listEmails);
+
+     return $listEmails;
+   }
+
+   public function testGetEmailAdressList()
+   {
+     $fixture = new ContactEmailDataFixture();
+     $fixture->load($this->entityManager);
+
+     $listEmails=$this->getEmailListAndPerformCommonChecks();
+     $arrayCount=count($listEmails);
+     $this->assertGreaterThan(0,$arrayCount);
+   }
+
+   public function testIfStillReturnsEmptyArrayWhenNoListArrayExists()
+   {
+      $listEmails=$this->getEmailListAndPerformCommonChecks();
+      $arrayCount=count($listEmails);
+      $this->assertGreaterThan(0,$arrayCount);
+   }
+
+
     /**
      * {@inheritDoc}
      */
