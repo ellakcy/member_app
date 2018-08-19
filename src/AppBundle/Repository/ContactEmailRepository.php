@@ -56,13 +56,22 @@ class ContactEmailRepository extends \Doctrine\ORM\EntityRepository
 
   /**
   * List and Seatch for existing emails
-  * @param String $email
-  *
   * @return String[]
   */
-  public function getEmailListInOrderToSendEmail($email=null)
+  public function getEmailListInOrderToSendEmail()
   {
-    
+    $em=$this->getEntityManager();
+
+    $queryBuilder = $em->createQueryBuilder();
+    $queryBuilder->select('c.email')->from(ContactEmail::class,'c');
+
+    $value=$queryBuilder->getQuery()->execute();
+
+    if(empty($value)){
+      return [];
+    }
+
+    return $value;
   }
 
   /**

@@ -132,8 +132,7 @@ class ContactEmailTest extends KernelTestCase
    public function testIfStillReturnsEmptyArrayWhenNoListArrayExists()
    {
       $listEmails=$this->getEmailListAndPerformCommonChecks();
-      $arrayCount=count($listEmails);
-      $this->assertGreaterThan(0,$arrayCount);
+      $this->assertEmpty($listEmails);
    }
 
 
