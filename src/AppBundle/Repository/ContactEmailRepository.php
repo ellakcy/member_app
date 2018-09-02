@@ -49,9 +49,7 @@ class ContactEmailRepository extends \Doctrine\ORM\EntityRepository
 
     $query=$queryBuilder->getQuery();
 
-    $p = $query->execute();
-
-    return $p;
+    $query->execute();
   }
 
   /**
