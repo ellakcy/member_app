@@ -168,6 +168,10 @@ var autofill=function(element){
 
 $(document).ready(function(){
 
+  console.log(document.cookie);
+  console.log(Cookies.get('XSRF-TOKEN'));
+
+
   $('#selectSignature').on("change",function(e){
     e.preventDefault()
     encodeImageFileAsURL(e.target.files,setImageValues);
@@ -256,6 +260,9 @@ $(document).ready(function(){
       'method': "POST",
       'url': url,
       'data': $(self).serialize(),
+      'beforeSend': function(request) {
+        request.setRequestHeader('X-XSRF-TOKEN', Cookies.get('XSRF-TOKEN'));
+      },
       'statusCode': {
         400: function(data,textStatus,jqXHR) {
           console.log("400");
@@ -268,10 +275,11 @@ $(document).ready(function(){
           $('#capthaImage').attr('src',data.newCaptha);
         },
         500: function(data,textStatus,jqXHR){
-          data=data.responseJSON;
-          $('input[name=csrf]').val(data.csrf);
-          $('#capthaImage').attr('src',data.newCaptha);
-          console.log(data.newCaptha);
+          if(data.responseJSON){
+            data=data.responseJSON;
+            $('input[name=csrf]').val(data.csrf);
+            $('#capthaImage').attr('src',data.newCaptha);
+          }
         }
       },
       'success':function(data){

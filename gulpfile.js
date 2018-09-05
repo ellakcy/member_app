@@ -96,6 +96,14 @@ gulp.task('move_qrious',function(done){
   done();
 })
 
+
+gulp.task('move_cookie_js',function(done){
+  var dest=`${vendor_folder}/cookie-js`
+
+  gulp.src('./node_modules/js-cookie/src/js.cookie.js').pipe(gulp.dest(dest));
+  done();
+});
+
 /******* Build Final Steps ****************************************************/
 
 gulp.task('link_assets',function(done){
@@ -111,7 +119,7 @@ gulp.task('link_assets',function(done){
 /* ############################################ Installing Dependencies ##################################### */
 
 gulp.task('move_frontend',
-          gulp.parallel(['move_bootstrap','move_jquery','move_fontawesome','move_flagicon_css','move_jsrender','move_qrious'],
+          gulp.parallel(['move_bootstrap','move_jquery','move_fontawesome','move_flagicon_css','move_jsrender','move_qrious','move_cookie_js'],
           (done)=>{done()}
         ));
 

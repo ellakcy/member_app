@@ -22,3 +22,10 @@ security:
 
             # https://symfony.com/doc/current/security/form_login_setup.html
             #form_login: ~
+dunglas_angular_csrf:
+  # Collection of patterns where to set the cookie
+  cookie:
+      set_on:
+        - {route: ^homepage, methods: [GET]}
+  secure:
+    - {route: ^registration_email_contact, methods:[POST]}

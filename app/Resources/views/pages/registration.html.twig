@@ -83,8 +83,6 @@
      </div>
 
      <form id="contactForm" class="col-12" data-scroll-to="displayRegistationPaperApplicationWrapper" action="{{ path('registration_email_contact') }}" method="post">
-       <input type="hidden" name="csrf" value="{{ csrf_token('insert-email') }}"/>
-
          <div class="col-12 mb-3">
            <div class="col-12">
              <div class="input-group">
@@ -143,5 +141,6 @@
   <script src="{{ asset('./qrious/qrious.min.js','vendor') }}"></script>
   <script src="{{ asset('./jsrender/jsrender.min.js','vendor') }}"></script>
   <script src="{{ asset('./animatescroll.min.js','vendor') }}"></script>
+  <script src="{{ asset('./cookie-js/js.cookie.js','vendor') }}"></script>
   <script src="{{ asset('register.js','js') }}"></script>
 {% endblock %}

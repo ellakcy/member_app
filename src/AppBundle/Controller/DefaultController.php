@@ -62,7 +62,6 @@ class DefaultController extends Controller
 
       if(
         !$request->isXmlHttpRequest() ||
-        !$this->isCsrfTokenValid('insert-email',$existingCSRF) ||
         $capthaSessionValue!==$capthaUserValue
       ){
 
