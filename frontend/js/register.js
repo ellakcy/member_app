@@ -135,7 +135,6 @@ var printPaperApplciationForm=function(){
 */
 var nextStep = function(currentElement) {
   var idToScrollTo=$(currentElement).attr('data-scroll-to');
-  console.log(idToScrollTo);
   $("#"+idToScrollTo).removeClass('d-none');
   $("#"+idToScrollTo).show();
   $("#"+idToScrollTo).animatescroll({scrollSpeed:2000,easing:'easeInQuad'});
@@ -246,5 +245,35 @@ $(document).ready(function(){
 
     writeContentToIframe("displayRegistationPaperApplication",html)
   });
+
+  $("#contactForm").on('submit',function(e){
+    e.preventDefault();
+
+    var self=this; //To avoid Confusion using this
+    var url=$(self).attr('action');
+
+    $.ajax({
+      'method': "POST",
+      'url': url,
+      'data': $(self).serialize(),
+      'statusCode': {
+        400: function(data,textStatus,jqXHR) {
+          if(data.data){
+            alert(data.data);
+            $('input[name=csrf]').value(data.csrf);
+          }
+          $('#capthaImage').attr('src',data.newCaptha);
+        },
+        500: function(data,textStatus,jqXHR){
+          $('input[name=csrf]').value(data.csrf);
+          $('#capthaImage').attr('src',data.newCaptha);
+        }
+      },
+      'success':function(data){
+        $("#registrationForm").submit();
+        nextStep(self);
+      }
+    });
+  })
 
 });

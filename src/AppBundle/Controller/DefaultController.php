@@ -49,23 +49,24 @@ class DefaultController extends Controller
     */
     public function addEmailAction(Request $request)
     {
-      $response=[
-        'newCaptha' => $this->createCaptcha('registration_step2'),
-      ];
-
-      $csrf = $this->get('form.csrf_provider');
+      $csrf = $this->get('security.csrf.token_manager');
       $session=$this->get('session');
 
       $existingCSRF=$request->request->get('csrf');
       $capthaSessionValue=$session->get('registration_step2');
       $capthaUserValue=$request->request->get('captcha');
 
+      $response=[
+        'newCaptha' => $this->createCaptcha('registration_step2'),
+      ];
+
       if(
         !$request->isXmlHttpRequest() ||
         !$this->isCsrfTokenValid('insert-email',$existingCSRF) ||
         $capthaSessionValue!==$capthaUserValue
       ){
-        return new JSONResponse(400,$response);
+
+        return new JsonResponse($response,JsonResponse::HTTP_BAD_REQUEST);
       }
 
       $response['csrf']=$csrf->refreshToken('insert-email');
@@ -77,7 +78,7 @@ class DefaultController extends Controller
       $contactEmailHandler=$this->get('doctrine.orm.entity_manager')->getRepository('AppBundle:ContactEmail');
 
       try {
-        $contactEmail=$request->request->get('email');
+        $contactEmail=$request->request->get('autofill_email');
         $contactEmailNew=filter_var($contactEmail,FILTER_VALIDATE_EMAIL);
 
         if($contactEmailNew){
@@ -87,17 +88,18 @@ class DefaultController extends Controller
           $emailToReturn=$contactEmailHandler->addEmail($contactEmailNew);
 
           $response['data']=$emailToReturn->getEmail();
-          return new JSONResponse($response);
+          return new JsonResponse($response,JsonResponse::HTTP_OK);
 
         } else {
           $response['data']="The provided email is not a valid one.";
           $response['valueProvided']=$contactEmail;
-          return new JSONResponse(400,$response);
+
+          return new JsonResponse($response,JsonResponse::HTTP_BAD_REQUEST);
         }
 
-      } catch( Exception $e) {
+      } catch( \Exception $e) {
         $response['data']=$e->getMessage();
-        return new JSONResponse(500,$response);
+        return new JsonResponse($response,JsonResponse::HTTP_INTERNAL_SERVER_ERROR);
       }
     }
 }

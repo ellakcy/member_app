@@ -24,6 +24,7 @@
         "captcha-com/symfony-captcha-bundle": "4.*",
         "doctrine/doctrine-bundle": "^1.6",
         "doctrine/orm": "^2.5",
+        "dunglas/angular-csrf-bundle": "^1.1",
         "gregwar/captcha": "^1.1",
         "sensio/distribution-bundle": "^5.0.19",
         "sensio/framework-extra-bundle": "^5.0.0",
