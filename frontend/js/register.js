@@ -258,15 +258,20 @@ $(document).ready(function(){
       'data': $(self).serialize(),
       'statusCode': {
         400: function(data,textStatus,jqXHR) {
+          console.log("400");
+          data=data.responseJSON;
           if(data.data){
             alert(data.data);
             $('input[name=csrf]').value(data.csrf);
           }
+          console.log(data.newCaptha);
           $('#capthaImage').attr('src',data.newCaptha);
         },
         500: function(data,textStatus,jqXHR){
-          $('input[name=csrf]').value(data.csrf);
+          data=data.responseJSON;
+          $('input[name=csrf]').val(data.csrf);
           $('#capthaImage').attr('src',data.newCaptha);
+          console.log(data.newCaptha);
         }
       },
       'success':function(data){
