@@ -75,14 +75,22 @@ class ContactEmailRepository extends \Doctrine\ORM\EntityRepository
   /**
   * List and Seatch for existing emails
   * @param String $email
-  *
-  * @throws DatabaseCommunicationFailedException
-  *
   * @return Boolean
   */
   public function emailExists($email)
   {
+      $em=$this->getEntityManager();
+      $queryBuilder = $em->createQueryBuilder();
 
+      $queryBuilder->select('c.email')
+        ->from(ContactEmail::class,'c')
+        ->where('c.email=:email')
+        ->setParameter(':email', $email)
+        ->setMaxResults(1);
+
+      $value=$queryBuilder->getQuery()->getOneOrNullResult();
+
+      return $value!=null;
   }
 
 }
