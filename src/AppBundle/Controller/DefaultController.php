@@ -8,6 +8,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Gregwar\Captcha\CaptchaBuilder;
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 
 class DefaultController extends Controller
 {
@@ -31,12 +32,6 @@ class DefaultController extends Controller
      */
     public function indexAction(Request $request)
     {
-
-        $session=$this->get('session');
-        $builder = $this->get('app.captcha');
-        $builder->build();
-        $session->set('registration_step2',$builder->getPhrase());
-
         return $this->render('pages/registration.html.twig',[
           'image'=>$this->createCaptcha('registration_step2')
         ]);
@@ -96,8 +91,10 @@ class DefaultController extends Controller
           return new JsonResponse($response,JsonResponse::HTTP_BAD_REQUEST);
         }
 
-      } catch( \Exception $e) {
-        $response['data']=$e->getMessage();
+      }catch(UniqueConstraintViolationException $u){
+        return new JsonResponse($response);
+      }catch( \Exception $e) {
+        $response['data']="Internal Error";
         return new JsonResponse($response,JsonResponse::HTTP_INTERNAL_SERVER_ERROR);
       }
     }
