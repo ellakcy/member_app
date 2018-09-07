@@ -109,6 +109,34 @@ class ContactEmailTest extends BaseDbTestSuite
       $this->assertEmpty($listEmails);
    }
 
+   public function testIfEmailExists()
+   {
+     $fixture = new ContactEmailDataFixture();
+     $fixture->load($this->entityManager);
 
+     /**
+     * @var Appbundle\Repository\ContactEmailRepository
+     */
+     $repository=$this->entityManager->getRepository(ContactEmail::class);
+     $emailToCheck='jdoe@example.com';
+
+     $returnVal=$repository->emailExists($emailToCheck);
+     $this->assertTrue($returnVal);
+   }
+
+   public function testIfEmailDoesNotExist()
+   {
+     $fixture = new ContactEmailDataFixture();
+     $fixture->load($this->entityManager);
+
+     /**
+     * @var Appbundle\Repository\ContactEmailRepository
+     */
+     $repository=$this->entityManager->getRepository(ContactEmail::class);
+     $emailToCheck='nonvalid@example.com';
+
+     $returnVal=$repository->emailExists($emailToCheck);
+     $this->assertFalse($returnVal);
+   }
 
 }
