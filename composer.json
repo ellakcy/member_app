@@ -1,10 +1,10 @@
 {
     "name": "pcmagas/ellakcy_member_app",
-    "license": "proprietary",
+    "license": "AGPL-v3",
     "type": "project",
     "autoload": {
         "psr-4": {
-            "AppBundle\\": "src/AppBundle"
+            "AppBundle\\": "src/AppBundle",
         },
         "classmap": [
             "app/AppKernel.php",

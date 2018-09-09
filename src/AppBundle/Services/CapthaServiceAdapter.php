@@ -38,18 +38,18 @@ class CapthaServiceAdapter implements CapthaBuilderInterface
   */
   public function build($identifier,$type)
   {
-    if($type!==self::IMAGE_INLINE || $type!==IMAGE_NORMAL){
+    if($type!==self::IMAGE_INLINE && $type!==self::IMAGE_NORMAL){
       throw new \InvalidArgumentException("Type should be either CapthaService::IMAGE_INLINE or CapthaService::IMAGE_NORMAL you provided the value: ".$type);
     }
 
-    $this->builder->build();
-    $this->session->set($sessionKey,$this->builder->getPhrase());
+    $this->capthaBuilder->build();
+    $this->session->set($identifier,$this->capthaBuilder->getPhrase());
 
     if($type==self::IMAGE_INLINE){
-      return $this->builder->inline();
+      return $this->capthaBuilder->inline();
     }
 
-    return $this->builder->output();
+    return $this->capthaBuilder->output();
   }
 
   /**

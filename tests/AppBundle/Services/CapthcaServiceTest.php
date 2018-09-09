@@ -1,8 +1,10 @@
 <?php
 namespace Tests\AppBundle\Services;
 
+require_once(__DIR__."/../../../src/AppBundle/Services/CapthaServiceAdapter.php");
+
 use PHPUnit\Framework\TestCase;
-use AppBundle\Services\CapthaServiceAdapter;
+use \AppBundle\Services\CapthaServiceAdapter;
 use Symfony\Component\HttpFoundation\Session\Session;
 
 
@@ -18,9 +20,9 @@ class CapthcaServiceTest extends TestCase
   public function testBuildInline()
   {
     $service=$this->getServiceForBuild();
-    $capthaValue=$service->build('somevalue',CapthaService::IMAGE_INLINE);
+    $capthaValue=$service->build('somevalue',CapthaServiceAdapter::IMAGE_INLINE);
 
-     $this->assertRegExp('/^data:image\/jpeg;base64,(?:[A-Za-z0-9+\/]{4})*(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=)$/i',$element);
+    $this->assertRegExp('/^data:image\/jpeg;base64,(?:[A-Za-z0-9+\/]{4})*(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=)$/i',$capthaValue);
   }
 
   public function testBuildImage()
