@@ -1,5 +1,5 @@
 <?php
-namespace Tests\AppBundle\Service;
+namespace Tests\AppBundle\Services;
 
 use PHPUnit\Framework\TestCase;
 use AppBundle\Services\CapthaServiceAdapter;
@@ -58,7 +58,5 @@ class CapthcaServiceTest extends TestCase
     $this->markTestIncomplete(
       'This test has not been implemented yet.'
     );
-
   }
-
 }

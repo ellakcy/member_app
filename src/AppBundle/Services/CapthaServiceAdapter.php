@@ -1,5 +1,5 @@
 <?php
-use AppBundle\CapthaService;
+namespace AppBundle\Services;
 
 use AppBundle\Interfaces\CapthaBuilderInterface;
 use Symfony\Component\HttpFoundation\Session\Session;
