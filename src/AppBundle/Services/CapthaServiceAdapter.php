@@ -49,7 +49,7 @@ class CapthaServiceAdapter implements CapthaBuilderInterface
       return $this->capthaBuilder->inline();
     }
 
-    return $this->capthaBuilder->output();
+    return $this->capthaBuilder->get();
   }
 
   /**

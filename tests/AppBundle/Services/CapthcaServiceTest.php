@@ -1,8 +1,6 @@
 <?php
 namespace Tests\AppBundle\Services;
 
-require_once(__DIR__."/../../../src/AppBundle/Services/CapthaServiceAdapter.php");
-
 use PHPUnit\Framework\TestCase;
 use \AppBundle\Services\CapthaServiceAdapter;
 use Symfony\Component\HttpFoundation\Session\Session;
@@ -22,11 +20,13 @@ class CapthcaServiceTest extends TestCase
     $service=$this->getServiceForBuild();
     $capthaValue=$service->build('somevalue',CapthaServiceAdapter::IMAGE_INLINE);
 
-    $this->assertRegExp('/^data:image\/jpeg;base64,(?:[A-Za-z0-9+\/]{4})*(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=)$/i',$capthaValue);
+    $this->assertRegExp('/^data:image\/jpeg;base64,(?:[A-Za-z0-9+\/]{4})*$/i',$capthaValue);
   }
 
   public function testBuildImage()
   {
+    // $service=$this->getServiceForBuild();
+    // $capthaValue=$service->build('somevalue',CapthaServiceAdapter::IMAGE_NORMAL);
     $this->markTestIncomplete(
       'This test has not been implemented yet.'
     );
