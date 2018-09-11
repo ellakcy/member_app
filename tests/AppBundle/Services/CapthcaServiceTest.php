@@ -39,9 +39,8 @@ class CapthcaServiceTest extends TestCase
 
   public function testBuildWrongParam()
   {
-    $this->markTestIncomplete(
-      'This test has not been implemented yet.'
-    );
+    $this->expectException(\InvalidArgumentException::class);
+    $this->getImageForTests('lalalala');
   }
 
   private function mockSessionForVerify()
