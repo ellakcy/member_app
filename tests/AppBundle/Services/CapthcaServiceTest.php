@@ -19,8 +19,7 @@ class CapthcaServiceTest extends TestCase
   {
     $service=$this->getServiceForBuild();
     $capthaValue=$service->build('somevalue',CapthaServiceAdapter::IMAGE_INLINE);
-
-    $this->assertRegExp('/^data:image\/jpeg;base64,(?:[A-Za-z0-9+\/]{4})*$/i',$capthaValue);
+    $this->assertRegExp('/^data:image\/jpeg;base64,\s*[A-Za-z0-9\+\/]+=*$/i',$capthaValue);
   }
 
   public function testBuildImage()
