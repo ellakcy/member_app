@@ -9,26 +9,32 @@ use Symfony\Component\HttpFoundation\Session\Session;
 class CapthcaServiceTest extends TestCase
 {
 
-  private function getServiceForBuild()
+ /**
+ * Getting the image for Teststhat require to retrieve the image
+ * @param Integer $type The type of the image.
+ *
+ * The $type parameter takes one of theese values:
+ * - CapthaServiceAdapter::IMAGE_INLINE
+ * - CapthaServiceAdapter::IMAGE_NORMAL
+ *
+ * You can place other values to check that behaves correctly on wrong inputs
+ */
+  private function getImageForTests($type)
   {
     $mock=$this->createMock(Session::class);
-    return new CapthaServiceAdapter($mock);
+    $service=new CapthaServiceAdapter($mock);
+    return $service->build('somevalue',$type);
   }
 
   public function testBuildInline()
   {
-    $service=$this->getServiceForBuild();
-    $capthaValue=$service->build('somevalue',CapthaServiceAdapter::IMAGE_INLINE);
-    $this->assertRegExp('/^data:image\/jpeg;base64,\s*[A-Za-z0-9\+\/]+=*$/i',$capthaValue);
+    $this->assertRegExp('/^data:image\/jpeg;base64,\s*[A-Za-z0-9\+\/]+=*$/i',$this->getImageForTests(CapthaServiceAdapter::IMAGE_INLINE));
   }
 
   public function testBuildImage()
   {
-    // $service=$this->getServiceForBuild();
-    // $capthaValue=$service->build('somevalue',CapthaServiceAdapter::IMAGE_NORMAL);
-    $this->markTestIncomplete(
-      'This test has not been implemented yet.'
-    );
+    $image=$this->getImageForTests(CapthaServiceAdapter::IMAGE_NORMAL);
+    $this->assertTrue(imagecreatefromstring($image)!=FALSE);
   }
 
   public function testBuildWrongParam()
