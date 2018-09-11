@@ -43,7 +43,8 @@
         "jetbrains/phpstorm-stubs": "dev-master",
         "phpunit/phpunit": "^6.5",
         "sensio/generator-bundle": "^3.0",
-        "symfony/phpunit-bridge": "^4.1"
+        "symfony/phpunit-bridge": "^4.1",
+        "ext-gd":"*"
     },
     "scripts": {
         "symfony-scripts": [
