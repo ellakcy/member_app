@@ -43,26 +43,23 @@ class CapthcaServiceTest extends TestCase
     $this->getImageForTests('lalalala');
   }
 
-  private function mockSessionForVerify()
+  private function getServiceForCapthaVerify()
   {
-    $this->markTestIncomplete(
-      'This test has not been implemented yet.'
-    );
+    $mock=$this->createMock(Session::class);
+    $mock->method('get')->will($this->returnValue('hello'));
 
+    return new CapthaServiceAdapter($mock);
   }
 
   public function testVerifySucess()
   {
-    $this->markTestIncomplete(
-      'This test has not been implemented yet.'
-    );
-
+    $service=$this->getServiceForCapthaVerify();
+    $this->assertTrue($service->verify('identifier','hello'));
   }
 
   public function testVerifyFail()
   {
-    $this->markTestIncomplete(
-      'This test has not been implemented yet.'
-    );
+    $service=$this->getServiceForCapthaVerify();
+    $this->assertFalse($service->verify('identifier','hentai'));
   }
 }
