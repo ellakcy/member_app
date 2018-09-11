@@ -57,7 +57,7 @@ class CapthaServiceAdapter implements CapthaBuilderInterface
   */
   public function verify($identifier,$value)
   {
-    $capthaSessionValue=$session->get($identifier);
+    $capthaSessionValue=$this->session->get($identifier);
     return $capthaSessionValue && $value===$capthaSessionValue;
   }
 
