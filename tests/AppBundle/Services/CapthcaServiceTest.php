@@ -43,7 +43,7 @@ class CapthcaServiceTest extends TestCase
     $this->getImageForTests('lalalala');
   }
 
-  private function getServiceForCapthaVerify()
+  private function getServiceForCapthaVerify($returnValue='hello')
   {
     $mock=$this->createMock(Session::class);
     $mock->method('get')->will($this->returnValue('hello'));
@@ -62,4 +62,11 @@ class CapthcaServiceTest extends TestCase
     $service=$this->getServiceForCapthaVerify();
     $this->assertFalse($service->verify('identifier','hentai'));
   }
+
+  public function testEmpty()
+  {
+    $service=$this->getServiceForCapthaVerify(null);
+    $this->assertFalse($service->verify('identifier','hentai'));
+  }
+
 }
