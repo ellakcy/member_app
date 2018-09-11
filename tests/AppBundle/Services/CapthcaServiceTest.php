@@ -46,7 +46,7 @@ class CapthcaServiceTest extends TestCase
   private function getServiceForCapthaVerify($returnValue='hello')
   {
     $mock=$this->createMock(Session::class);
-    $mock->method('get')->will($this->returnValue('hello'));
+    $mock->method('get')->will($this->returnValue($returnValue));
 
     return new CapthaServiceAdapter($mock);
   }
