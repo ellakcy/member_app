@@ -7,8 +7,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
-use Gregwar\Captcha\CaptchaBuilder;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
+use Psr\Log\LoggerInterface;
+
 
 class DefaultController extends Controller
 {
@@ -42,7 +43,7 @@ class DefaultController extends Controller
     * @Method("POST")
     * @todo Have common code for handling the Ajax Errors
     */
-    public function addEmailAction(Request $request)
+    public function addEmailAction(Request $request,LoggerInterface $logger)
     {
       $csrf = $this->get('security.csrf.token_manager');
       $session=$this->get('session');
@@ -55,11 +56,11 @@ class DefaultController extends Controller
         'newCaptha' => $this->createCaptcha('registration_step2'),
       ];
 
-      if(
-        !$request->isXmlHttpRequest() ||
-        $capthaSessionValue!==$capthaUserValue
-      ){
-
+      if(!$request->isXmlHttpRequest()){
+        $response['data']="This is not an AJAX request";
+        return new JsonResponse($response,JsonResponse::HTTP_BAD_REQUEST);
+      } else if($capthaSessionValue!==$capthaUserValue){
+        $response['data']="The provided captha is not the valid one";
         return new JsonResponse($response,JsonResponse::HTTP_BAD_REQUEST);
       }
 
@@ -87,13 +88,13 @@ class DefaultController extends Controller
         } else {
           $response['data']="The provided email is not a valid one.";
           $response['valueProvided']=$contactEmail;
-
           return new JsonResponse($response,JsonResponse::HTTP_BAD_REQUEST);
         }
 
       }catch(UniqueConstraintViolationException $u){
         return new JsonResponse($response);
       }catch( \Exception $e) {
+        $logger->error('An exception had been thrown: '.$e->getMessage());
         $response['data']="Internal Error";
         return new JsonResponse($response,JsonResponse::HTTP_INTERNAL_SERVER_ERROR);
       }

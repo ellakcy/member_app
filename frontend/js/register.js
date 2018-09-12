@@ -269,7 +269,6 @@ $(document).ready(function(){
           data=data.responseJSON;
           if(data.data){
             alert(data.data);
-            $('input[name=csrf]').value(data.csrf);
           }
           console.log(data.newCaptha);
           $('#capthaImage').attr('src',data.newCaptha);
@@ -277,7 +276,6 @@ $(document).ready(function(){
         500: function(data,textStatus,jqXHR){
           if(data.responseJSON){
             data=data.responseJSON;
-            $('input[name=csrf]').val(data.csrf);
             $('#capthaImage').attr('src',data.newCaptha);
           }
         }
