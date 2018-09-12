@@ -9,23 +9,42 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Psr\Log\LoggerInterface;
+use \AppBundle\Services\CapthaServiceAdapter;
 
 
 class DefaultController extends Controller
 {
+
+    const CAPTHA_KEY_REGISTRATION='registration_step2';
 
     /**
     * @todo Make my own service in order to handle captha
     */
     private function createCaptcha($sessionKey)
     {
-      $session=$this->get('session');
-      $builder = $this->get('app.captcha');
-      $builder->build();
-      $session->set($sessionKey,$builder->getPhrase());
-
-      return $builder->inline();
+      $builder=$this->get(CapthaServiceAdapter::class);
+      return $builder->build($sessionKey,CapthaServiceAdapter::IMAGE_INLINE);
     }
+
+    /**
+    * Creates a Json Response when Something wrong has happened
+    * @param String $errorMessage The error Message needed when the error occurs
+    * @param String $capthaKey The index of the captha in order to get verified
+    * @param Integer $httpStatus A valid HttpStatur Response
+    */
+    private function createErrorJsonResponse($errorMessage,$httpStatus=JsonResponse::HTTP_BAD_REQUEST,$capthaKey=self::CAPTHA_KEY_REGISTRATION)
+    {
+      $capthaService=$this->get(CapthaServiceAdapter::class);
+
+      $response=[
+        'data'=>$errorMessage,
+        'newCaptha'=>$this->createCaptcha(self::CAPTHA_KEY_REGISTRATION)
+      ];
+
+      return new JsonResponse($response,$httpStatus,['Cache-control','private, max-age=0, no-cache']);
+    }
+
+
 
     /**
      * @Route("/", name="homepage")
@@ -34,7 +53,7 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
         return $this->render('pages/registration.html.twig',[
-          'image'=>$this->createCaptcha('registration_step2')
+          'image'=>$this->createCaptcha(self::CAPTHA_KEY_REGISTRATION)
         ]);
     }
 
@@ -45,26 +64,14 @@ class DefaultController extends Controller
     */
     public function addEmailAction(Request $request,LoggerInterface $logger)
     {
-      $csrf = $this->get('security.csrf.token_manager');
-      $session=$this->get('session');
-
-      $existingCSRF=$request->request->get('csrf');
-      $capthaSessionValue=$session->get('registration_step2');
+      $capthaService=$this->get(CapthaServiceAdapter::class);
       $capthaUserValue=$request->request->get('captcha');
 
-      $response=[
-        'newCaptha' => $this->createCaptcha('registration_step2'),
-      ];
-
       if(!$request->isXmlHttpRequest()){
-        $response['data']="This is not an AJAX request";
-        return new JsonResponse($response,JsonResponse::HTTP_BAD_REQUEST);
-      } else if($capthaSessionValue!==$capthaUserValue){
-        $response['data']="The provided captha is not the valid one";
-        return new JsonResponse($response,JsonResponse::HTTP_BAD_REQUEST);
+        return $this->createErrorJsonResponse("This is not an AJAX request",JsonResponse::HTTP_BAD_REQUEST);
+      } else if(!$capthaService->verify('registration_step2',$capthaUserValue)){
+        return $this->createErrorJsonResponse("The provided captha is not the valid one",JsonResponse::HTTP_BAD_REQUEST);
       }
-
-      $response['csrf']=$csrf->refreshToken('insert-email');
 
       /**
       * @var AppBundle\Repository\ContactEmailRepository
@@ -73,6 +80,7 @@ class DefaultController extends Controller
       $contactEmailHandler=$this->get('doctrine.orm.entity_manager')->getRepository('AppBundle:ContactEmail');
 
       try {
+
         $contactEmail=$request->request->get('autofill_email');
         $contactEmailNew=filter_var($contactEmail,FILTER_VALIDATE_EMAIL);
 
@@ -81,22 +89,17 @@ class DefaultController extends Controller
           * @var AppBundle\Entity\ContactEmail
           */
           $emailToReturn=$contactEmailHandler->addEmail($contactEmailNew);
-
-          $response['data']=$emailToReturn->getEmail();
+          $response=['data'=>$emailToReturn->getEmail()];
           return new JsonResponse($response,JsonResponse::HTTP_OK);
-
         } else {
-          $response['data']="The provided email is not a valid one.";
-          $response['valueProvided']=$contactEmail;
-          return new JsonResponse($response,JsonResponse::HTTP_BAD_REQUEST);
+          return new JsonResponse("The provided email is not a valid one. You gave the value:".$contactEmail,JsonResponse::HTTP_BAD_REQUEST);
         }
 
       }catch(UniqueConstraintViolationException $u){
-        return new JsonResponse($response);
+        return new JsonResponse(['data'=>'Email has already provided']);
       }catch( \Exception $e) {
         $logger->error('An exception had been thrown: '.$e->getMessage());
-        $response['data']="Internal Error";
-        return new JsonResponse($response,JsonResponse::HTTP_INTERNAL_SERVER_ERROR);
+        return $this->createErrorJsonResponse("Internal Error");
       }
     }
 }
