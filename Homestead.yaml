@@ -38,6 +38,10 @@ variables:
     value: 1025
   - key: smtp_user
     value: no-reply@example.com
+  - key: IDE
+    value: atom
+  - key: XDEBUG_PORT
+    value: 9000
 
 name: ellakcy-member-app
 hostname: ellakcy-member-app
