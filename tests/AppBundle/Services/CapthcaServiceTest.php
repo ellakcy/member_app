@@ -4,7 +4,7 @@ namespace Tests\AppBundle\Services;
 use PHPUnit\Framework\TestCase;
 use \AppBundle\Services\CapthaServiceAdapter;
 use Symfony\Component\HttpFoundation\Session\Session;
-
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
 class CapthcaServiceTest extends TestCase
 {
@@ -21,7 +21,7 @@ class CapthcaServiceTest extends TestCase
  */
   private function getImageForTests($type)
   {
-    $mock=$this->createMock(Session::class);
+    $mock=$this->createMock(SessionInterface::class);
     $service=new CapthaServiceAdapter($mock);
     return $service->build('somevalue',$type);
   }
@@ -45,7 +45,7 @@ class CapthcaServiceTest extends TestCase
 
   private function getServiceForCapthaVerify($returnValue='hello')
   {
-    $mock=$this->createMock(Session::class);
+    $mock=$this->createMock(SessionInterface::class);
     $mock->method('get')->will($this->returnValue($returnValue));
 
     return new CapthaServiceAdapter($mock);

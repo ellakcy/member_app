@@ -2,7 +2,7 @@
 namespace AppBundle\Services;
 
 use AppBundle\Interfaces\CapthaBuilderInterface;
-use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Gregwar\Captcha\CaptchaBuilder;
 
 /**
@@ -26,7 +26,7 @@ class CapthaServiceAdapter implements CapthaBuilderInterface
   */
   private $capthaBuilder=null;
 
-  public function __construct(Session $sessionManager)
+  public function __construct(SessionInterface $sessionManager)
   {
     $this->session=$sessionManager;
     $this->capthaBuilder=new CaptchaBuilder();
