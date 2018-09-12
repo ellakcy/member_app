@@ -18,8 +18,12 @@ echo "Creating schemas for test environment"
 php ./bin/console doctrine:schema:drop --env=test --force
 php ./bin/console doctrine:schema:create --env=test
 
+cd
+
+##### Php Configuration #####
+
 echo "Configuring Xdebug"
-ip=$(hostname -I | awk '{print $2}')
+ip=$(netstat -rn | grep "^0.0.0.0 " | cut -d " " -f10)
 xdebug_config="/etc/php/$(php -v | head -n 1 | awk '{print $2}'|cut -c 1-3)/mods-available/xdebug.ini"
 
 echo "IP for the xdebug to connect back: ${ip}"
@@ -29,4 +33,16 @@ echo "Optimize for ${IDE} ide"
 
 if [ $IDE=='atom' ]; then
   echo "Configuring xdebug for ATOM ide"
+  sudo cat <<EOL >${xdebug_config}
+zend_extension = xdebug.so
+xdebug.remote_enable = 1
+xdebug.remote_host=$ip
+xdebug.remote_port = $XDEBUG_PORT
+xdebug.max_nesting_level = 1000
+xdebug.remote_handler=dbgp
+xdebug.remote_mode=req
+xdebug.remote_autostart=true
+xdebug.remote_log=xdebug.log
+EOL
+
 fi

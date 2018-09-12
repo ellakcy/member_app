@@ -41,7 +41,7 @@ variables:
   - key: IDE
     value: atom
   - key: XDEBUG_PORT
-    value: 9000
+    value: 9091
 
 name: ellakcy-member-app
 hostname: ellakcy-member-app
