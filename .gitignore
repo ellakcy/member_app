@@ -21,3 +21,4 @@ frontend/vendor/*
 !frontend/vendor/.gitkeep
 web/assets
 xdebug.log
+Homestead.yaml
