@@ -3,11 +3,12 @@ Memebership application
 
 # Get the dev started
 
+
 A simple application in order for the organization to manage its memberships.
 
 ** UNDER VERY HEAVY DEVELOPMENT **
 
-In order ot get started run the following commands:
+In order to get started run the following commands:
 
 ```
 git clone git@github.com:pc-magas/member_app.git
@@ -20,7 +21,17 @@ gulp
 > For now it moves the frontend 3rd party libraries into the folder `frontend/vendor`
 > Also it symlinks any folder located in `frontend` to the `web/assets`
 
-Also Homestead is used for the development as wellm so you need to install both vagrant and the homestead first, then run:
+
+Also Homestead is used for the development as well so you need to install both vagrant and the homestead first, afterwards run (only at the first time):
+
+```
+php ./vendor/bin/homestead make
+```
+
+Configure `Homestead.yaml` to your preferences as seen in homestead's [documentation](https://laravel.com/docs/5.4/homestead).
+
+
+Then **each time** you start to develop just run:
 
 ```
 vagrant up
