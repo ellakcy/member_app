@@ -13,6 +13,23 @@ cd ~/code
 
 One you have gained ssh access then you are able to run any command you want.
 
+## Xdebug Configuration
+You can configure the xdebug connection via creating a `xdebug.conf` file.
+Also you can specify the `$ip` in it, in order to get autofilled it with the appropriate value, for example by defining the following file:
+
+```zend_extension = xdebug.so
+xdebug.remote_enable = 1
+xdebug.remote_host = $ip
+xdebug.remote_port = 9091
+xdebug.max_nesting_level = 1000
+xdebug.remote_handler=dbgp
+xdebug.remote_mode=req
+xdebug.remote_autostart=true
+xdebug.remote_log=xdebug.log
+```
+
+The `after.sh` script will look for `$ip` string in it and will replace with the actual ip required for xdebug.
+
 ## Testing
 
 ### Base Superclasses

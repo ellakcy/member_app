@@ -22,3 +22,4 @@ frontend/vendor/*
 web/assets
 xdebug.log
 Homestead.yaml
+xdebug.conf*
