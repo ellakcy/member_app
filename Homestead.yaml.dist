@@ -1,0 +1,43 @@
+ip: ^ip^
+memory: 2048
+cpus: 1
+provider: virtualbox
+authorize: ~/.ssh/id_rsa.pub
+timeout: 120
+
+keys:
+    - ~/.ssh/id_rsa
+folders:
+    -
+        map: ^FILE^
+        to: /home/vagrant/code
+sites:
+    -
+        map: homestead.test
+        to: /home/vagrant/code/web
+        type: symfony
+
+databases:
+    - homestead
+    - homestead-test
+
+variables:
+  - key: database_host
+    value: 127.0.0.1
+  - key: database_port
+    value: 3306
+  - key: database_name
+    value: homestead
+  - key: database_user
+    value: homestead
+  - key: database_password
+    value: secret
+  - key: smtp_host
+    value: localhost
+  - key: smtp_port
+    value: 1025
+  - key: smtp_user
+    value: no-reply@example.com
+
+name: ellakcy-member-app
+hostname: ellakcy-member-app
