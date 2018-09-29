@@ -99,7 +99,7 @@ class DefaultController extends Controller
         return new JsonResponse(['data'=>'Email has already provided']);
       }catch( \Exception $e) {
         $logger->error('An exception had been thrown: '.$e->getMessage());
-        return $this->createErrorJsonResponse("Internal Error");
+        return $this->createErrorJsonResponse("Internal Error",JsonResponse::HTTP_INTERNAL_ERROR);
       }
     }
 }
