@@ -155,15 +155,15 @@ var writeContentToIframe=function(id,content){
 }
 
 /**
-* Autofills an input from another input
+* Autofills an input or a element from the value provided from an input
 * @param {external:Node | String} element The button element where the info and the
 */
 var autofill=function(element){
-  var to='#'+$(element).attr('data-autofill-to');
-  var from="#"+$(element).attr('data-autofill-from');
+  var autoFillId=$(element).attr('data-autofill');
+  var valueToCopy=$(element).val();
 
-  var valueToCopy=$(from).val();
-  $(to).val(valueToCopy);
+  $('input[data-autofill="'+autoFillId+'"]').val(valueToCopy);
+  $('span[data-autofill="'+autoFillId+'"]').text(valueToCopy);
 }
 
 $(document).ready(function(){
@@ -201,16 +201,15 @@ $(document).ready(function(){
       $(this).removeClass('dragging');
   });
 
-
-  $("#emailAutofill").on('click',function(e){
-    e.preventDefault();
-    autofill(this);
-  })
-
   $("#rejectEmail").on("click",function(e){
     $("#registrationForm").submit();
     nextStep(this);
   })
+
+  $('#registrationEmail').on('change',function(e){
+    e.preventDefault();
+    autofill(this);
+  });
 
   //On Registration Form Submit
   $('#registrationForm').on("submit",function(e){

@@ -42,7 +42,7 @@
       <div class="row">
         <div class="form-group col">
               <label for="inputName">{{ 'register.email'|trans }} <i class="fas fa-database"></i> *</label>
-              <input id="registrationEmail" class="form-control" data-qr="true" data-on-reset="no-val" type="email" name="email" required>
+              <input id="registrationEmail" data-autofill="notification-email" class="form-control" data-qr="true" data-on-reset="no-val" type="email" name="email" required>
         </div>
       </div>
 
@@ -77,22 +77,15 @@
          <h2 class="text-center">{{ 'register.step2.title'|trans }}</h2>
        </div>
        <p class="col-12 mp-3">
-         {{ 'register.step2.explanation'|trans }}
+         {{ 'register.step2.explanation'|trans|raw }}
        </p>
        <hr>
      </div>
 
      <form id="contactForm" class="col-12" data-scroll-to="displayRegistationPaperApplicationWrapper" action="{{ path('registration_email_contact') }}" method="post">
-         <div class="col-12 mb-3">
-           <div class="col-12">
-             <div class="input-group">
-                <div class="input-group-prepend">
-                  <button class="btn btn-secondary" data-autofill-to="autofill_email" data-autofill-from="registrationEmail" id="emailAutofill">{{ 'register.step2.email.autofill'|trans }}</button>
-                </div>
-                <input id="autofill_email" type="email"  name="autofill_email" class="form-control" placeholder="{{ 'register.step2.email'|trans }}" required/>
-              </div>
-           </div>
-         </div>
+
+        <input id="notification_email" data-autofill="notification-email" type="hidden" name="autofill_email" class="form-control"/>
+
         <div class="col-12">
            <div class="col-2 float-left border">
              <img id="capthaImage" class="img-fluid" data-captha-renew="registration_step2" src="{{ image }}">
@@ -108,7 +101,7 @@
          </div>
          <div class="col-12 mt-5 mb-2">
            <div class="col-12 col-sm-12 col-md-5 col-lg-5 ml-auto">
-            <div class="btn-group" role="group" aria-label="Basic example">
+            <div class="btn-group" role="group">
               <button id="rejectEmail" data-scroll-to="displayRegistationPaperApplicationWrapper" type="button" class="btn btn-link text-danger">{{ 'register.step2.no'|trans }}</button>
               <button type="submit" class="btn btn-success">{{ 'register.step2.yes'|trans }}</button>
             </div>

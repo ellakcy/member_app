@@ -30,7 +30,7 @@ register.captha.new-image: "Renew captha image"
 
 
 register.step2.title: "Step 2: Notification via email"
-register.step2.explanation: "We can inform you via email regarding the next steps required for your application. If you do not agree then you can get informed via our website."
+register.step2.explanation: "Would you like to get informed via email at <span style=\"font-weight:bold\" data-autofill=\"notification-email\"></span>? If you do not agree then you can get informed via our website."
 register.step2.no: NO, don't inform me.
 register.step2.yes: YES, I want to get informed via email.
 register.step2.email.autofill: "Click to autofill with the email address from the previous step"
