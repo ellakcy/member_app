@@ -68,6 +68,7 @@ class ContactEmailSendTest extends KernelTestCase
               $counter++;
           }
 
+          //@todo Possibly Consinder not doing this check
           if($counter===0){
               $this->fail('No email has been sent');
           }
