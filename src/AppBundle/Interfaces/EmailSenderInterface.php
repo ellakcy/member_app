@@ -1,10 +1,10 @@
 <?php
-namespace AppBundle\Interfaces\EmailSenderInterface;
+namespace AppBundle\Interfaces;
 
 /**
 * Interface that allows you to implement ways to send emails.
 */
-interface EmailSender
+interface EmailSenderInterface
 {
   /**
   * Basic function to send emails

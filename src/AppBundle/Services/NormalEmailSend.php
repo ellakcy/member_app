@@ -21,14 +21,14 @@ class NormalEmailSend implements EmailSenderInterface
   /**
   * @inheritdoc
   */
-  public function send($from,$to,$bodyPlain="",$bodyHtml="",$title="",array $cc=[],array $bcc=[])
+  public function send($from,$to,$title="",$bodyPlain="",$bodyHtml="",array $cc=[],array $bcc=[])
   {
 
     $message=new Swift_Message($title);
     $message->setFrom($from)->setTo($to)->setBody($bodyPlain,'text/plain');
 
     if($bodyHtml){
-        $message->addPart($bofyHtml,'text/html');
+        $message->addPart($bodyHtml,'text/html');
     }
 
     $headers = $message->getHeaders();
