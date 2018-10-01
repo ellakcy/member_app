@@ -1,5 +1,5 @@
 <?php
-namespace AppBundle\Interfaces\EmailSenderInterface;
+namespace AppBundle\Services;
 
 use AppBundle\Interfaces\EmailSenderInterface;
 use \Swift_Mailer;
@@ -34,7 +34,7 @@ class NormalEmailSend implements EmailSenderInterface
     $headers = $message->getHeaders();
     $headers->addTextHeader('X-Agent','ellakcy_member_app');
 
-    $this->mailer->send($message)
+    return $this->mailer->send($message);
   }
 
 
