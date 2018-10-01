@@ -6,6 +6,9 @@ use \AppBundle\Services\CapthaServiceAdapter;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
+/**
+* @testype Unit
+*/
 class CapthcaServiceTest extends TestCase
 {
 

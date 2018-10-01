@@ -8,6 +8,9 @@ use AppBundle\Entity\ContactEmail;
 use AppBundle\DataFixtures\ContactEmailDataFixture;
 use Tests\AppBundle\BaseTestsToInherit\BaseDbTestSuite;
 
+/**
+* @testype functional
+*/
 class ContactEmailTest extends BaseDbTestSuite
 {
 
