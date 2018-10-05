@@ -168,8 +168,12 @@ var autofill=function(element){
 
 $(document).ready(function(){
 
-  console.log(document.cookie);
-  console.log(Cookies.get('XSRF-TOKEN'));
+  $('#reset-captcha').on('click',function(e){
+    e.preventDefault();
+    var url=$('meta[name=captha_url]').attr("content")+"?rand="+Math.random()
+    console.log(url);
+    $("#capthaImage").attr('src',url);
+  });
 
 
   $('#selectSignature').on("change",function(e){
@@ -184,7 +188,6 @@ $(document).ready(function(){
         e.stopPropagation();
         encodeImageFileAsURL(e.originalEvent.dataTransfer.files,setImageValues);
     }
-
     $(this).removeClass('dragging');
   })
 

@@ -3,7 +3,7 @@
 {% trans_default_domain 'register' %}
 
 {% block meta %}
-<meta name="captha_url" value="{{ url('captcha_image',{'identifier':captha_key}) }}" />
+<meta name="captha_url" content="{{ url('captcha_image',{'identifier':captha_key}) }}" />
 {% endblock %}
 
 

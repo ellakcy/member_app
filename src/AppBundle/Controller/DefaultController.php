@@ -110,10 +110,10 @@ class DefaultController extends Controller
     * @Route("/captha/{identifier}.jpg", name="captcha_image")
     * @Method("GET")
     */
-    public function capthaAction($identifier)
+    public function capthaAction(Request $request,$identifier)
     {
       $capthaService=$this->get(CapthaServiceAdapter::class);
-      $image=$capthaService->build($key,CapthaServiceAdapter::IMAGE_NORMAL);
+      $image=$capthaService->build($identifier,CapthaServiceAdapter::IMAGE_NORMAL);
 
       $response=new Response($image,Response::HTTP_OK,['Cache-control','private, max-age=0, no-cache']);
       $response->headers->set('Content-Type','image/jpeg');
