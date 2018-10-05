@@ -40,3 +40,7 @@ services:
     AppBundle\Services\NormalEmailSend:
       public: true
       arguments: ['@mailer']
+
+    ellakcy.logger.access_log:
+      class: 'Symfony\Bridge\Monolog\Logger'
+      tags: ['access']
