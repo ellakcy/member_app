@@ -41,6 +41,17 @@ framework:
     php_errors:
         log: true
 
+monolog:
+   channels: ['access_log']
+   handlers:
+      requests:
+       type: rotating_file
+       path: '%kernel.logs_dir%/access.log'
+       level: info
+       max_files: 10
+       channels: ['access_log']
+       formatter: monolog.formatter.json
+
 # Twig Configuration
 twig:
     debug: '%kernel.debug%'

@@ -17,12 +17,7 @@ monolog:
             type: stream
             path: '%kernel.logs_dir%/%kernel.environment%.log'
             level: debug
+            channels: ['!access_log']
         console:
             type: console
             process_psr_3_messages: false
-        requests:
-          type: rotating_file
-          path: '%kernel.logs_dir%/access.log'
-          level: info
-          max_files: 10
-          channels: ['access']

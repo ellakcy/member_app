@@ -41,6 +41,8 @@ services:
       public: true
       arguments: ['@mailer']
 
-    ellakcy.logger.access_log:
-      class: 'Symfony\Bridge\Monolog\Logger'
-      tags: ['access']
+    AppBundle\EventListener\AccessLogEventListener:
+      arguments:
+        $logger: '@monolog.logger.access_log'
+      tags:
+        - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
