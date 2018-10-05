@@ -41,8 +41,14 @@ services:
       public: true
       arguments: ['@mailer']
 
+    ellakcy.log.formatter.access_log:
+        class: Monolog\Formatter\LineFormatter
+        arguments:
+          - "%%message%% \n"
+
     AppBundle\EventListener\AccessLogEventListener:
       arguments:
         $logger: '@monolog.logger.access_log'
+        $twig: '@twig'
       tags:
         - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }

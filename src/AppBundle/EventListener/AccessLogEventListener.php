@@ -3,14 +3,24 @@ namespace AppBundle\EventListener;
 
 use Symfony\Bridge\Monolog\Logger;
 use  Symfony\Component\HttpKernel\Event\FilterResponseEvent;
+use Twig\Environment; //For formatting thelogs
 
 class AccessLogEventListener
 {
-  private $logger=null;
+    /**
+    * @var Logger
+    */
+    private $logger=null;
 
-    public function __construct(Logger $logger)
+    /**
+    * @var Environment
+    */
+    private $twig;
+
+    public function __construct(Logger $logger,Environment $twig)
     {
       $this->logger=$logger;
+      $this->twig=$twig;
     }
 
     public function onKernelResponse(FilterResponseEvent $event)
@@ -21,18 +31,26 @@ class AccessLogEventListener
 
         $request=$event->getRequest();
         $response=$event->getResponse();
+        $content_type=$response->headers->get('content_type');
 
+        if(!$content_type){
+          return;
+        }
+
+        $baseurl = $request->getScheme() . '://' . $request->getHttpHost() . $request->getBasePath();
         $log=[
             'date'=>gmdate("Y/m/j H:i:s"),
             'http_version'=>$response->getProtocolVersion(),
             'http_method'=>$request->getMethod(),
             'request_ip'=>$request->getClientIp(),
-            'url'=>$request->getRequestUri(),
+            'url'=>$baseurl,
             'user_agent'=>$request->headers->get('User-Agent'),
             'response_status_code'=>$response-> getStatusCode(),
-            'response_type'=>$response->headers->get('content_type')
+            'response_type'=>$content_type
         ];
 
-        $this->logger->info(json_encode($log));
+        $log=$this->twig->createTemplate('[{{date}}] HTTP{{http_version}} {{http_method}} {{response_status_code}} {{request_ip}} {{user_agent}} {{url}} {{response_type}}')->render($log);
+
+        $this->logger->info($log);
     }
 }

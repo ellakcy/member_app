@@ -50,7 +50,7 @@ monolog:
        level: info
        max_files: 10
        channels: ['access_log']
-       formatter: monolog.formatter.json
+       formatter: ellakcy.log.formatter.access_log
 
 # Twig Configuration
 twig:
