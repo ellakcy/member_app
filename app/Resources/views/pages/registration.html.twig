@@ -2,6 +2,11 @@
 
 {% trans_default_domain 'register' %}
 
+{% block meta %}
+<meta name="captha_url" value="{{ url('captcha_image',{'identifier':captha_key}) }}" />
+{% endblock %}
+
+
 {% block stylesheets %}
  {{ parent() }}
  <link rel="stylesheet" type="text/css" href="{{ asset('registration.css','css') }}">

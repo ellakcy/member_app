@@ -7,6 +7,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\JsonResponse;
+use Symfony\Component\HttpFoundation\Response;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Psr\Log\LoggerInterface;
 use \AppBundle\Services\CapthaServiceAdapter;
@@ -53,7 +54,8 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
         return $this->render('pages/registration.html.twig',[
-          'image'=>$this->createCaptcha(self::CAPTHA_KEY_REGISTRATION)
+          'image'=>$this->createCaptcha(self::CAPTHA_KEY_REGISTRATION),
+          'captha_key'=>self::CAPTHA_KEY_REGISTRATION
         ]);
     }
 
@@ -101,5 +103,21 @@ class DefaultController extends Controller
         $logger->error('An exception had been thrown: '.$e->getMessage());
         return $this->createErrorJsonResponse("Internal Error",JsonResponse::HTTP_INTERNAL_ERROR);
       }
+    }
+
+    /**
+    * Generates the Captcha Image
+    * @Route("/captha/{identifier}.jpg", name="captcha_image")
+    * @Method("GET")
+    */
+    public function capthaAction($identifier)
+    {
+      $capthaService=$this->get(CapthaServiceAdapter::class);
+      $image=$capthaService->build($key,CapthaServiceAdapter::IMAGE_NORMAL);
+
+      $response=new Response($image,Response::HTTP_OK,['Cache-control','private, max-age=0, no-cache']);
+      $response->headers->set('Content-Type','image/jpeg');
+
+      return $response;
     }
 }
