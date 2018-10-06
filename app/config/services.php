@@ -20,6 +20,10 @@ $container->register(AppBundle\Services\CapthaServiceAdapter::class)
 $container->register(AppBundle\Services\NormalEmailSend::class)
   ->setArguments([new reference('mailer')]);
 
+/*##################### Repository Adapters ########################*/
+
+$container->register('ellakcy.db.contact_email',AppBundle\Services\Adapters\RepositoryServiceAdapter::class)
+  ->setArguments([new Reference('doctrine'),AppBundle\Entity\ContactEmail::class]);
 
 /*######################## Logging ################################*/
 $container->register('ellakcy.log.formatter.access_log',Monolog\Formatter\LineFormatter::class)
