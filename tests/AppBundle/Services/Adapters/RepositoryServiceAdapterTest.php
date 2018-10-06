@@ -40,4 +40,23 @@ class RepositoryServiceAdapterTest extends TestCase
     $this->assertEquals($expectedResult,$result);
   }
 
+  public function testMethodCalledThrowsException()
+  {
+    /*
+    A Doctrine repository is actually a class,
+    so de define an anonymous class and a method
+    in order to emulate the behavior.
+    */
+    $fakeRepository=new class{
+          public function myFunction()
+          {
+            throw new \Exception("Some Message");
+          }
+    };
+    $adapter=$this->mockService($fakeRepository);
+
+    $this->expectException(\Exception::class);
+    $result=$adapter->myFunction();
+  }
+
 }
