@@ -26,3 +26,9 @@ $container->setParameter('app_name', "Ellakcy Member and user Management System"
 
 
 $container->setParameter('secret','ncrwoe3398hxujiqwbhdslasTT^ebghuikas');
+
+$accessLogDir=getEnv('access_log_dir');
+if(empty($accessLogDir)){
+  $accessLogDir='%kernel.logs_dir%/access.log';
+}
+$container->setParameter('access_log_dir',$accessLogDir);

@@ -46,7 +46,7 @@ monolog:
    handlers:
       requests:
        type: rotating_file
-       path: '%kernel.logs_dir%/access.log'
+       path: '%access_log_dir%'
        level: info
        max_files: 10
        channels: ['access_log']

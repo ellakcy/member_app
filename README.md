@@ -41,13 +41,14 @@ vagrant up
 
 For now theese enviromental variables are being supported:
 
-Name  | homestead default value | description
+Name  | homestead default value | App Default Value | description
 --- | --- | ---
-`database_host` | 127.0.0.1 | Mysql database host
-`database_port` | 3306 | Mysql database port
-`database_name` | homestead | Mysql database
-`database_user` | homestead | Mysql database username
-`database_password` | secret | Password for authenticating the applciation to the mysql
-`smtp_host` | localhost | Host for sending the emails
-`smtp_port` | 1025 | Port for sending the emails
-`smtp_user` | no-reply@example.com | Email that all the **REGISTRATION** related email will get sent
+`database_host` | 127.0.0.1 | N/A | Mysql database host
+`database_port` | 3306 | N/A | Mysql database port
+`database_name` | homestead | N/A | Mysql database
+`database_user` | homestead | N/A | Mysql database username
+`database_password` | secret | N/A | Password for authenticating the applciation to the mysql
+`smtp_host` | localhost  | N/A | Host for sending the emails
+`smtp_port` | 1025  | N/A | Port for sending the emails
+`smtp_user` | no-reply@example.com | N/A | Email that all the **REGISTRATION** related email will get sent
+`access_log_dir` | N/A | N/A | Where the in-application access log will get generated
