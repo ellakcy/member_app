@@ -1,5 +1,5 @@
 <?php
-namespace AppBundle\Services;
+namespace AppBundle\Services\Adapters;
 
 use Doctrine\ORM\EntityManagerInterface;
 
@@ -13,16 +13,16 @@ class RepositoryServiceAdapter
         */
         public function __construct(EntityManagerInterface $entityManager,$entityName)
         {
-            $this->repository=$entityManager->getRepository($entityName)
+            $this->repository=$entityManager->getRepository($entityName);
         }
 
         public function __call($name,$arguments)
         {
-          if(empty($arrguments)){ //No arguments has been passed
-            $this->repository->$name();
+          if(empty($arguments)){ //No arguments has been passed
+            return $this->repository->$name();
           } else {
             //@todo: figure out how to pass the parameters
-            $this->repository->$name(...$argument);
+            return $this->repository->$name(...$arguments);
           }
         }
 }
