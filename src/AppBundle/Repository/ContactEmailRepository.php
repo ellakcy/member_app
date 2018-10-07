@@ -58,19 +58,12 @@ class ContactEmailRepository extends \Doctrine\ORM\EntityRepository
   * @param Integet $limit The page limit
   * @return String[]
   */
-  public function getEmailListInOrderToSendEmail($page=1,$limit=100)
+  public function getEmailListInOrderToSendEmail()
   {
     $em=$this->getEntityManager();
 
     $queryBuilder = $em->createQueryBuilder();
     $queryBuilder->select('c.email')->from(ContactEmail::class,'c');
-
-    if($limit>0 && $page>0){
-      $page=$page-1;
-      $queryBuilder->setFirstResult($page)->setMaxResults($limit);
-    } else if($limit>0){
-      $queryBuilder->setFirstResult(0)->setMaxResults($limit);
-    }
 
     $value=$queryBuilder->getQuery()->execute();
 
