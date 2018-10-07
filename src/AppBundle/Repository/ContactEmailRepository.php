@@ -70,7 +70,7 @@ class ContactEmailRepository extends \Doctrine\ORM\EntityRepository
     if(empty($value)){
       return [];
     }
-    dump($value);
+
     return $value;
   }
 
