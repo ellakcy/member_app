@@ -52,3 +52,4 @@ Name  | homestead default value | App Default Value | description
 `smtp_port` | 1025  | N/A | Port for sending the emails
 `smtp_user` | no-reply@example.com | N/A | Email that all the **REGISTRATION** related email will get sent
 `access_log_dir` | N/A | N/A | Where the in-application access log will get generated
+`notification_email_address` | `no-reply@example.com` | N/A | Email address that will be used for notifications (eg. new member registration, password reminder)

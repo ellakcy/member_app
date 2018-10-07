@@ -1,5 +1,8 @@
 <?php
 
+$container->setParameter('app_name', "Ellakcy Member and user Management System");
+$container->setParameter('secret','ncrwoe3398hxujiqwbhdslasTT^ebghuikas');
+
 // Database Settings
 $container->setParameter('database_host', getenv("database_host"));
 $container->setParameter('database_port', (int) getenv("database_port"));
@@ -22,11 +25,9 @@ $container->setParameter('mailer_port', getenv('smtp_port'));
 $container->setParameter('mailer_user', getenv('smtp_user'));
 $container->setParameter('mailer_password', getenv('smtp_password'));
 
-$container->setParameter('app_name', "Ellakcy Member and user Management System");
+$container->setParameter('notification_email_address',getenv('notification_email_address'));
 
-
-$container->setParameter('secret','ncrwoe3398hxujiqwbhdslasTT^ebghuikas');
-
+//Log settings
 $accessLogDir=getEnv('access_log_dir');
 if(empty($accessLogDir)){
   $accessLogDir='%kernel.logs_dir%/access.log';
