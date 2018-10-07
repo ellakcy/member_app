@@ -39,13 +39,14 @@
         "twig/twig": "^1.0||^2.0"
     },
     "require-dev": {
+        "ext-gd": "*",
         "doctrine/doctrine-fixtures-bundle": "^3.0",
         "felixfbecker/language-server": "^5.4",
         "jetbrains/phpstorm-stubs": "dev-master",
         "phpunit/phpunit": "^6.5",
         "sensio/generator-bundle": "^3.0",
         "symfony/phpunit-bridge": "^4.1",
-        "ext-gd":"*"
+        "symfony/var-dumper": "^4.1"
     },
     "scripts": {
         "symfony-scripts": [

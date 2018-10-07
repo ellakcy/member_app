@@ -23,18 +23,24 @@ class NormalEmailSend implements EmailSenderInterface
   */
   public function send($from,$to,$title="",$bodyPlain="",$bodyHtml="",array $cc=[],array $bcc=[])
   {
+      $message=new Swift_Message($title);
 
-    $message=new Swift_Message($title);
-    $message->setFrom($from)->setTo($to)->setBody($bodyPlain,'text/plain');
+      if(is_string($to)){
+        $to=[$to];
+      }
 
-    if($bodyHtml){
-        $message->addPart($bodyHtml,'text/html');
-    }
+      $message->setFrom($from);
+      $message->setTo($to);
+      $message->setBody($bodyPlain,'text/plain');
 
-    $headers = $message->getHeaders();
-    $headers->addTextHeader('X-Agent','ellakcy_member_app');
+      if($bodyHtml){
+          $message->addPart($bodyHtml,'text/html');
+      }
 
-    return $this->mailer->send($message);
+      $headers = $message->getHeaders();
+      $headers->addTextHeader('X-Agent','ellakcy_member_app');
+
+      return $this->mailer->send($message);
   }
 
 

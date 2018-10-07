@@ -18,11 +18,13 @@ $container->register(AppBundle\Services\CapthaServiceAdapter::class)
   ->setArguments([new Reference('session')]);
 
 $container->register(AppBundle\Services\NormalEmailSend::class)
+  ->setPublic(true)
   ->setArguments([new Reference('mailer')]);
 
 /*##################### Repository Adapters ########################*/
 
 $container->register('ellakcy.db.contact_email',AppBundle\Services\Adapters\RepositoryServiceAdapter::class)
+  ->setPublic(true)
   ->setArguments([new Reference('doctrine.orm.entity_manager'),AppBundle\Entity\ContactEmail::class]);
 
 /*######################## Logging ################################*/

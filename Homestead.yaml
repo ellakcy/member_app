@@ -37,11 +37,9 @@ variables:
   - key: smtp_port
     value: 1025
   - key: smtp_user
-    value: no-reply@example.com
-  - key: IDE
-    value: atom
-  - key: XDEBUG_PORT
-    value: 9091
+    value: no_reply@example.com
+  - key: notification_email_address
+    value: noreply@example.com
 
 name: ellakcy-member-app
 hostname: ellakcy-member-app

@@ -56,7 +56,7 @@ class ContactEmailRepository extends \Doctrine\ORM\EntityRepository
   * List and Seatch for existing emails
   * @param Integer $page The pagination page
   * @param Integet $limit The page limit
-  * @return String[]
+  * @return Array[String[]]
   */
   public function getEmailListInOrderToSendEmail()
   {
@@ -65,12 +65,12 @@ class ContactEmailRepository extends \Doctrine\ORM\EntityRepository
     $queryBuilder = $em->createQueryBuilder();
     $queryBuilder->select('c.email')->from(ContactEmail::class,'c');
 
-    $value=$queryBuilder->getQuery()->execute();
+    $value=$queryBuilder->getQuery()->getScalarResult(\Doctrine\ORM\Query::HYDRATE_SINGLE_SCALAR);
 
     if(empty($value)){
       return [];
     }
-
+    dump($value);
     return $value;
   }
 

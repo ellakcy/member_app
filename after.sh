@@ -4,21 +4,6 @@
 # add any commands you wish to this file and they will
 # be run after the Homestead machine is provisioned.
 
-code_path="/home/vagrant/code"
-cd $code_path
-
-echo "Clearing caches for dev environment"
-php ./bin/console cache:clear
-php ./bin/console cache:warmup
-
-echo "Clearing caches for test environment"
-php ./bin/console cache:clear --env=test
-php ./bin/console cache:warmup --env=test
-
-echo "Creating schemas for test environment"
-php ./bin/console doctrine:schema:drop --env=test --force
-php ./bin/console doctrine:schema:create --env=test
-
 ##### Php Configuration #####
 
 echo "Configuring Xdebug"
