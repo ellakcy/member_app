@@ -192,6 +192,7 @@ $(document).ready(function(){
     var self=this;
     resetCaptha(function(){
       nextStep(self);
+      $('#displayRegistationPaperApplicationWrapper').hide();
     });
   });
 
@@ -268,7 +269,7 @@ $(document).ready(function(){
     var tmpl = $.templates('#registationPaperApplication');
     var html= tmpl.render(valuesToRender);
 
-    writeContentToIframe("displayRegistationPaperApplication",html)
+    writeContentToIframe("displayRegistationPaperApplication",html);
   });
 
   $("#contactForm").on('submit',function(e){
