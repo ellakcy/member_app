@@ -279,7 +279,7 @@ $(document).ready(function(){
     var tmpl = $.templates('#registationPaperApplication');
     var html= tmpl.render(valuesToRender);
     writeContentToIframe("displayRegistationPaperApplication",html);
-
+    $('#registrationForm').trigger('clear');
   });
 
   $("#contactForm").on('submit',function(e){
