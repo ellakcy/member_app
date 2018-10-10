@@ -45,8 +45,6 @@ class DefaultController extends Controller
       return new JsonResponse($response,$httpStatus,['Cache-control','private, max-age=0, no-cache']);
     }
 
-
-
     /**
      * @Route("/", name="homepage")
      * @Method("GET")
@@ -54,7 +52,6 @@ class DefaultController extends Controller
     public function indexAction(Request $request)
     {
         return $this->render('pages/registration.html.twig',[
-          'image'=>$this->createCaptcha(self::CAPTHA_KEY_REGISTRATION),
           'captha_key'=>self::CAPTHA_KEY_REGISTRATION
         ]);
     }

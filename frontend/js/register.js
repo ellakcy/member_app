@@ -166,15 +166,34 @@ var autofill=function(element){
   $('span[data-autofill="'+autoFillId+'"]').text(valueToCopy);
 }
 
+/**
+* @param {Function} cb The callback then the captha Image has been loaded.
+*/
+var resetCaptha=function(cb)
+{
+  var url=$('meta[name=captha_url]').attr("content")+"?rand="+Math.random();
+  if(cb){ //Call a callback function when image has been loaded
+    $("#capthaImage").on('load',function(e){
+      cb();
+    });
+  }
+  $("#capthaImage").attr('src',url);
+}
+
 $(document).ready(function(){
 
   $('#reset-captcha').on('click',function(e){
     e.preventDefault();
-    var url=$('meta[name=captha_url]').attr("content")+"?rand="+Math.random()
-    console.log(url);
-    $("#capthaImage").attr('src',url);
+    resetCaptha();
   });
 
+  $('#step1').on('click',function(e){
+    e.preventDefault();
+    var self=this;
+    resetCaptha(function(){
+      nextStep(self);
+    });
+  });
 
   $('#selectSignature').on("change",function(e){
     e.preventDefault()
