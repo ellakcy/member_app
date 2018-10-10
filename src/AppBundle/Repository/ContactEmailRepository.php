@@ -3,6 +3,7 @@
 namespace AppBundle\Repository;
 
 use AppBundle\Entity\ContactEmail;
+use AppBundle\Hydrators\ColumnHydrator;
 
 /**
  * ContactEmailRepository
@@ -56,16 +57,17 @@ class ContactEmailRepository extends \Doctrine\ORM\EntityRepository
   * List and Seatch for existing emails
   * @param Integer $page The pagination page
   * @param Integet $limit The page limit
-  * @return Array[String[]]
+  * @return String[]
   */
   public function getEmailListInOrderToSendEmail()
   {
     $em=$this->getEntityManager();
+    $em->getConfiguration()->addCustomHydrationMode('ColumnHydrator', ColumnHydrator::class);
 
     $queryBuilder = $em->createQueryBuilder();
     $queryBuilder->select('c.email')->from(ContactEmail::class,'c');
 
-    $value=$queryBuilder->getQuery()->getScalarResult(\Doctrine\ORM\Query::HYDRATE_SINGLE_SCALAR);
+    $value=$queryBuilder->getQuery()->getResult('ColumnHydrator');
 
     if(empty($value)){
       return [];

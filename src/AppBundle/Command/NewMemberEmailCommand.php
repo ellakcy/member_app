@@ -8,6 +8,8 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
 
+use AppBundle\Repository\ContactEmailRepository;
+
 class NewMemberEmailCommand extends ContainerAwareCommand
 {
     protected function configure()
@@ -24,7 +26,7 @@ class NewMemberEmailCommand extends ContainerAwareCommand
         /**
         * @var AppBundle\Repository\ContactEmailRepository
         */
-        $contactEmailService=$container->get('ellakcy.db.contact_email');
+        $contactEmailService=$container->get(ContactEmailRepository::class);
 
         /**
         * @var AppBundle\Services\NormalEmailSend
@@ -36,7 +38,7 @@ class NewMemberEmailCommand extends ContainerAwareCommand
 
         foreach($emails as $email){
           //@todo: Somehow provide content to email invitation
-          $mailer->send($addresseToSendFrom,$email['email'],"EllakCy Member Registration","AHHAHA","AHHHA");
+          $mailer->send($addresseToSendFrom,$email,"EllakCy Member Registration","AHHAHA","AHHHA");
         }
     }
 
