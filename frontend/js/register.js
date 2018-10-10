@@ -132,12 +132,21 @@ var printPaperApplciationForm=function(){
 /**
 * Change the dom to the next step
 * @param {external:Node | String} currentElement The element shown to the current step
+* @param {Function} callback The callback when moved to the next step
 */
-var nextStep = function(currentElement) {
+var nextStep = function(currentElement, callback) {
   var idToScrollTo=$(currentElement).attr('data-scroll-to');
   $("#"+idToScrollTo).removeClass('d-none');
   $("#"+idToScrollTo).show();
-  $("#"+idToScrollTo).animatescroll({scrollSpeed:2000,easing:'easeInQuad'});
+  $("#"+idToScrollTo).animatescroll({scrollSpeed:2000,
+    easing:'easeInQuad',
+    onScrollEnd:function(){
+    if(callback){
+      callback();
+    }
+   }
+  });
+
 }
 
 
@@ -226,6 +235,7 @@ $(document).ready(function(){
 
   $("#rejectEmail").on("click",function(e){
     $("#registrationForm").submit();
+    $("#contactEmailSubmit").hide();
     nextStep(this);
   })
 
@@ -268,8 +278,8 @@ $(document).ready(function(){
 
     var tmpl = $.templates('#registationPaperApplication');
     var html= tmpl.render(valuesToRender);
-
     writeContentToIframe("displayRegistationPaperApplication",html);
+
   });
 
   $("#contactForm").on('submit',function(e){
@@ -304,6 +314,7 @@ $(document).ready(function(){
       },
       'success':function(data){
         $("#registrationForm").submit();
+        $("#contactEmailSubmit").hide();
         nextStep(self);
       }
     });
