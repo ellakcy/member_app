@@ -56,7 +56,12 @@ class ContactEmail
     * @return ContactEmail
     */
     public function setEmail($email){
-      $this->email=$email;
+      // $email=filter_var($email,FILTER_VALIDATE_EMAIL);
+      // if($email){
+        $this->email=$email;
+      // } else {
+        // throw new
+      // }
 
       return $this;
     }

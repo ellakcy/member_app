@@ -11,7 +11,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
 use Psr\Log\LoggerInterface;
 use \AppBundle\Services\CapthaServiceAdapter;
-
+use AppBundle\Repository\ContactEmailRepository;
 
 class DefaultController extends Controller
 {
@@ -64,7 +64,7 @@ class DefaultController extends Controller
     * @Method("POST")
     * @todo Have common code for handling the Ajax Errors
     */
-    public function addEmailAction(Request $request,LoggerInterface $logger)
+    public function addEmailAction(Request $request,LoggerInterface $logger,ContactEmailRepository $contactEmailHandler)
     {
       $capthaService=$this->get(CapthaServiceAdapter::class);
       $capthaUserValue=$request->request->get('captcha');
@@ -79,7 +79,7 @@ class DefaultController extends Controller
       * @var AppBundle\Repository\ContactEmailRepository
       * @todo Create Specialized Service for proxying the Repositories
       */
-      $contactEmailHandler=$this->get('doctrine.orm.entity_manager')->getRepository('AppBundle:ContactEmail');
+      // $contactEmailHandler=$this->get('doctrine.orm.entity_manager')->getRepository('AppBundle:ContactEmail');
 
       try {
 

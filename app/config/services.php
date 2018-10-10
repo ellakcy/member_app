@@ -1,6 +1,8 @@
 <?php
 use Symfony\Component\DependencyInjection\Definition;
 use Symfony\Component\DependencyInjection\Reference;
+use AppBundle\ServiceFactories\RepositoryFactory;
+
 
 // To use as default template
 $definition = new Definition();
@@ -21,11 +23,12 @@ $container->register(AppBundle\Services\NormalEmailSend::class)
   ->setPublic(true)
   ->setArguments([new Reference('mailer')]);
 
-/*##################### Repository Adapters ########################*/
+/*##################### Repositories ########################*/
 
-$container->register('ellakcy.db.contact_email',AppBundle\Services\Adapters\RepositoryServiceAdapter::class)
-  ->setPublic(true)
-  ->setArguments([new Reference('doctrine.orm.entity_manager'),AppBundle\Entity\ContactEmail::class]);
+$container->register(AppBundle\Repository\ContactEmailRepository::class,AppBundle\Repository\ContactEmailRepository::class)
+    ->setFactory([new Reference(RepositoryFactory::class),'repositoryAsAService'])
+    ->setArguments(['$entityManager'=>new Reference('doctrine.orm.entity_manager'),'$entityName'=>AppBundle\Entity\ContactEmail::class]);
+
 
 /*######################## Logging ################################*/
 $container->register('ellakcy.log.formatter.access_log',Monolog\Formatter\LineFormatter::class)
