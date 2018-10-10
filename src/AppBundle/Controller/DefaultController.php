@@ -75,33 +75,21 @@ class DefaultController extends Controller
         return $this->createErrorJsonResponse("The provided captha is not the valid one",JsonResponse::HTTP_BAD_REQUEST);
       }
 
-      /**
-      * @var AppBundle\Repository\ContactEmailRepository
-      * @todo Create Specialized Service for proxying the Repositories
-      */
-      // $contactEmailHandler=$this->get('doctrine.orm.entity_manager')->getRepository('AppBundle:ContactEmail');
-
+      $contactEmail=$request->request->get('autofill_email');
       try {
-
-        $contactEmail=$request->request->get('autofill_email');
-        $contactEmailNew=filter_var($contactEmail,FILTER_VALIDATE_EMAIL);
-
-        if($contactEmailNew){
           /**
           * @var AppBundle\Entity\ContactEmail
           */
-          $emailToReturn=$contactEmailHandler->addEmail($contactEmailNew);
+          $emailToReturn=$contactEmailHandler->addEmail($contactEmail);
           $response=['data'=>$emailToReturn->getEmail()];
           return new JsonResponse($response,JsonResponse::HTTP_OK);
-        } else {
-          return new JsonResponse("The provided email is not a valid one. You gave the value:".$contactEmail,JsonResponse::HTTP_BAD_REQUEST);
-        }
-
+      }catch(\InvalidArgumentException $i){
+        return new JsonResponse(['data'=>"The provided email is not a valid one. You gave the value:".$contactEmail],JsonResponse::HTTP_BAD_REQUEST);
       }catch(UniqueConstraintViolationException $u){
         return new JsonResponse(['data'=>'Email has already provided']);
       }catch( \Exception $e) {
         $logger->error('An exception had been thrown: '.$e->getMessage());
-        return $this->createErrorJsonResponse("Internal Error",JsonResponse::HTTP_INTERNAL_ERROR);
+        return $this->createErrorJsonResponse("Internal Error",JsonResponse::HTTP_BAD_REQUEST);
       }
     }
 

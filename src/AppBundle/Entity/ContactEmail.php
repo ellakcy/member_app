@@ -54,14 +54,15 @@ class ContactEmail
     /**
     * @param String $email
     * @return ContactEmail
+    * @throws InvalidArgumentException
     */
     public function setEmail($email){
-      // $email=filter_var($email,FILTER_VALIDATE_EMAIL);
-      // if($email){
-        $this->email=$email;
-      // } else {
-        // throw new
-      // }
+      $emailFiltered=filter_var($email,FILTER_VALIDATE_EMAIL);
+      if($emailFiltered){
+        $this->email=$emailFiltered;
+      } else {
+        throw new \InvalidArgumentException("The contact email is not a valid one. The provided value was: ".$email);
+      }
 
       return $this;
     }
