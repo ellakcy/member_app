@@ -64,9 +64,10 @@ class DefaultController extends Controller
     * @Method("POST")
     * @todo Have common code for handling the Ajax Errors
     */
-    public function addEmailAction(Request $request,LoggerInterface $logger,ContactEmailRepository $contactEmailHandler)
-    {
-      $capthaService=$this->get(CapthaServiceAdapter::class);
+    public function addEmailAction(Request $request,LoggerInterface $logger,
+    ContactEmailRepository $contactEmailHandler,
+    CapthaServiceAdapter $capthaService
+    ){
       $capthaUserValue=$request->request->get('captcha');
 
       if(!$request->isXmlHttpRequest()){
