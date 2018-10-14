@@ -111,6 +111,6 @@ class DefaultController extends Controller
     * @Route("/panel", name="panel")
     */
     public function panelAction(){
-
+      return $this->render('pages/panel.html.twig');
     }
 }

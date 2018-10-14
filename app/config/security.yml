@@ -12,7 +12,7 @@ security:
     providers:
         our_db_provider:
             entity:
-                class: App\Entity\User
+                class: AppBundle\Entity\User
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -27,10 +27,14 @@ security:
 
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
             #http_basic: ~
-
+            logout:
+               path: /logout
+               target: /
+               
             form_login:
                 login_path: login
                 check_path: login
+                use_referer: true
 
             remember_me:
                 secret: '%kernel.secret%'
@@ -38,6 +42,8 @@ security:
                 path:     /
                 httponly: true
                 remember_me_parameter: remember_me
+
+
 
 dunglas_angular_csrf:
   # Collection of patterns where to set the cookie

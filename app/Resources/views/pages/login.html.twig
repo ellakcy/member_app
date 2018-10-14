@@ -18,7 +18,7 @@
       <div class="bg-light border border-primary">
         <div class="row mt-5 mb-5 p-3">
           <h1 class="col-12" style="text-align:center">Login</h1>
-          <form class="col-12" action="./index.html" method="post">
+          <form class="col-12" action="{{ path('login') }}" method="post">
                  <div class="form-group">
                   <input type="text" class="form-control"  value="{{last_username}}" id="username" name="_username" placeholder="Username" required="required" />
                   <span class="glyphicon glyphicon-user form-control-feedback"></span>
@@ -34,6 +34,7 @@
                       <label class="form-check-label" for="remember_me" >Remember Me</label>
                     </div>
                 </div>
+                <input type="hidden" name="_target_path" value="{{ path('panel') }}" />
                <div class="form-row">
                  <div class="col">
                    <input type="submit" class="btn btn-success btn-block" id="_submit" name="_submit" value="Submit" />
