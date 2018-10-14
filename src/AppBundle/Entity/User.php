@@ -80,7 +80,7 @@ class User implements UserInterface, \Serializable
 
     public function getUsername()
     {
-      return !empty($this->displayName)?$this->displayName:$this->email;
+      return $this->email;
     }
 
     public function getPassword()
@@ -162,7 +162,7 @@ class User implements UserInterface, \Serializable
 
     public function isEnabled()
     {
-          return $this->isActive && !empty($this->password);
+          return $this->isActive;
     }
 
     public function enable()

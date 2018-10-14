@@ -21,7 +21,6 @@ security:
             security: false
 
         main:
-            logout_on_user_change: true
             anonymous: ~
             # activate different ways to authenticate
 
@@ -30,11 +29,13 @@ security:
             logout:
                path: /logout
                target: /
-               
+
             form_login:
                 login_path: login
                 check_path: login
                 use_referer: true
+                always_use_default_target_path: true
+                default_target_path: /panel
 
             remember_me:
                 secret: '%kernel.secret%'
@@ -42,8 +43,6 @@ security:
                 path:     /
                 httponly: true
                 remember_me_parameter: remember_me
-
-
 
 dunglas_angular_csrf:
   # Collection of patterns where to set the cookie

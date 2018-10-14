@@ -34,7 +34,6 @@ use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
      $inActiveUser= new User('jdoe_inactive','jdoeInactive@example.com',['ROLE_USER'],false);
      $activeUserPassword=$this->passwordEncoder->encodePassword($inActiveUser,'pass1234');
      $inActiveUser->setPassword($activeUserPassword);
-
      $manager->persist($inActiveUser);
    }
 

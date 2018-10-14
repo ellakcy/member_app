@@ -2,7 +2,7 @@
 
 namespace AppBundle\Controller;
 
-use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
+use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
@@ -111,6 +111,7 @@ class DefaultController extends Controller
     * @Route("/panel", name="panel")
     */
     public function panelAction(){
+      $this->denyAccessUnlessGranted('ROLE_USER');
       return $this->render('pages/panel.html.twig');
     }
 }
