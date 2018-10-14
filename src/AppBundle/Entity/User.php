@@ -53,7 +53,7 @@ class User implements UserInterface, \Serializable
         // $this->salt = md5(uniqid('', true));
     }
 
-    public function getDisplayName()
+    public function getUsername()
     {
         return $this->displayName;
     }

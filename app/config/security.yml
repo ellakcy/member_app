@@ -27,9 +27,16 @@ security:
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
             #http_basic: ~
 
-            # form_login:
-            #     login_path: login
-            #     check_path: login
+            form_login:
+                login_path: login
+                check_path: login
+
+            remember_me:
+                secret: '%kernel.secret%'
+                lifetime: 604800 # 1 week in seconds
+                path:     /
+                httponly: true
+                remember_me_parameter: remember_me
 
 dunglas_angular_csrf:
   # Collection of patterns where to set the cookie
