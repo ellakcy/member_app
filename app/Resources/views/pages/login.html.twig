@@ -15,10 +15,10 @@
 {% block main %}
 <main class="custom">
   <div class="custom container d-flex align-items-center justify-content-center">
-      <div class="row bg-light border border-primary">
-        <div class="col mt-5 col-xs-12 col-sm-12 col-md-12 col-lg-12">
-          <h1 style="text-align:center">Login</h1>
-          <form action="./index.html" method="post">
+      <div class="bg-light border border-primary">
+        <div class="row mt-5 mb-5 p-3">
+          <h1 class="col-12" style="text-align:center">Login</h1>
+          <form class="col-12" action="./index.html" method="post">
                  <div class="form-group">
                   <input type="text" class="form-control"  value="{{last_username}}" id="username" name="_username" placeholder="Username" required="required" />
                   <span class="glyphicon glyphicon-user form-control-feedback"></span>
@@ -43,9 +43,6 @@
                  </div>
               </div>
           </form>
-        </div>
-        <div class="col col-xs-12 col-sm-12 col-md-12 col-lg-12 mt-1 mb-5">
-            <a class="btn btn-primary btn-block" href="#">I do not have an account</a>
         </div>
       </div>
     </div>
