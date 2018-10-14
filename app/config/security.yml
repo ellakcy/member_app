@@ -2,10 +2,16 @@
 # https://symfony.com/doc/current/security.html
 security:
 
-    # https://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+    encoders:
+        App\Entity\User:
+            algorithm: bcrypt
+
+    # ...
+
     providers:
-        in_memory:
-            memory: ~
+        our_db_provider:
+            entity:
+                class: App\Entity\User
 
     firewalls:
         # disables authentication for assets and the profiler, adapt it according to your needs
@@ -23,6 +29,7 @@ security:
 
             # https://symfony.com/doc/current/security/form_login_setup.html
             #form_login: ~
+            
 dunglas_angular_csrf:
   # Collection of patterns where to set the cookie
   cookie:
