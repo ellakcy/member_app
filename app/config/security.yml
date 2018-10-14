@@ -2,11 +2,12 @@
 # https://symfony.com/doc/current/security.html
 security:
 
-    encoders:
-        App\Entity\User:
-            algorithm: bcrypt
+    role_hierarchy:
+      ROLE_SUPER_ADMIN: [ROLE_USER, ROLE_ADMIN]
+      ROLE_ADMIN: [ROLE_USER, ROLE_USER_ADMIN, ROLE_PARTICIPANT_ADMIN]
 
-    # ...
+    encoders:
+        AppBundle\Entity\User: bcrypt
 
     providers:
         our_db_provider:
