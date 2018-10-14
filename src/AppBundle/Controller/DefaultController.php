@@ -106,4 +106,11 @@ class DefaultController extends Controller
 
       return $response;
     }
+
+    /**
+    * @Route("/panel", name="panel")
+    */
+    public function panelAction(){
+
+    }
 }
