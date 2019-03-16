@@ -89,7 +89,6 @@ gulp.task('move_jsrender',function(done){
 })
 
 gulp.task('move_qrious',function(done){
-
   var dest=`${vendor_folder}/qrious`
 
   gulp.src('./node_modules/qrious/dist/qrious.min.*').pipe(gulp.dest(dest));
@@ -102,6 +101,14 @@ gulp.task('move_cookie_js',function(done){
 
   gulp.src('./node_modules/js-cookie/src/js.cookie.js').pipe(gulp.dest(dest));
   done();
+});
+
+gulp.task('move_jspdf', function(done){
+
+ const dest=`${vendor_folder}/jspdf`;
+ gulp.src('./node_modules/jspdf/dist/jspdf.min.js').pipe(gulp.dest(dest));
+ 
+ done();
 });
 
 /******* Build Final Steps ****************************************************/
@@ -119,7 +126,7 @@ gulp.task('link_assets',function(done){
 /* ############################################ Installing Dependencies ##################################### */
 
 gulp.task('move_frontend',
-          gulp.parallel(['move_bootstrap','move_jquery','move_fontawesome','move_flagicon_css','move_jsrender','move_qrious','move_cookie_js'],
+          gulp.parallel(['move_bootstrap','move_jquery','move_fontawesome','move_flagicon_css','move_jsrender','move_qrious','move_cookie_js','move_jspdf'],
           (done)=>{done()}
         ));
 
