@@ -146,9 +146,7 @@ var nextStep = function(currentElement, callback) {
     }
    }
   });
-
 }
-
 
 /**
 * Write content to an Iframe
@@ -187,6 +185,24 @@ var resetCaptha=function(cb)
     });
   }
   $("#capthaImage").attr('src',url);
+}
+
+/**
+ * Function that prompts user to download his application form as pdf.
+ */
+var getPDf = function(){
+  console.log("Getting Html");
+  console.log($("#displayRegistationPaperApplication")[0]);
+  generatePdfFromHtml($("#displayRegistationPaperApplication")[0]);
+}
+
+var generatePdfFromHtml=function(html){
+  var pdf = new jsPDF('p', 'pt', 'a4');
+  pdf.html(html,{
+    'callback': function(pdf){
+      pdf.save('ellakcy_application_form.pdf');
+    }
+  });
 }
 
 $(document).ready(function(){
@@ -249,9 +265,7 @@ $(document).ready(function(){
     e.preventDefault();
     var self=this
     var values=$(this).serializeArray();
-    var qrValueInputNames=$('input[data-qr="true"]').map(function(){
-      return this.name;
-    }).get();
+    var qrValueInputNames=$('input[data-qr="true"]').map(function(){return this.name;}).get();
 
     var qrCodeValues={};
     var valuesToRender={};
@@ -279,9 +293,11 @@ $(document).ready(function(){
     var tmpl = $.templates('#registationPaperApplication');
     var html= tmpl.render(valuesToRender);
     writeContentToIframe("displayRegistationPaperApplication",html);
+    // generatePdfFromHtml(html);
     $('#registrationForm').trigger('clear');
   });
 
+  // Storing email in order to inform the members regarding the meeting
   $("#contactForm").on('submit',function(e){
     e.preventDefault();
 

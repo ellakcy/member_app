@@ -106,7 +106,8 @@ gulp.task('move_cookie_js',function(done){
 gulp.task('move_jspdf', function(done){
 
  const dest=`${vendor_folder}/jspdf`;
- gulp.src('./node_modules/jspdf/dist/jspdf.min.js').pipe(gulp.dest(dest));
+ gulp.src(['./node_modules/jspdf/dist/jspdf.*.js',
+ './node_modules/html2canvas/dist/html2canvas.min.js'] ).pipe(gulp.dest(dest));
  
  done();
 });

@@ -120,10 +120,10 @@
  <div id="displayRegistationPaperApplicationWrapper" data-step="3" style="display:none" class="row border shade mt-5">
    <div class="col-12">
      <h2 class="text-center">{{ 'register.preview.title'|trans }}</h2>
-     <button class="btn btn-primary mb-2 mt-1" onclick="printPaperApplciationForm()"> <i class="fas fa-print"></i></button>
+     <button class="btn btn-primary mb-2 mt-1" onclick="printPaperApplciationForm()"><i class="fas fa-print"></i></button>
+     <button id="downloadPdf" class="btn btn-danger mb-2 mt-1" onclick="getPDf()"><i class="far fa-file-pdf"></i></button>
    </div>
-   <iframe id="displayRegistationPaperApplication"  name="displayRegistationPaperApplication" class="col-12">
-   </iframe>
+   <iframe id="displayRegistationPaperApplication"  name="displayRegistationPaperApplication" class="col-12"></iframe>
  </div>
 
 <!-- templates section -->
@@ -133,6 +133,8 @@
   {% include('./templates/applicationForm/applicationFormJsRenderTemplate.html.twig') %}
 </script>
 
+<script id="renderedApplicationForPdf" type="text/html"></script>
+
 {% endblock main %}
 
 {% block javascripts %}
@@ -141,5 +143,7 @@
   <script src="{{ asset('./jsrender/jsrender.min.js','vendor') }}"></script>
   <script src="{{ asset('./animatescroll.min.js','vendor') }}"></script>
   <script src="{{ asset('./cookie-js/js.cookie.js','vendor') }}"></script>
+  <script src="{{ asset('./jspdf/jspdf.debug.js','vendor')}}"></script>
+  <script src="{{ asset('./jspdf/html2canvas.min.js','vendor')}}"></script>
   <script src="{{ asset('register.js','js') }}"></script>
 {% endblock %}
