@@ -188,24 +188,35 @@ var resetCaptha=function(cb)
 }
 
 /**
- * Function that prompts user to download his application form as pdf.
+ * Generate and save pdf as Html
+ * @param {jsPDF} pdf The PDF Creation object
+ * @param {String} html The html content 
+ * @param {function} callback callback function for further processing
+ * @returns {jsPDF}
  */
-var getPDf = function(){
-  console.log("Getting Html");
-  console.log($("#displayRegistationPaperApplication")[0]);
-  generatePdfFromHtml($("#displayRegistationPaperApplication")[0]);
-}
-
-var generatePdfFromHtml=function(html){
-  var pdf = new jsPDF('p', 'pt', 'a4');
-  pdf.html(html,{
+var generatePdfFromHtml=function(pdf,html,callback){
+  console.log(pdf);
+  margins = {
+    top: 70,
+    bottom: 40,
+    left: 30,
+    width: 550
+  };
+  pdf.fromHTML(html, {
     'callback': function(pdf){
-      pdf.save('ellakcy_application_form.pdf');
+      if(callback && typeof callback === 'function'){
+        callback(pdf);
+      }
     }
-  });
+  },margins);
 }
 
 $(document).ready(function(){
+
+  /**
+   * @var {jsPDF} pdf
+   */
+  var pdf=new jsPDF('p', 'pt', 'a4');
 
   $('#reset-captcha').on('click',function(e){
     e.preventDefault();
@@ -292,8 +303,13 @@ $(document).ready(function(){
 
     var tmpl = $.templates('#registationPaperApplication');
     var html= tmpl.render(valuesToRender);
-    writeContentToIframe("displayRegistationPaperApplication",html);
-    // generatePdfFromHtml(html);
+    // writeContentToIframe("displayRegistationPaperApplication",html);
+
+    //@var {jsPDF} pdf
+    generatePdfFromHtml(pdf,html,function(pdfFromCallback){
+      pdfFromCallback.output('displayRegistationPaperApplication');
+    });
+    
     $('#registrationForm').trigger('clear');
   });
 

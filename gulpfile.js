@@ -107,7 +107,8 @@ gulp.task('move_jspdf', function(done){
 
  const dest=`${vendor_folder}/jspdf`;
  gulp.src(['./node_modules/jspdf/dist/jspdf.*.js',
- './node_modules/html2canvas/dist/html2canvas.min.js'] ).pipe(gulp.dest(dest));
+ './node_modules/html2canvas/dist/html2canvas.min.js',
+'./node_modules/jspdf-autotable/dist/jspdf.plugin.autotable.min.js'] ).pipe(gulp.dest(dest));
  
  done();
 });

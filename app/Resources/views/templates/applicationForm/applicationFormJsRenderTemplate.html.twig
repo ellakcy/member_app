@@ -1,10 +1,11 @@
 {% extends "templates/applicationForm/applicationForm.html.twig" %}
 
+{# Seting the values with some jsrender appropriate text #}
 {% set name='\{\{:name\}\}' %}
 {% set surname='\{\{:surname\}\}' %}
 {% set email='\{\{:email\}\}' %}
 
-
+{# JSRender login on showing signature image and QRCode Image #}
 {% block signatureImage %}
   {{ '\{\{if signature \}\}' }}
       <img src="{{ '\{\{:signature \}\}' }}" />
@@ -16,3 +17,7 @@
   <img src="{{ '{{:qrCodeImg}}' }} "/>
 {{'{{/if}}'}}
 {% endblock %}
+
+{# Replace with appropriate base64 for logo #}
+{# {% block logoImg %}
+{% endblock logoImg %} #}

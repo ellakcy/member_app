@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 {% trans_default_domain 'register' %}
-
+{% set logo_img=asset('ellakcy-full.png') %}
 <html>
   <head>
     <meta charset="UTF-8"/>
@@ -14,7 +14,7 @@
     <div id="printArea" class="container-fluid">
       <div class="row mt-5">
         <div class="col-12 banner-wrap">
-          <img class="banner img-fluid img-thumbnail" src="{{ asset('ellakcy-full.png') }}" />
+           <img class="banner img-fluid img-thumbnail" src="{{ logo_img }}" />
         </div>
           <div class="col-12 mt-2 mb-3">
           <h1>{{ "register.title.memberapplication"|trans }}</h1>
@@ -44,7 +44,7 @@
                 <th colspan="2" >{{ 'register.name'|trans }}:</th>
                 <td colspan="8" class="applicationData"><span class="registrationInfo" data-fill="name">{{name|default('')}}</span></td>
                 <th colspan="2">{{ 'register.surname'|trans }}:</th>
-                <td colspan="8" class="applicationData" ><span class="registrationInfo" data-fill="surname">{{surname|default('')}}</span></span></td>
+                <td colspan="8" class="applicationData" ><span class="registrationInfo" data-fill="surname">{{surname|default('')}}</span></td>
               </tr>
               <tr><!-- email -->
                 <th colspan="3">{{ 'register.email'|trans }}:</th>

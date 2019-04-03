@@ -56,6 +56,8 @@ monolog:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    globals:
+        root_path: '%kernel.root_dir'
 
 
 # Doctrine Configuration
