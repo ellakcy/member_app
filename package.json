@@ -18,6 +18,7 @@
     "jspdf": "^1.5.3",
     "jspdf-autotable": "^3.0.13",
     "jsrender": "^0.9.90",
+    "pdfjs-dist": "^2.0.943",
     "qrious": "^4.0.2"
   },
   "devDependencies": {

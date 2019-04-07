@@ -57,7 +57,7 @@ twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
     globals:
-        root_path: '%kernel.root_dir'
+        root_path: '%kernel.project_dir%/web'
 
 
 # Doctrine Configuration

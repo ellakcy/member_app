@@ -151,15 +151,13 @@ var nextStep = function(currentElement, callback) {
 /**
 * Write content to an Iframe
 * @param {String} id The id of the iframe
-* @param {String} content The content to write into the iframe
+* @param {String} url The content to write into the iframe
 */
-var writeContentToIframe=function(id,content){
-  var iframeElementContainer = document.getElementById(id).contentDocument;
-
-  iframeElementContainer.open();
-  iframeElementContainer.writeln(content);
-  iframeElementContainer.close();
+var writeContentToIframe=function(id,url){
+  var iframeElementContainer = document.getElementById(id);
+  iframeElementContainer.src=url;
 }
+
 
 /**
 * Autofills an input or a element from the value provided from an input
@@ -195,20 +193,15 @@ var resetCaptha=function(cb)
  * @returns {jsPDF}
  */
 var generatePdfFromHtml=function(pdf,html,callback){
-  console.log(pdf);
-  margins = {
-    top: 70,
-    bottom: 40,
-    left: 30,
-    width: 550
-  };
-  pdf.fromHTML(html, {
+  console.log("Generating Pdf");
+  pdf.html(html, {
     'callback': function(pdf){
       if(callback && typeof callback === 'function'){
+        console.log("Offering Pdf as callback");
         callback(pdf);
       }
     }
-  },margins);
+  });
 }
 
 $(document).ready(function(){
@@ -303,11 +296,13 @@ $(document).ready(function(){
 
     var tmpl = $.templates('#registationPaperApplication');
     var html= tmpl.render(valuesToRender);
-    // writeContentToIframe("displayRegistationPaperApplication",html);
 
     //@var {jsPDF} pdf
     generatePdfFromHtml(pdf,html,function(pdfFromCallback){
-      pdfFromCallback.output('displayRegistationPaperApplication');
+      var blob=pdfFromCallback.output('blob');
+      var blob_url = URL.createObjectURL(blob);
+      console.log(blob_url);
+      writeContentToIframe('displayRegistationPaperApplication',blob_url);
     });
     
     $('#registrationForm').trigger('clear');

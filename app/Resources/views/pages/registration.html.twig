@@ -138,9 +138,9 @@
 
 {% block javascripts %}
   {{parent()}}
+  <script src="{{ asset('./jspdf/html2canvas.min.js','vendor')}}"></script>
   <script src="{{ asset('./jspdf/jspdf.debug.js','vendor')}}"></script>
   <script src="{{ asset('./jspdf/jspdf.plugin.autotable.min.js','vendor')}}"></script>
-  <script src="{{ asset('./jspdf/html2canvas.min.js','vendor')}}"></script>
   <script src="{{ asset('./qrious/qrious.min.js','vendor') }}"></script>
   <script src="{{ asset('./jsrender/jsrender.min.js','vendor') }}"></script>
   <script src="{{ asset('./animatescroll.min.js','vendor') }}"></script>
